@@ -25,3 +25,4 @@ jobs:
         with:
           branch: gh-pages
           folder: build
+          publish_dir: ./slim-mom/frontend/slim-mom-app
