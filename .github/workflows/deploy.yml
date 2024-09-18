@@ -17,11 +17,10 @@ jobs:
 
       - name: Install, lint, build 🔧
         run: |
-          cd ../
           npm install
           npm run lint:js
           npm run build
-        working-directory: front-end/slim-mom-app
+        working-directory: frontend/slim-mom-app
 
       - name: Deploy 🚀
         uses: JamesIves/github-pages-deploy-action@4.1.0
