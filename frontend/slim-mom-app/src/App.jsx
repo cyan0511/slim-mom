@@ -6,6 +6,7 @@ import {RestrictedRoute} from "./components/RestrictedRoute/RestrictedRoute";
 import {lazy} from "react";
 import {PrivateRoute} from "./components/PrivateRoute/PrivateRoute";
 
+const MainPage = lazy(() => import('./pages/MainPage/MainPage'));
 const RegisterPage = lazy(() => import('./pages/RegisterPage/RegisterPage'));
 const LoginPage = lazy(() => import('./pages/LoginPage/LoginPage'));
 
@@ -16,7 +17,7 @@ function App() {
         <Routes>
           <Route path="/" element={<SharedLayout />}>
             <Route index element={<RestrictedRoute
-                component={<div> test </div>}
+                component={<MainPage />}
                 redirectTo="/transactions"
             />} />
             <Route

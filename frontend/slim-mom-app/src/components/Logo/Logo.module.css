@@ -33,5 +33,15 @@
 @media screen and (min-width: 376px) {
   .logoContainer svg {
     display: block ;
+    position: initial;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .logoContainer svg {
+    display: block;
+    top: 50px;
+    left: 60px;
+    position: absolute;
   }
 }

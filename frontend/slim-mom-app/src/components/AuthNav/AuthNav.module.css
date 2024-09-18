@@ -1,43 +1,63 @@
 .link {
-  display: inline-block;
-  text-decoration: none;
-  padding: 12px;
-  font-weight: 700;
-  color: #5d7d93;
+    display: inline-block;
+    text-decoration: none;
+    padding: 12px;
+    font-weight: 700;
+    color: #5d7d93;
 }
 
 .linkActive {
-  composes: link;
-  font-weight: 800;
-  color: #e84f20;
+    composes: link;
+    font-weight: 800;
+    color: #e84f20;
 }
 
 .actionButtons {
-  display: flex;
-  gap: 14px;
+    display: flex;
+    gap: 14px;
+    align-items: center;
+    padding-left: 20px;
+    text-overflow: fade;
 }
 
 .actionButtons > a {
-  color: #9B9FAA;
-  text-align: right;
-  font-size: 14px;
-  font-style: normal;
-  font-weight: 700;
-  line-height: normal;
-  letter-spacing: 0.56px;
-  text-transform: uppercase;
-  white-space: nowrap;
-  text-decoration: none;
+    color: #9B9FAA;
+    text-align: right;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    letter-spacing: 0.56px;
+    text-transform: uppercase;
+    white-space: nowrap;
+    text-decoration: none;
 }
 
 
- a.active {
-  color: #212121;
-  text-align: right;
-  font-size: 14px;
-  font-style: normal;
-  font-weight: 700;
-  line-height: normal;
-  letter-spacing: 0.56px;
-  text-transform: uppercase;
+a.active {
+    color: #212121;
+    text-align: right;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    letter-spacing: 0.56px;
+    text-transform: uppercase;
+}
+
+@media screen and (min-width: 768px) {
+
+    .actionButtons::before {
+        content: '|';
+        color: #E0E0E0;
+        font-size: 32px;
+        margin-right: 10px;
+    }
+
+    .actionButtons {
+        display: block;
+        top: 35px;
+        left: 160px;
+        position: absolute;
+    }
 }
