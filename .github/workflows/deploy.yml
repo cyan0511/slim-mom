@@ -24,5 +24,4 @@ jobs:
         uses: JamesIves/github-pages-deploy-action@4.1.0
         with:
           branch: gh-pages
-          folder: build
-          publish_dir: ./slim-mom/frontend/slim-mom-app
+          folder: ./slim-mom/frontend/slim-mom-app/build
