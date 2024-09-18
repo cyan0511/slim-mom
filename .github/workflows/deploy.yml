@@ -17,6 +17,7 @@ jobs:
 
       - name: Install, lint, build 🔧
         run: |
+          cd ../
           npm install
           npm run lint:js
           npm run build
