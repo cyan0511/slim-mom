@@ -1,0 +1,26 @@
+.container {
+  display: flex;
+  gap: 16px;
+}
+
+.container a {
+  text-decoration: none;
+}
+
+
+
+/*
+!* Styles for screens between 376px and 768px wide (e.g., tablets) *!
+@media screen and (max-width: 768px) {
+  .container {
+    display: none;
+  }
+}
+
+!* Styles for screens 375px wide or less (e.g., small mobile devices) *!
+@media screen and (max-width: 375px) {
+  .container {
+    display: none;
+  }
+}
+*/

@@ -1,0 +1,64 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+  padding: 32px;
+  width: 100%;
+}
+
+.mainContainer {
+  display: flex;
+  flex-direction: row;
+  gap: 54px;
+  justify-content: center;
+  width: 100%;
+  max-width: 1240px;
+}
+
+.outlet {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+/*
+
+!* Styles for screens between 376px and 768px wide (e.g., tablets) *!
+@media screen and (max-width: 768px) {
+  !*.container {
+    padding: 32px;
+  }*!
+  .mainContainer {
+    flex-direction: column;
+    margin-top: 96px;
+  }
+
+  .imageWrapper {
+    order: 2;
+  }
+
+  .hiddenImageWrapper {
+    display: none;
+  }
+}
+
+
+!* Styles for screens 375px wide or less (e.g., small mobile devices) *!
+@media screen and (max-width: 375px) {
+  .container {
+    padding: 20px;
+  }
+  .mainContainer {
+    flex-direction: column;
+    margin-top: 40px;
+  }
+
+  .outlet {
+    order: 1;
+  }
+
+  .imageWrapper {
+    order: 2;
+  }
+
+}
+*/

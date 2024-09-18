@@ -1,0 +1,18 @@
+.link {
+  display: inline-block;
+  text-decoration: none;
+  padding: 12px;
+  font-weight: 700;
+  color: #e0dfdf;
+}
+
+.linkActive {
+  composes: link;
+  font-weight: 800;
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-between; /* Centers the NavLinks horizontally */
+  align-items: center;
+}
