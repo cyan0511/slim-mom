@@ -15,7 +15,7 @@ jobs:
 
       - name: Install, lint, build 🔧
         run: |
-          cd ./frontend/slim-mom-app
+          cd ./../frontend/slim-mom-app
           npm install
           npm run lint:js
           npm run build
