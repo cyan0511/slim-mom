@@ -51,13 +51,13 @@ a.active {
         content: '|';
         color: #E0E0E0;
         font-size: 32px;
-        margin-right: 10px;
+        margin-right: 5px;
     }
 
     .actionButtons {
-        display: block;
-        top: 35px;
+        top: 40px;
         left: 160px;
         position: absolute;
+        gap: 14px;
     }
 }

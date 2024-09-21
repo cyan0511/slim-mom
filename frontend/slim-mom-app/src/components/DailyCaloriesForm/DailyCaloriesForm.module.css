@@ -1,6 +1,8 @@
 .container {
     display: flex;
     flex-direction: column;
+    margin: 32px 20px 20px 20px;
+    gap: 34px;
 }
 
 .container > h1 {
@@ -10,7 +12,50 @@
     font-weight: 700;
     line-height: 140%; /* 25.2px */
     max-width: 280px;
-    margin: 32px 20px 20px 20px;
+
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    max-width: 320px;
+    gap: 32px;
+}
+
+.infoContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+}
+
+.info {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+}
+
+.bloodTypeContainer {
+    gap: 10px;
+    display: flex;
+    flex-direction: column;
+}
+
+.textField, .bloodTypeContainer {
+    max-width: 239px;
+}
+
+
+.bloodTypeContainer > span {
+    color: #9B9FAA;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    letter-spacing: 0.56px;
+}
+
+.strawberry {
+    display: none;
 }
 
 @media screen and (min-width: 376px) {
@@ -21,4 +66,25 @@
         line-height: 140%; /* 47.6px */
         max-width: 704px;
     }
+    .infoContainer {
+        flex-direction: row;
+    }
+
+    .form {
+        max-width: 100%;
+    }
+
+    .strawberry {
+        display: block;
+        width: 208px;
+        height: 203px;
+        flex-shrink: 0;
+        position: absolute;
+        bottom: 385px;
+        right: 20px;
+    }
+}
+
+@media screen and (min-width: 768px) {
+
 }

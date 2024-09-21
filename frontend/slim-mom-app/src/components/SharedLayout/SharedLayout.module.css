@@ -8,7 +8,6 @@
 .mainContainer {
   display: flex;
   flex-direction: row;
-  gap: 54px;
   justify-content: center;
   width: 100%;
   max-width: 1240px;
