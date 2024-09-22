@@ -12,7 +12,6 @@
     font-weight: 700;
     line-height: 140%; /* 25.2px */
     max-width: 280px;
-
 }
 
 .form {
@@ -56,33 +55,30 @@
 
 .images {
     position: relative;
-/*    overflow: hidden;*/
-    width: 100%;
-}
-
-.strawberry {
-    flex-shrink: 0;
-    position: absolute;
+    width: 100vw;
     overflow: hidden;
 }
 
-.banana {
-    flex-shrink: 0;
-    position: absolute;
-    overflow: hidden;
+.strawberry, .banana, .leaves, .shadow {
+    display: none;
 }
 
-@media screen and (min-width: 376px) {
+
+@media screen and (min-width: 377px) {
     .container {
 
     }
+
     .container > h1 {
         font-size: 34px;
         font-style: normal;
         font-weight: 700;
         line-height: 140%; /* 47.6px */
         max-width: 704px;
+        margin-top: 40px;
+        margin-bottom: 30px;
     }
+
     .infoContainer {
         flex-direction: row;
     }
@@ -92,32 +88,121 @@
     }
 
     .images {
-       /* position: relative;
-        overflow: visible;*/
+        z-index: -1;
     }
+
     .strawberry {
+        display: block;
+        position: fixed;
         width: 208px;
         height: 203px;
         flex-shrink: 0;
-        top: 583px;
-        right: 96px;
+        /*top: 583px;*/
+        bottom: 238px;
+        right: 40px;
         transform: scaleX(-1);
         overflow: hidden;
     }
 
     .banana {
+        display: block;
         width: 740px;
         height: 527px;
         flex-shrink: 0;
-        position: absolute;
-        top: 593px;
+        position: fixed;
+        bottom: -96px;
         right: -249px;
+        overflow: hidden;
+    }
+
+    .leaves {
+        display: block;
+        width: 531px;
+        height: 602px;
+        transform: rotate(90deg);
+        flex-shrink: 0;
+        position: fixed;
+        right: 166px;
+        bottom: 0;
+        overflow: hidden;
+    }
+
+
+    .shadow {
+        display: block;
+        flex-shrink: 0;
+        position: fixed;
+        bottom: -187px;
+        right: -40px;
         overflow: hidden;
     }
 
 
 }
 
-@media screen and (min-width: 768px) {
+@media screen and (min-width: 769px) {
+    .container {
+        margin-top: 147px;
+    }
 
+    .container > h1 {
+        max-width: 608px;
+    }
+
+    .banana {
+        display: block;
+        width: 773px;
+        height: 552px;
+        flex-shrink: 0;
+        position: fixed;
+        top: -80px;
+        right: -249px;
+        overflow: hidden;
+    }
+
+    .strawberry {
+        display: block;
+        position: fixed;
+        width: 286px;
+        height: 279px;
+        flex-shrink: 0;
+        /*top: 583px;*/
+        bottom: 65px;
+        right: 36px;
+        transform: scaleX(-1);
+    }
+
+
+    .leaves {
+        display: block;
+        width: 746px;
+        height: 846px;
+        transform: rotate(0deg);
+        flex-shrink: 0;
+        position: fixed;
+        right: 166px;
+        top: -25px;
+        overflow: hidden;
+    }
+
+    .shadow {
+        width: 602.014px;
+        height: 956px;
+        right: 0px;
+        flex-shrink: 0;
+        bottom: -70px;
+    }
+
+    .button {
+        margin-left: 339px;
+    }
+
+    .textField {
+        max-width: 240px;
+    }
+
+    .info {
+        width: 100%;
+        max-width: 240px;
+    }
 }
