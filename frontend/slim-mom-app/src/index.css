@@ -2,6 +2,7 @@
 
 :root {
     --main-color: #9B9FAA;
+    --white: #FFF;
 }
 
 * {
@@ -97,4 +98,18 @@ button {
 button:hover, button:focus {
     background: #f77010;
     transition: ease 0.5s ;
+}
+
+.secondary {
+    background: var(--white);
+    color: #FC842D;
+    text-align: center;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    letter-spacing: 0.56px;
+    box-shadow: none;
+    border-radius: 30px;
+    border: 2px solid #FC842D;
 }

@@ -3,39 +3,6 @@
     position: relative;
     max-height: 40px;
 }
-/*
-
-.label {
-    position: absolute;
-    top: 10px;
-    left: 0;
-    color: #999;
-    transition: 0.2s ease all;
-    pointer-events: none;
-}
-*/
-
-/*.input {
-    font-size: 16px;
-    padding: 10px 0;
-    border: none;
-    border-bottom: 1px solid #999;
-    outline: none;
-    width: 100%;
-    background: transparent;
-}*/
-
-/*.input:focus {
-    border-bottom: 1px solid #3f51b5;
-}*/
-
-/*.input:focus + .label,
-.input:not(:placeholder-shown) + .label {
-    top: -20px; !* Adjusted position for clarity *!
-    left: 0;
-    color: #3f51b5;
-    font-size: 12px;
-}*/
 
 .highlight {
     position: absolute;
@@ -70,7 +37,7 @@ input.textField {
 .label {
     display: block;
     transition: all 0.3s ease;
-    transform: translateY(-30px);
+    transform: translateY(-35px);
     color: #9B9FAA;
     font-size: 14px;
     font-style: normal;

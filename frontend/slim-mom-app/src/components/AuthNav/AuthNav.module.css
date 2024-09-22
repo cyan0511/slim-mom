@@ -45,7 +45,7 @@ a.active {
     text-transform: uppercase;
 }
 
-@media screen and (min-width: 768px) {
+@media screen and (min-width: 769px) {
 
     .actionButtons::before {
         content: '|';

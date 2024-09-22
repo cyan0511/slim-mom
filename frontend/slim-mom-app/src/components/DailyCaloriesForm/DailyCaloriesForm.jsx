@@ -2,10 +2,6 @@ import css from './DailyCaloriesForm.module.css';
 import {TextField} from "../TextField/TextField";
 import RadioGroup from "../RadioGroup/RadioGroup";
 import React, {useState} from "react";
-import strawberry from '../../assets/images/strawberry.webp';
-import banana from '../../assets/images/banana.webp';
-import leaves from '../../assets/images/leaves.webp';
-import iconSvg from "../../assets/images/icons.svg";
 
 export const DailyCaloriesForm = () => {
     const [selectedValue, setSelectedValue] = useState(null);
@@ -46,14 +42,6 @@ export const DailyCaloriesForm = () => {
                         <button type="submit">Start loosing weight</button>
                     </div>
                 </form>
-            </div>
-            <div className={css.images}>
-                <svg className={css.shadow} width="553" height="750">
-                    <use href={`${iconSvg}#shadow`}/>
-                </svg>
-                <img alt="strawberry" className={css.strawberry} src={strawberry}/>
-                <img alt="leaves" className={css.leaves} src={leaves}/>
-                <img alt="banana" className={css.banana} src={banana}/>
             </div>
         </>
     );
