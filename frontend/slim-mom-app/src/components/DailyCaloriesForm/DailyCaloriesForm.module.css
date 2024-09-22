@@ -54,11 +54,28 @@
     letter-spacing: 0.56px;
 }
 
+.images {
+    position: relative;
+/*    overflow: hidden;*/
+    width: 100%;
+}
+
 .strawberry {
-    display: none;
+    flex-shrink: 0;
+    position: absolute;
+    overflow: hidden;
+}
+
+.banana {
+    flex-shrink: 0;
+    position: absolute;
+    overflow: hidden;
 }
 
 @media screen and (min-width: 376px) {
+    .container {
+
+    }
     .container > h1 {
         font-size: 34px;
         font-style: normal;
@@ -74,15 +91,31 @@
         max-width: 100%;
     }
 
+    .images {
+       /* position: relative;
+        overflow: visible;*/
+    }
     .strawberry {
-        display: block;
         width: 208px;
         height: 203px;
         flex-shrink: 0;
-        position: absolute;
-        bottom: 385px;
-        right: 20px;
+        top: 583px;
+        right: 96px;
+        transform: scaleX(-1);
+        overflow: hidden;
     }
+
+    .banana {
+        width: 740px;
+        height: 527px;
+        flex-shrink: 0;
+        position: absolute;
+        top: 593px;
+        right: -249px;
+        overflow: hidden;
+    }
+
+
 }
 
 @media screen and (min-width: 768px) {

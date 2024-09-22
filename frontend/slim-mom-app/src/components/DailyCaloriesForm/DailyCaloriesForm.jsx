@@ -3,6 +3,7 @@ import {TextField} from "../TextField/TextField";
 import RadioGroup from "../RadioGroup/RadioGroup";
 import {useState} from "react";
 import strawberry from '../../assets/images/strawberry.webp';
+import banana from '../../assets/images/banana.webp';
 
 export const DailyCaloriesForm = () => {
     const [selectedValue, setSelectedValue] = useState(null);
@@ -17,36 +18,38 @@ export const DailyCaloriesForm = () => {
         {value: 4, label: '4'},
     ];
 
-    return (
-        <div className={css.container}>
-            <h1>Calculate your daily calorie
-                intake right now</h1>
-
-            <form className={css.form}>
-                <div className={css.infoContainer}>
-                    <div className={css.info}>
-                        <TextField className={css.textField} label="Height *" id="height"/>
-                        <TextField className={css.textField} label="Age *" id="age"/>
-                        <TextField className={css.textField} label="Current weight *" id="current-weight"/>
-                    </div>
-                    <div className={css.info}>
-                        <TextField className={css.textField} label="Desired weight *" id="desired-weight"/>
-                        <div className={css.bloodTypeContainer}>
-                            <span>Blood type*</span>
-                            <div>
-                                <RadioGroup value={selectedValue} onChange={handleChange} name="blood-type"
-                                            options={options}/>
+    return (<>
+            <div className={css.container}>
+                <h1>Calculate your daily calorie
+                    intake right now</h1>
+                <form className={css.form}>
+                    <div className={css.infoContainer}>
+                        <div className={css.info}>
+                            <TextField className={css.textField} label="Height *" id="height"/>
+                            <TextField className={css.textField} label="Age *" id="age"/>
+                            <TextField className={css.textField} label="Current weight *" id="current-weight"/>
+                        </div>
+                        <div className={css.info}>
+                            <TextField className={css.textField} label="Desired weight *" id="desired-weight"/>
+                            <div className={css.bloodTypeContainer}>
+                                <span>Blood type*</span>
+                                <div>
+                                    <RadioGroup value={selectedValue} onChange={handleChange} name="blood-type"
+                                                options={options}/>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-                <div className={css.button}>
-                    <button type="submit">Start loosing weight</button>
-                </div>
-            </form>
-
-            <img alt="strawberry" className={css.strawberry} src={strawberry} />
-        </div>
+                    <div className={css.button}>
+                        <button type="submit">Start loosing weight</button>
+                    </div>
+                </form>
+            </div>
+            <div className={css.images}>
+                <img alt="strawberry" className={css.strawberry} src={strawberry}/>
+                <img alt="banana" className={css.banana} src={banana}/>
+            </div>
+        </>
     );
 
 }
