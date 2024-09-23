@@ -1,4 +1,4 @@
-import {Outlet, useLocation} from 'react-router-dom';
+import {Outlet} from 'react-router-dom';
 import {Header} from '../Header/Header';
 import {Suspense} from 'react';
 import css from './SharedLayout.module.css';
@@ -7,9 +7,6 @@ import {BgImages} from "../BgImages/BgImages";
 
 export const SharedLayout = () => {
     const {isLoggedIn} = useAuth();
-    // const location = useLocation();
-
-    // const isSignInLogin = ['signup', 'login'].some(v => location.pathname.includes(v));
 
     return (
         <div className={css.container}>
