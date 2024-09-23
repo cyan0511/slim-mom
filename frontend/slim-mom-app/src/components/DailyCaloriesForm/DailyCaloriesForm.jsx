@@ -2,9 +2,18 @@ import css from './DailyCaloriesForm.module.css';
 import {TextField} from "../TextField/TextField";
 import RadioGroup from "../RadioGroup/RadioGroup";
 import React, {useState} from "react";
+import Modal from "../Modal/Modal";
 
 export const DailyCaloriesForm = () => {
     const [selectedValue, setSelectedValue] = useState(null);
+    const [isOpen, setIsOpen] = useState(false);
+    const openModal = () => setIsOpen(true);
+    const closeModal = () => setIsOpen(false);
+
+    const handleSubmit = e => {
+        e.preventDefault();
+        openModal();
+    }
 
     const handleChange = (event) => {
         setSelectedValue(+event.target.value);
@@ -16,11 +25,13 @@ export const DailyCaloriesForm = () => {
         {value: 4, label: '4'},
     ];
 
+
     return (<>
+            <Modal children={<div>test</div>} isOpen={isOpen} onClose={closeModal}  />
             <div className={css.container}>
                 <h1>Calculate your daily calorie
                     intake right now</h1>
-                <form className={css.form}>
+                <form className={css.form} onSubmit={handleSubmit} >
                     <div className={css.infoContainer}>
                         <div className={css.info}>
                             <TextField className={css.textField} label="Height *" id="height"/>
