@@ -18,7 +18,7 @@ export const Header = () => {
                 <Logo />
 
             </NavLink>
-            <Navigation className={css.navigation} />
+            {isLoggedIn && <Navigation className={css.navigation} />}
             {isLoggedIn ? (<><div>logged in</div></>): <AuthNav /> }
         </header>
     );

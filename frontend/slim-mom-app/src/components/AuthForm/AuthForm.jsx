@@ -1,10 +1,9 @@
 import React, {useState} from 'react';
-import PropTypes from 'prop-types';
 import {useDispatch} from 'react-redux';
 import {logIn, register} from '../../redux/auth/authOperations';
 import {useAuth} from '../../hooks/useAuth';
 import css from './AuthForm.module.css';
-import {Link, NavLink} from 'react-router-dom';
+import {NavLink} from 'react-router-dom';
 import {TextField} from "../TextField/TextField";
 
 export const AuthForm = ({
@@ -17,7 +16,7 @@ export const AuthForm = ({
                          }) => {
     const {isRefreshing} = useAuth();
     const [formData, setFormData] = useState({});
-    const [showPassword, setShowPassword] = useState(false);
+    // const [showPassword, setShowPassword] = useState(false);
     const [message, setMessage] = useState(null);
     const dispatch = useDispatch();
     const [isValid, setIsValid] = useState(null);
@@ -81,11 +80,7 @@ export const AuthForm = ({
                 {fields.map((field, index) => (
                     <div key={index} style={{position: 'relative'}}>
                         <TextField
-                            type={
-                                field.type === 'password' && showPassword
-                                    ? 'text'
-                                    : field.type
-                            }
+                            type={field.type}
                             className={field.type === 'password' && isValid !== null ? (isValid ? css.valid : css.invalid) : ''}
                             label={field.placeholder}
                             value={formData[field.name] || ''}
@@ -129,16 +124,3 @@ export const AuthForm = ({
     );
 };
 
-AuthForm.propTypes = {
-    fields: PropTypes.arrayOf(
-        PropTypes.shape({
-            name: PropTypes.string.isRequired,
-            type: PropTypes.string.isRequired,
-            placeholder: PropTypes.string.isRequired,
-        }),
-    ).isRequired,
-    buttonText: PropTypes.string.isRequired,
-    footerText: PropTypes.string.isRequired,
-    footerLink: PropTypes.string.isRequired,
-    isLogin: PropTypes.bool.isRequired,
-};

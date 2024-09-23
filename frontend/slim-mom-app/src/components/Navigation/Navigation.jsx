@@ -1,6 +1,6 @@
 import { useAuth } from '../../hooks/useAuth';
 import css from './Navigation.module.css';
-import {TransactionsHistoryNav} from "../TransactionsHistoryNav/TransactionsHistoryNav";
+import {MenuNav} from "../MenuNav/MenuNav";
 
 
 export const Navigation = ({className, activeClass}) => {
@@ -8,8 +8,8 @@ export const Navigation = ({className, activeClass}) => {
 
   return (
       <nav className={css.navbar}>
-        {isLoggedIn && (
-            <TransactionsHistoryNav className={className} activeClass={activeClass}/>
+        {!isLoggedIn && (
+            <MenuNav className={className} activeClass={activeClass}/>
         )}
       </nav>
   );

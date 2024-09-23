@@ -34,19 +34,19 @@ function App() {
             />
             {/* Protected routes (accessible only when logged in) */}
             <Route
-                path="/transactions"
+                path="/calculator"
                 element={
                   <PrivateRoute
-                      component={<div />}
+                      component={<div>Calculator</div>}
                       redirectTo="/"
                   />
                 }
             />
             <Route
-                path="/transactions/history/:transactionType"
+                path="/diary"
                 element={
                   <PrivateRoute
-                      component={<div />}
+                      component={<div>Diary</div>}
                       redirectTo="/"
                   />
                 }
