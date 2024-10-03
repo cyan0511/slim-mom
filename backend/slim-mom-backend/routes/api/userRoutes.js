@@ -12,7 +12,7 @@ const router = express.Router();
  *         description: A successful response
  */
 router.get('/', (req, res) => {
-    res.send('This is an example route!');
+    res.send('This is an example route 2!');
 });
 
 export default router;
