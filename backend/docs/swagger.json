@@ -1,0 +1,47 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+      "title": "User Registration API",
+      "version": "1.0.0",
+      "description": "API for registering users"
+    },
+    "paths": {
+      "/auth/register": {
+        "post": {
+          "summary": "Register a new user",
+          "description": "Register a new user by providing a username and password",
+          "tags": ["Auth"],
+          "requestBody": {
+            "required": true,
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "username": {
+                      "type": "string",
+                      "example": "rikki"
+                    },
+                    "password": {
+                      "type": "string",
+                      "example": "password143"
+                    }
+                  },
+                  "required": ["username", "password"]
+                }
+              }
+            }
+          },
+          "responses": {
+            "201": {
+              "description": "User registered successfully"
+            },
+            "400": {
+              "description": "Invalid input"
+            }
+          }
+        }
+      }
+    }
+  }
+  
