@@ -1,50 +1,29 @@
-import mongoose from "mongoose";
-import dotenv from "dotenv";
-import app from "./app.js";
+import app from "./app.js"; // Make sure to include the file extension
+import connectDB from "./config/database.js"; // Same here
 
-// Load environment variables
-dotenv.config();
-const { DB_HOST, PORT = 5001 } = process.env;
+const PORT = process.env.PORT || 8080;
 
-// Validate required environment variables
-if (!DB_HOST) {
-  throw new Error("DB_HOST is missing in the environment variables");
-}
-
-// Function to connect to the database
-const connectToDatabase = async () => {
+// Connect to MongoDB
+const startServer = async () => {
   try {
-    await mongoose.connect(DB_HOST, {
-      useNewUrlParser: true,
-      useUnifiedTopology: true,
-    });
-    console.log("Database connection successful");
-
-    // Start the server after a successful DB connection
+    await connectDB(); // Ensure the connection to the database is established
     app.listen(PORT, () => {
-      console.log(`Server running. Use our API on port: ${PORT}`);
+      console.log(`Server is running on port ${PORT}`);
     });
-  } catch (err) {
-    console.error(`Error connecting to the database: ${err.message}`);
-    process.exit(1);
+  } catch (error) {
+    console.error("Error connecting to the database:", error.message);
+    process.exit(1); // Exit the application with a failure code
   }
 };
 
-// Graceful shutdown for database connection
-const shutdown = async () => {
-  try {
-    await mongoose.connection.close();
-    console.log("Database connection closed");
-    process.exit(0);
-  } catch (err) {
-    console.error("Error closing database connection:", err.message);
-    process.exit(1);
-  }
+// Start the server
+startServer();
+
+// Graceful shutdown
+const shutdown = () => {
+  console.log("Shutting down gracefully...");
+  process.exit(0); // Exit the application gracefully
 };
 
-// Call the function to connect to the database
-connectToDatabase();
-
-// Handle process termination signals for graceful shutdown
-process.on("SIGINT", shutdown);
 process.on("SIGTERM", shutdown);
+process.on("SIGINT", shutdown);

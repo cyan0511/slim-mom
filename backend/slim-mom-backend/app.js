@@ -2,17 +2,18 @@
 import express from "express";
 import swaggerJsDoc from "swagger-jsdoc";
 import swaggerUi from "swagger-ui-express";
-import userRoutes from "./routes/api/auth.js"; // Import your user routes
 import morgan from "morgan"; // Logging middleware
 import cors from "cors"; // CORS middleware
+import helmet from "helmet"; // Security middleware
+import dotenv from "dotenv"; // Environment variables
+import userRoutes from "./routes/api/auth.js"; // Import your user routes
 import errorHandler from "./middlewares/errorHandler.js"; // Custom error handler
+
+// Load environment variables
+dotenv.config();
 
 // Initialize the Express app
 const app = express();
-
-// Load environment variables
-import dotenv from "dotenv";
-dotenv.config();
 
 // Swagger configuration options
 const swaggerOptions = {
@@ -28,7 +29,7 @@ const swaggerOptions = {
     },
     servers: [
       {
-        url: process.env.BASE_URL || "http://localhost:5000", // Server URL
+        url: process.env.BASE_URL || "http://localhost:5002", // Server URL
         description: "Development server", // Server description
       },
     ],
@@ -41,6 +42,7 @@ const swaggerDocs = swaggerJsDoc(swaggerOptions);
 
 // Middlewares
 app.use(cors()); // Enable CORS
+app.use(helmet()); // Secure the app by setting various HTTP headers
 app.use(morgan("combined")); // Logging middleware
 app.use(express.json()); // For parsing JSON request bodies
 
@@ -53,10 +55,34 @@ app.use("/api/user", userRoutes);
 // Error handling middleware
 app.use(errorHandler); // Ensure to define this middleware to handle errors
 
+// Validate essential environment variables
+const requiredEnvVars = ["PORT", "BASE_URL"];
+requiredEnvVars.forEach((varName) => {
+  if (!process.env[varName]) {
+    console.error(`Error: Missing environment variable ${varName}`);
+    process.exit(1); // Exit the application with failure code
+  }
+});
+
 // Set the port and start the server
-const PORT = process.env.PORT || 5001;
-app.listen(PORT, () => {
+const PORT = process.env.PORT || 5002;
+const server = app.listen(PORT, () => {
   console.log(`Server running on http://localhost:${PORT}`);
   console.log(`Swagger docs available at http://localhost:${PORT}/api-docs`);
 });
+
+// Graceful shutdown
+const shutdown = () => {
+  server.close((err) => {
+    if (err) {
+      console.error(err);
+      process.exit(1);
+    }
+    console.log("Server shut down gracefully.");
+  });
+};
+
+process.on("SIGTERM", shutdown);
+process.on("SIGINT", shutdown);
+
 export default app;

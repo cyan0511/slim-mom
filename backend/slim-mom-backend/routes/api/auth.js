@@ -22,6 +22,17 @@ const router = express.Router();
  *   post:
  *     summary: User registration
  *     description: Register a new user.
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               email:
+ *                 type: string
+ *               password:
+ *                 type: string
  *     responses:
  *       201:
  *         description: User registered successfully
@@ -31,8 +42,8 @@ const router = express.Router();
 router.post(
   "/signup",
   validateSignup,
-  ctrlWrapper(async (req, res, next) => {
-    await signupUser(req, res, next);
+  ctrlWrapper(async (req, res) => {
+    await signupUser(req);
     res.status(201).json({ message: "User registered successfully" });
   })
 );
@@ -43,17 +54,37 @@ router.post(
  *   post:
  *     summary: User login
  *     description: Log in an existing user.
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               email:
+ *                 type: string
+ *               password:
+ *                 type: string
  *     responses:
  *       200:
  *         description: User logged in successfully
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 message:
+ *                   type: string
+ *                 token:
+ *                   type: string
  *       400:
  *         description: Authentication failed
  */
 router.post(
   "/login",
   validateLogin,
-  ctrlWrapper(async (req, res, next) => {
-    const userData = await loginUser(req, res, next);
+  ctrlWrapper(async (req, res) => {
+    const userData = await loginUser(req);
 
     if (!userData || !userData.token) {
       throw httpError(401, "Authentication failed. No token generated.");
@@ -79,8 +110,8 @@ router.post(
 router.get(
   "/logout",
   authenticateToken,
-  ctrlWrapper(async (req, res, next) => {
-    await logoutUser(req, res, next);
+  ctrlWrapper(async (req, res) => {
+    await logoutUser(req);
     res.status(200).json({ message: "User logged out successfully" });
   })
 );
@@ -107,14 +138,14 @@ router.get(
 router.delete(
   "/delete/:id",
   authenticateToken,
-  ctrlWrapper(async (req, res, next) => {
+  ctrlWrapper(async (req, res) => {
     const { id } = req.params;
 
     if (!ObjectId.isValid(id)) {
       throw httpError(400, "Invalid user ID");
     }
 
-    await deleteUser(req, res, next);
+    await deleteUser(req);
     res.status(200).json({ message: "User deleted successfully" });
   })
 );

@@ -1,7 +1,7 @@
 import swaggerJsDoc from "swagger-jsdoc";
 
-// Get the port from environment variables or default to 8080
-const PORT = process.env.PORT || 8080;
+// Get the port from environment variables or default to 5001
+const PORT = process.env.PORT || 5002;
 const SERVER_URL = process.env.SERVER_URL || `http://localhost:${PORT}`;
 
 // Swagger configuration options

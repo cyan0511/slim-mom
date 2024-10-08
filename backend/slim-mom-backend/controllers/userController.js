@@ -1,150 +1,91 @@
-import dotenv from "dotenv";
+import { User } from "../models/users.js"; // Ensure this is the correct path to your user model
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
-import { User } from "../models/users.js";
-import {
-  signupValidation,
-  loginValidation,
-} from "../validations/validation.js";
-import { httpError } from "../helpers/httpError.js";
-import { v4 as uuid4 } from "uuid";
+import { httpError } from "../helpers/httpError.js"; // Assuming you have an httpError helper
 
-// Load environment variables
-dotenv.config({ path: "./.env" });
-const { SECRET_KEY } = process.env;
+const SECRET_KEY = process.env.SECRET_KEY || "your_secret_key"; // Use the secret key from .env
 
-if (!SECRET_KEY) {
-  throw httpError(500, {
-    message: "Secret key is missing in environment variables",
+// Register a new user
+export const signupUser = async (req, res, next) => {
+  const { email, password } = req.body;
+
+  // Check if email and password are provided
+  if (!email || !password) {
+    throw httpError(400, "Email and password are required");
+  }
+
+  // Check if the user already exists
+  const existingUser = await User.findOne({ email });
+  if (existingUser) {
+    throw httpError(400, "User already exists");
+  }
+
+  // Hash the password
+  const hashedPassword = await bcrypt.hash(password, 12);
+
+  // Create a new user
+  const newUser = new User({
+    email,
+    password: hashedPassword,
+    verificationToken: null, // Set the default value for verificationToken
   });
-}
 
-// Signup endpoint
-const signupUser = async (req, res, next) => {
-  try {
-    const { email, password } = req.body;
+  await newUser.save();
 
-    // Validate the signup data
-    const { error } = signupValidation.validate(req.body);
-    if (error) {
-      return next(httpError(400, { message: error.details[0].message }));
-    }
-
-    // Check for email conflict
-    const existingUser = await User.findOne({ email });
-    if (existingUser) {
-      return next(httpError(409, { message: "Email already in use" }));
-    }
-
-    // Create a verification token
-    const verificationToken = uuid4();
-
-    // Create a new user with hashed password
-    const newUser = await User.create({
-      email,
-      password, // The password will be hashed in the pre-save hook
-      verificationToken,
-    });
-
-    // Send the success response
-    res.status(201).json({
-      success: true,
-      data: {
-        user: {
-          email: newUser.email,
-          verificationToken,
-        },
-      },
-    });
-  } catch (error) {
-    console.error("Signup error:", error);
-    next(httpError(500, { message: "Internal Server Error" }));
-  }
+  res.status(201).json({ message: "User registered successfully" });
 };
 
-// Login endpoint
-const loginUser = async (req, res, next) => {
-  try {
-    const { email, password } = req.body;
+// Log in a user
+export const loginUser = async (req, res, next) => {
+  const { email, password } = req.body;
 
-    // Validate the login data
-    const { error } = loginValidation.validate(req.body);
-    if (error) {
-      return next(httpError(400, { message: error.details[0].message }));
-    }
-
-    // Check if the user exists
-    const user = await User.findOne({ email });
-    if (!user) {
-      return next(
-        httpError(401, { message: "Email or password is incorrect" })
-      );
-    }
-
-    // Validate the password
-    const isPasswordValid = await bcrypt.compare(password, user.password);
-    if (!isPasswordValid) {
-      return next(
-        httpError(401, { message: "Email or password is incorrect" })
-      );
-    }
-
-    // Generate a JWT token
-    const payload = { id: user._id };
-    const token = jwt.sign(payload, SECRET_KEY, { expiresIn: "23h" });
-
-    // Update the user's token in the database
-    await User.findByIdAndUpdate(user._id, { token });
-
-    // Send the success response
-    res.status(200).json({
-      success: true,
-      data: {
-        token,
-        user: { email: user.email },
-      },
-    });
-  } catch (error) {
-    console.error("Login error:", error);
-    next(httpError(500, { message: "Internal Server Error" }));
+  // Check if email and password are provided
+  if (!email || !password) {
+    throw httpError(400, "Email and password are required");
   }
+
+  // Find the user in the database
+  const user = await User.findOne({ email });
+  if (!user) {
+    throw httpError(401, "Invalid email or password");
+  }
+
+  // Compare the provided password with the stored hashed password
+  const isPasswordValid = await bcrypt.compare(password, user.password);
+  if (!isPasswordValid) {
+    throw httpError(401, "Invalid email or password");
+  }
+
+  // Generate a JWT token
+  const token = jwt.sign({ id: user._id }, SECRET_KEY, { expiresIn: "1h" });
+
+  user.token = token;
+  await user.save();
+
+  res.status(200).json({
+    message: "User logged in successfully",
+    token,
+  });
 };
 
-// Logout endpoint
-const logoutUser = async (req, res, next) => {
-  try {
-    const { id } = req.user;
+// Log out a user (invalidate token)
+export const logoutUser = async (req, res, next) => {
+  const user = req.user; // Assuming you set req.user in the authenticate middleware
 
-    // Update the user's token in the database to null
-    await User.findByIdAndUpdate(id, { token: null });
+  user.token = null;
+  await user.save();
 
-    // Send the success response
-    res.status(200).json({ success: true, message: "You have logged out" });
-  } catch (error) {
-    console.error("Logout error:", error);
-    next(httpError(500, { message: "Internal Server Error" }));
-  }
+  res.status(200).json({ message: "User logged out successfully" });
 };
 
-// Delete user endpoint
-const deleteUser = async (req, res, next) => {
-  try {
-    const { id } = req.params;
+// Delete a user by ID
+export const deleteUser = async (req, res, next) => {
+  const { id } = req.params;
 
-    // Check if the user exists and delete the user
-    const user = await User.findByIdAndDelete(id);
-    if (!user) {
-      return next(httpError(404, { message: "User not found" }));
-    }
-
-    // Send success response
-    res
-      .status(200)
-      .json({ success: true, message: "User deleted successfully" });
-  } catch (error) {
-    console.error("Delete user error:", error);
-    next(httpError(500, { message: "Internal Server Error" }));
+  const user = await User.findByIdAndDelete(id);
+  if (!user) {
+    throw httpError(404, "User not found");
   }
-};
 
-export { signupUser, loginUser, logoutUser, deleteUser };
+  res.status(200).json({ message: "User deleted successfully" });
+};
