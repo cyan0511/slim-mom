@@ -1,0 +1,54 @@
+.navbar {
+  height: 20vh;
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+  align-items: flex-end;
+}
+
+.logo {
+  position: relative;
+  width: 72px;
+  height: 66px;
+  background: url("../../assets/images/logo.webp");
+  background-position: start;
+  background-repeat: no-repeat;
+  background-size: auto;
+  margin-left: 20px;
+}
+
+.logoTitle {
+  color: #212121;
+  position: absolute;
+  right: -100px;
+  bottom: -3px;
+  font-family: Verdana, sans-serif;
+  font-size: 24px;
+}
+
+.logoColor {
+  color: #fc842d;
+}
+
+.link {
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 14px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: #9b9faa;
+}
+
+.calcPage {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.menuList {
+  list-style: none;
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+  padding: 0;
+}
