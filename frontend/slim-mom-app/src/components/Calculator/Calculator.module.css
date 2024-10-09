@@ -5,20 +5,73 @@
   align-items: center;
   flex-direction: column;
   justify-content: space-around;
-  background: url("../../images/calculatorBg.png") right/ cover no-repeat,
-    url("../../images/calcBlur.png") right / cover no-repeat;
+  background: url("../../assets/images/calculatorBg.png") right/cover no-repeat,
+    url("../../assets/images/calcBlur.png") right/cover no-repeat;
   background-size: 100%;
 }
+
 .list {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
 }
+
 .span {
   font-family: "Verdana", sans-serif;
   font-weight: 400;
   font-size: 14px;
   letter-spacing: 0.04em;
   text-align: right;
+  color: #9b9faa;
+}
+
+.userSection {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  justify-content: flex-end;
+}
+
+.avatarWrapper {
+  border-radius: 50%;
+  background-color: #fc842d;
+  padding: 3px;
+}
+
+.avatar {
+  border-radius: 50%;
+  width: 40px;
+}
+
+.userName {
+  font-weight: 700;
+  font-size: 14px;
+  color: #212121;
+}
+
+.logoutButton {
+  font-weight: 700;
+  font-size: 14px;
+  color: #9b9faa;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.summary h2,
+.notRecommended h2 {
+  font-weight: 700;
+  font-size: 26px;
+  color: #212121;
+}
+
+.stats {
+  width: 330px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.stats li {
   color: #9b9faa;
 }
