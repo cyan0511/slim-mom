@@ -1,5 +1,6 @@
 import express from 'express';
 import { registerUser } from '../../controllers/userController.js';
+import {validateRegistration} from "../../middlewares/validation.js";
 
 const router = express.Router();
 
@@ -33,6 +34,6 @@ const router = express.Router();
  *       400:
  *         description: Invalid input
  */
-router.post('/register', registerUser);
+router.post('/register', validateRegistration, registerUser);
 
 export default router;

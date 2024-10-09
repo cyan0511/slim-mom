@@ -1,7 +1,10 @@
 // swagger.js
 import swaggerJsDoc from 'swagger-jsdoc';
+import dotenv from "dotenv";
 
-const PORT = process.env.PORT || 8080;
+dotenv.config();
+
+const { HOST, PORT = 8080 } = process.env;
 
 const swaggerOptions = {
     swaggerDefinition: {
@@ -13,7 +16,7 @@ const swaggerOptions = {
         },
         servers: [
             {
-                url: `http://localhost:${PORT}`, // Change this to your server URL
+                url: `${HOST}${PORT === 80 ? '' : `:${PORT}`}/api`, // Change this to your server URL
             },
         ],
     },
