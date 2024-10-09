@@ -6,7 +6,7 @@ import { validateRegistration } from "./middlewares/validateRegistration.js"
 import { verifyToken } from './middlewares/authenticateToken.js';
 
 const app = express();
-const PORT = process.env.PORT || 8081;
+const PORT = process.env.PORT || 8080;
 
 // Swagger UI setup
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocs));

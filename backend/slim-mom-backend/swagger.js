@@ -1,7 +1,7 @@
 // swagger.js
 import swaggerJsDoc from 'swagger-jsdoc';
 
-const PORT = process.env.PORT || 8081;
+const PORT = process.env.PORT || 8080;
 
 const swaggerOptions = {
     swaggerDefinition: {
@@ -9,7 +9,7 @@ const swaggerOptions = {
         info: {
             title: 'My API',
             version: '1.0.0',
-            description: 'API documentation for my project',
+            description: 'API documentation for Slim-mom application',
         },
         servers: [
             {
@@ -18,7 +18,7 @@ const swaggerOptions = {
         ],
     },
     apis: ['./routes/api/*.js'], // Path to the API docs (JSDoc comments)
-    };
+};
 
 const swaggerDocs = swaggerJsDoc(swaggerOptions);
 
