@@ -4,6 +4,7 @@ import cors from 'cors';
 import swaggerUi from 'swagger-ui-express';
 import swaggerDocs from './swagger.js';
 import userRoutes from "./routes/api/userRoutes.js";
+import productRoutes from "./routes/api/productRoutes.js";
 import { validateRegistration } from "./middlewares/validateRegistration.js"
 import { verifyToken } from './middlewares/authenticateToken.js';
 
@@ -30,6 +31,7 @@ app.use(express.static("public"));
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocs));
 
 app.use('/api/auth', userRoutes);
+app.use('/api/products', productRoutes);
 
 app.use((req, res) => {
     res.status(404).json({ message: 'Not found' })

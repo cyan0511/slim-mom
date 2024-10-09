@@ -10,9 +10,9 @@ const swaggerOptions = {
     swaggerDefinition: {
         openapi: '3.0.0',
         info: {
-            title: 'My API',
+            title: 'Slim-Mom API',
             version: '1.0.0',
-            description: 'API documentation for Slim-mom application',
+            description: 'API documentation for Slim-Mom application',
         },
         servers: [
             {
