@@ -5,12 +5,11 @@ import { SharedLayout } from "./components/SharedLayout/SharedLayout";
 import { RestrictedRoute } from "./components/RestrictedRoute/RestrictedRoute";
 import { lazy } from "react";
 import { PrivateRoute } from "./components/PrivateRoute/PrivateRoute";
-import { CalculatorPage } from "./pages/CalculatorPage/CalculatorPage";
 
 const MainPage = lazy(() => import("./pages/MainPage/MainPage"));
 const RegisterPage = lazy(() => import("./pages/RegisterPage/RegisterPage"));
 const LoginPage = lazy(() => import("./pages/LoginPage/LoginPage"));
-
+const Calculator = lazy(() => import("./pages/CalculatorPage/CalculatorPage"));
 function App() {
   return (
     <>
@@ -39,13 +38,10 @@ function App() {
             }
           />
           {/* Protected routes (accessible only when logged in) */}
-          {/* <Route
+          <Route
             path="/calculator"
-            element={
-              <PrivateRoute component={<div>Calculator</div>} redirectTo="/" />
-            }
-          /> */}
-          <Route path="/calc" element={<CalculatorPage />} />
+            element={<PrivateRoute component={<Calculator />} redirectTo="/" />}
+          />
           <Route
             path="/diary"
             element={

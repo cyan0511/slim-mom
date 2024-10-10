@@ -1,33 +1,43 @@
-import React from "react";
-import { Link } from "react-router-dom";
-import { Calculator } from "../../components/Calculator/Calculator";
+import React, { useState } from "react";
 import { DailyCaloriesForm } from "../../components/DailyCaloriesForm/DailyCaloriesForm";
-import style from "../CalculatorPage/CalculatorPage.module.css";
+import {
+  Wrapper,
+  CalculatorWrapper,
+  H2,
+} from "../../components/CalculatorPage/CalculatorPage.styled";
+import { useSelector } from "react-redux";
+import Modal from "../../components/Modal/Modal";
+import { SideBar } from "../../components/SideBar/SideBar";
+import { user } from "../../redux/auth/authSelectors";
 
-export const CalculatorPage = () => {
+const CalculatorPage = () => {
+  const [isModalOpened, setIsModalOpened] = useState(false);
+  const [userParams, setUserParams] = useState(null);
+  const userInfo = useSelector(user);
+
+  const toggleModal = () => {
+    setIsModalOpened((prev) => !prev);
+    document.body.style.overflow = isModalOpened ? "auto" : "hidden";
+  };
+
   return (
-    <div className={style.calcPage}>
-      <div className={style.navbar}>
-        <div className={style.logo}>
-          <Link to="/SlimMom" className={style.logoTitle}>
-            Slim<span className={style.logoColor}>Mom</span>
-          </Link>
+    <Wrapper>
+      <CalculatorWrapper>
+        {isModalOpened && (
+          <Modal onClose={toggleModal} userParams={userParams} />
+        )}
+        <div className="content">
+          <H2>Calculate your daily calorie intake right now</H2>
+          <DailyCaloriesForm
+            initialValues={userInfo}
+            openModal={setIsModalOpened}
+            setUserParams={setUserParams}
+          />
         </div>
-        <ul className={style.menuList}>
-          <li>
-            <Link to="/diary" className={style.link}>
-              Diary
-            </Link>
-          </li>
-          <li>
-            <Link to="/calc" className={style.link}>
-              Calculator
-            </Link>
-          </li>
-        </ul>
-      </div>
-      <DailyCaloriesForm />
-      <Calculator />
-    </div>
+      </CalculatorWrapper>
+      <SideBar />
+    </Wrapper>
   );
 };
+
+export default CalculatorPage;
