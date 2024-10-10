@@ -8,7 +8,7 @@ export const registerValidation = Joi.object({
             "any.required": "Missing required name field"
         }),
     email: Joi.string()
-        .email({ minDomainSegments: 2, tlds: { allow: ["com", "net"] } })
+        .email({minDomainSegments: 2, tlds: {allow: ["com", "net"]}})
         .required()
         .messages({
             "any.required": "Missing required email field",
@@ -19,4 +19,39 @@ export const registerValidation = Joi.object({
         "string.min": "Password must be at least {#limit} characters long",
         "string.max": "Password cannot be longer than {#limit} characters",
     }),
+});
+
+export const dailyCaloriesValidation = Joi.object({
+    height: Joi.number()
+        .required()
+        .messages({
+            "any.required": "Missing required height field"
+        }),
+    age: Joi.number()
+        .required()
+        .messages({
+            "any.required": "Missing required age field",
+        }),
+    currentWeight: Joi.number()
+        .required()
+        .messages({
+            "any.required": "Missing required currentWeight field",
+        }),
+    desiredWeight: Joi.number()
+        .required()
+        .messages({
+            "any.required": "Missing required desiredWeight field",
+        }),
+    bloodType: Joi.number()
+        .min(1)
+        .max(4)
+        .required()
+        .messages({
+            "any.required": "Missing required bloodType field",
+            'number.base': 'Value must be a number',
+            'number.min': 'Number must be at least {#limit}',
+            'number.max': 'Number must be at most {#limit}',
+            'number.integer': 'Number must be an integer',
+            'number.positive': 'Number must be positive',
+        }),
 });

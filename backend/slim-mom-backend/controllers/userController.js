@@ -1,31 +1,20 @@
-import bcrypt from 'bcrypt';
-import {User} from "../models/userModel.js";
 import {HttpError} from "../errors/HttpError.js";
+import {getCategories} from "./productController.js";
 
-const users = []; 
+export const calculateDailyIntake = async (req, res, next) => {
+    try {
+        const { height, currentWeight: weight, age, desiredWeight, bloodType } = req.body;
 
-export const registerUser = async (req, res, next) => {
-    const {name, email, password} = req.body;
+        const dailyCalorieIntake = 10 * weight + 6.25 * height - 5 * age - 161 - 10 * (weight - desiredWeight);
+        const categories = await getCategories(bloodType);
 
-    // Registration conflict error
-    const user = await User.findOne({email});
-    if (user) {
-        return next(new HttpError(409, "Email in Use"));
+        res.status(200).json({
+            dailyCalorieIntake,
+            foodNotRecommended: categories,
+        });
+
+    } catch (ex) {
+        next(new HttpError(500, 'error calculating daily intake.'));
     }
-
-    const hashPassword = await bcrypt.hash(password, 10);
-
-    const newUser = await User.create({
-        name,
-        email,
-        password: hashPassword
-    });
-
-    // Registration success response
-    res.status(201).json({
-        user: {
-            name,
-            email
-        },
-    });
 };
+

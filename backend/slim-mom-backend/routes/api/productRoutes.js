@@ -1,5 +1,4 @@
 import express from 'express';
-import { registerUser } from '../../controllers/userController.js';
 import {validateRegistration} from "../../middlewares/validation.js";
 import {listCategories, listProducts} from "../../controllers/productController.js";
 
