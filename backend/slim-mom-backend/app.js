@@ -7,6 +7,7 @@ import userRoutes from "./routes/api/userRoutes.js";
 import productRoutes from "./routes/api/productRoutes.js";
 import { validateRegistration } from "./middlewares/validateRegistration.js"
 import { verifyToken } from './middlewares/authenticateToken.js';
+import {errorHandler} from "./middlewares/errorHandler.js";
 
 const app = express();
 const PORT = process.env.PORT || 8080;
@@ -37,14 +38,11 @@ app.use((req, res) => {
     res.status(404).json({ message: 'Not found' })
 })
 
-/*app.post('/register', verifyToken, validateRegistration, (req, res) => {
-    // Your registration logic here
-    res.status(201).json({ message: 'User registered successfully' });
-  });*/
+app.use((req, res) => {
+    res.status(404).json({ message: 'Not found' })
+})
 
-// Start the server
-/*app.listen(PORT, () => {
-    console.log(`Server is running on http://localhost:${PORT}`);
-});*/
+// Error-handling middleware
+app.use(errorHandler);
 
 export default app;
