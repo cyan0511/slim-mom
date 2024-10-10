@@ -1,8 +1,9 @@
 import axios from 'axios';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 
+const { REACT_APP_BACKEND_URL } = process.env;
 
-axios.defaults.baseURL = 'http://localhost:3001';
+axios.defaults.baseURL = REACT_APP_BACKEND_URL;
 
 // Utility to add JWT
 const setAuthHeader = token => {
