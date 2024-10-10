@@ -1,15 +1,15 @@
 import express from 'express';
-import { registerUser } from '../../controllers/userController.js';
-import {validateRegistration} from "../../middlewares/validation.js";
+import {validateDailyCaloriesIntake} from "../../middlewares/validation.js";
+import {calculateDailyIntake} from "../../controllers/userController.js";
 
 const router = express.Router();
 
 /**
  * @swagger
- * /auth/register:
+ * /user/daily-calorie-intake:
  *   post:
- *     summary: Register a new user
- *     tags: [Auth]
+ *     summary: Calculate Daily Calorie Intake
+ *     tags: [User]
  *     requestBody:
  *       required: true
  *       content:
@@ -17,23 +17,32 @@ const router = express.Router();
  *           schema:
  *             type: object
  *             required:
- *               - username
- *               - password
+ *               - height
+ *               - age
+ *               - currentWeight
+ *               - desiredWeight
+ *               - bloodType
  *             properties:
- *               username:
- *                 type: string
- *                 description: The user's username
- *                 example: johndoe
- *               password:
- *                 type: string
- *                 description: The user's password
- *                 example: password123
+ *               height:
+ *                 type: number
+ *                 description: The user's height
+ *               age:
+ *                 type: number
+ *                 description: The user's age
+ *               currentWeight:
+ *                 type: number
+ *                 description: The user's current weight
+ *               desiredWeight:
+ *                 type: number
+ *                 description: The user's desired weight
+ *               bloodType:
+ *                 type: number
+ *                 description: The user's bloodType
  *     responses:
- *       201:
- *         description: User registered successfully
+ *       200:
+ *         description: daily calorie intake with  not recommended food
  *       400:
  *         description: Invalid input
  */
-router.post('/register', validateRegistration, registerUser);
-
+router.post('/daily-calorie-intake', validateDailyCaloriesIntake, calculateDailyIntake);
 export default router;

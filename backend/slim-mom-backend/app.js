@@ -3,6 +3,7 @@ import logger from 'morgan';
 import cors from 'cors';
 import swaggerUi from 'swagger-ui-express';
 import swaggerDocs from './swagger.js';
+import authRoutes from "./routes/api/authRoutes.js";
 import userRoutes from "./routes/api/userRoutes.js";
 import productRoutes from "./routes/api/productRoutes.js";
 import { validateRegistration } from "./middlewares/validateRegistration.js"
@@ -31,7 +32,8 @@ app.use(express.static("public"));
 // Swagger UI setup
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocs));
 
-app.use('/api/auth', userRoutes);
+app.use('/api/auth', authRoutes);
+app.use('/api/user', userRoutes);
 app.use('/api/products', productRoutes);
 
 app.use((req, res) => {

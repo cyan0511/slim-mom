@@ -1,4 +1,4 @@
-import { Product } from "../models/productModel.js";
+import {Product} from "../models/productModel.js";
 import {HttpError} from "../errors/HttpError.js";
 
 const listProducts = async (req, res) => {
@@ -47,14 +47,7 @@ const listCategories = async (req, res, next) => {
             return next(new HttpError(400, "Blood type must be between 1 - 4"));
         }
 
-        const filter = (bloodType &&  {[`groupBloodNotAllowed.${bloodType}`]: true}) || {};
-
-        // Find products where the value at groupBloodNotAllowed[bloodTypeNum] is false
-        const products = await Product.find(filter).select("categories -_id"); // Only select the 'categories'
-
-        // Extract categories and filter out duplicates using Set
-        const categories = [...new Set(products.map(product => product.categories))];
-
+        const categories = await getCategories(bloodType);
         // Return the list of categories
         res.status(200).json({
             data: categories,
@@ -63,5 +56,14 @@ const listCategories = async (req, res, next) => {
         next(new HttpError(500, 'Error listing categories'));
     }
 };
+
+export const getCategories = async bloodType => {
+    const filter = (bloodType &&  {[`groupBloodNotAllowed.${bloodType}`]: true}) || {};
+
+    // Find products where the value at groupBloodNotAllowed[bloodTypeNum] is false
+    const products = await Product.find(filter).select("categories -_id"); // Only select the 'categories'
+    // Extract categories and filter out duplicates using Set
+    return [...new Set(products.map(product => product.categories))];
+}
 
 export { listProducts, listCategories };
