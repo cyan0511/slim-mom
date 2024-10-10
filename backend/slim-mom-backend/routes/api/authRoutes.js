@@ -1,6 +1,6 @@
 import express from 'express';
-import { registerUser } from '../../controllers/authController.js';
-import {validateRegistration} from "../../middlewares/validation.js";
+import {registerUser, logInUser} from '../../controllers/authController.js';
+import {validateRegistration, validateLogIn} from "../../middlewares/validation.js";
 
 const router = express.Router();
 
@@ -35,5 +35,38 @@ const router = express.Router();
  *         description: Invalid input
  */
 router.post('/register', validateRegistration, registerUser);
+
+/**
+ * @swagger
+ * /auth/login:
+ *   post:
+ *     summary: login user
+ *     tags: [Auth]
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             required:
+ *               - email
+ *               - password
+ *             properties:
+ *               email:
+ *                 type: string
+ *                 description: The user's username
+ *                 example: johndoe@mail.com
+ *               password:
+ *                 type: string
+ *                 description: The user's password
+ *                 example: password123
+ *     responses:
+ *       200:
+ *         description: User login successfully
+ *       400:
+ *         description: Invalid input
+ */
+router.post("/login", validateLogIn, logInUser);
+
 
 export default router;
