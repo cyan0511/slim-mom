@@ -4,18 +4,14 @@
     justify-content: space-between;
     border-bottom: 2px solid #E0E0E0;
     padding: 20px 20px 10px 20px;
-    overflow: hidden;
     position: relative;
+    overflow: hidden;
 }
-
-
 
 .authHeader {
     display: inline-flex;
     align-items: center;
     justify-content: space-between;
-    /*margin-top: 24px;*/
-    /*width: 1240px;*/
     max-width: 1240px;
     width: 100%;
 }
@@ -24,37 +20,74 @@
     display: block;
 }
 
-.burgerMenu {
+.burgerNav {
     display: none;
+}
+
+@media screen and (max-width: 768px) {
+    .header {
+        justify-content: space-between;
+        border-bottom: unset;
+    }
+
+    .burgerNav {
+        display: block;
+    }
+
+    .userBar,
+    .navigation {
+        display: none;
+    }
+
+    .burger-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: 1000;
+        width: 100%;
+        height: 100vh;
+        background-color: #264061;
+        text-align: center;
+    }
+
+    .burger-list {
+        list-style: none;
+        padding: 0;
+        margin-top: 100px;
+    }
+
+    .burger-item {
+        margin: 10px 0;
+    }
+
+    .burger-link {
+        display: inline-block;
+        padding: 20px;
+        font-family: 'Jost', sans-serif;
+        font-weight: 700;
+        font-size: 18px;
+        text-transform: uppercase;
+        text-decoration: none;
+        color: #ffffff;
+    }
+
+    .burger-link:not(.active) {
+        color: #9b9faa;
+    }
 }
 
 @media screen and (min-width: 769px) {
     .header {
         justify-content: flex-start;
-        border-bottom: unset;
         margin-top: 60px;
+        border-bottom: unset;
     }
 
-
-/*    .authHeader {
-        max-width: 768px;
-    }
-    .burgerMenu {
+    .navigation {
         display: block;
     }
-    .userBar, .navigation {
+
+    .burgerNav {
         display: none;
-    }*/
+    }
 }
-
-/*@media screen and (min-width: 376px) {
-    .authHeader {
-        max-width: 376px;
-    }
-    .burgerMenu {
-        display: block;
-    }
-    .userBar {
-        display: none;
-    }
-}*/
