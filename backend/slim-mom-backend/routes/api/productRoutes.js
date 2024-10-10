@@ -1,7 +1,7 @@
 import express from 'express';
 import { registerUser } from '../../controllers/userController.js';
 import {validateRegistration} from "../../middlewares/validation.js";
-import {listProducts} from "../../controllers/productController.js";
+import {listCategories, listProducts} from "../../controllers/productController.js";
 
 const router = express.Router();
 
@@ -44,5 +44,25 @@ const router = express.Router();
  *         description: Invalid input
  */
 router.get('/', listProducts);
+
+/**
+ * @swagger
+ * /products/categories:
+ *   get:
+ *     summary: List categories
+ *     tags: [Products]
+ *     parameters:
+ *     - in: query
+ *       name: bloodType
+ *       schema:
+ *         type: number
+ *       description: The blood type group of the categories to filter by
+ *     responses:
+ *       200:
+ *         description: Category List
+ *       400:
+ *         description: Invalid input
+ */
+router.get('/categories', listCategories);
 
 export default router;
