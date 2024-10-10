@@ -1,7 +1,8 @@
 import axios from 'axios';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 
-axios.defaults.baseURL = 'https://expense-tracker.b.goit.study/api';
+
+axios.defaults.baseURL = 'http://localhost:3001';
 
 // Utility to add JWT
 const setAuthHeader = token => {

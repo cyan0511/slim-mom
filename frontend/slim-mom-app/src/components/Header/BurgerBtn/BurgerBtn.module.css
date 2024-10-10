@@ -1,0 +1,16 @@
+.mobile-menu-btn {
+    width: 40px;
+    height: 40px;
+    padding: 0;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+}
+
+@media (min-width: 1024px) {
+
+    /* Assuming desktop breakpoint starts at 1024px */
+    .mobile-menu-btn {
+        display: none;
+    }
+}
