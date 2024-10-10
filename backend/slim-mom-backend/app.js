@@ -6,8 +6,6 @@ import swaggerDocs from './swagger.js';
 import authRoutes from "./routes/api/authRoutes.js";
 import userRoutes from "./routes/api/userRoutes.js";
 import productRoutes from "./routes/api/productRoutes.js";
-import { validateRegistration } from "./middlewares/validateRegistration.js"
-import { verifyToken } from './middlewares/authenticateToken.js';
 import {errorHandler} from "./middlewares/errorHandler.js";
 
 const app = express();
