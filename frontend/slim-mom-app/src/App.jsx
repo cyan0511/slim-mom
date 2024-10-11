@@ -18,7 +18,7 @@ function App() {
           <Route path="/" element={<SharedLayout />}>
             <Route index element={<RestrictedRoute
                 component={<MainPage />}
-                redirectTo="/transactions"
+                redirectTo="/diary"
             />} />
             <Route
                 path="/signup"
