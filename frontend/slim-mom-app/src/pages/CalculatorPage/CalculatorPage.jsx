@@ -1,10 +1,6 @@
 import React, { useState } from "react";
 import { DailyCaloriesForm } from "../../components/DailyCaloriesForm/DailyCaloriesForm";
-import {
-  Wrapper,
-  CalculatorWrapper,
-  H2,
-} from "../../components/CalculatorPage/CalculatorPage.styled";
+import styles from "../../components/CalculatorPage/CalculatorPage.module.css";
 import { useSelector } from "react-redux";
 import Modal from "../../components/Modal/Modal";
 import { SideBar } from "../../components/SideBar/SideBar";
@@ -21,22 +17,30 @@ const CalculatorPage = () => {
   };
 
   return (
-    <Wrapper>
-      <CalculatorWrapper>
+    <div className={styles.wrapper}>
+      {" "}
+      {/* Applying CSS module styles */}
+      <div className={styles.calculatorWrapper}>
+        {" "}
+        {/* Applying CSS module styles */}
         {isModalOpened && (
           <Modal onClose={toggleModal} userParams={userParams} />
         )}
         <div className="content">
-          <H2>Calculate your daily calorie intake right now</H2>
+          <h2 className={styles.h2}>
+            {" "}
+            {/* Applying CSS module styles */}
+            Calculate your daily calorie intake right now
+          </h2>
           <DailyCaloriesForm
             initialValues={userInfo}
             openModal={setIsModalOpened}
             setUserParams={setUserParams}
           />
         </div>
-      </CalculatorWrapper>
+      </div>
       <SideBar />
-    </Wrapper>
+    </div>
   );
 };
 

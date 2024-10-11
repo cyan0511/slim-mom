@@ -1,13 +1,5 @@
 import { useSelector } from "react-redux";
-import {
-  Wrapper,
-  SummaryWrap,
-  FoodWrap,
-  Title,
-  Item,
-  Text,
-  RedText,
-} from "./SideBar.styled";
+import styles from "./SideBar.module.css";
 
 export const SideBar = () => {
   const date = useSelector((state) => state.products.date);
@@ -26,51 +18,51 @@ export const SideBar = () => {
   const nOfNorm = (totalCalories / dailyRate) * 100;
 
   return (
-    <Wrapper>
-      <SummaryWrap>
-        <Title>Summary for {date}</Title>
+    <div className={styles.wrapper}>
+      <div className={styles.summaryWrap}>
+        <h3 className={styles.title}>Summary for {date}</h3>
         <ul>
-          <Item>
-            <Text>Left</Text>
+          <li className={styles.item}>
+            <p className={styles.text}>Left</p>
             {leftCalories < 0 ? (
-              <RedText>{leftCalories} kcal</RedText>
+              <p className={styles.redText}>{leftCalories} kcal</p>
             ) : (
-              <Text>{leftCalories || "000"} kcal</Text>
+              <p className={styles.text}>{leftCalories || "000"} kcal</p>
             )}
-          </Item>
-          <Item>
-            <Text>Consumed</Text>
-            <Text>{totalCalories || "000"} kcal</Text>
-          </Item>
-          <Item>
-            <Text>Daily rate</Text>
-            <Text>{dailyRate || "000"} kcal</Text>
-          </Item>
-          <Item>
-            <Text>n% of normal</Text>
+          </li>
+          <li className={styles.item}>
+            <p className={styles.text}>Consumed</p>
+            <p className={styles.text}>{totalCalories || "000"} kcal</p>
+          </li>
+          <li className={styles.item}>
+            <p className={styles.text}>Daily rate</p>
+            <p className={styles.text}>{dailyRate || "000"} kcal</p>
+          </li>
+          <li className={styles.item}>
+            <p className={styles.text}>n% of normal</p>
             {nOfNorm > 100 ? (
-              <RedText>{Math.round(nOfNorm)} %</RedText>
+              <p className={styles.redText}>{Math.round(nOfNorm)} %</p>
             ) : (
-              <Text>{Math.round(nOfNorm) || "0"} %</Text>
+              <p className={styles.text}>{Math.round(nOfNorm) || "0"} %</p>
             )}
-          </Item>
+          </li>
         </ul>
-      </SummaryWrap>
+      </div>
 
-      <FoodWrap>
-        <Title>Food not recommended</Title>
+      <div className={styles.foodWrap}>
+        <h3 className={styles.title}>Food not recommended</h3>
         {notAllowedProducts?.length ? (
           <ul>
             {notAllowedProducts.map((prod, index) => (
-              <Text key={index}>
+              <p className={styles.text} key={index}>
                 {index + 1}. {prod}
-              </Text>
+              </p>
             ))}
           </ul>
         ) : (
-          <Text>Your diet will be displayed here</Text>
+          <p className={styles.text}>Your diet will be displayed here</p>
         )}
-      </FoodWrap>
-    </Wrapper>
+      </div>
+    </div>
   );
 };

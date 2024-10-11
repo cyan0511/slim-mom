@@ -1,0 +1,69 @@
+/* Wrapper styles */
+.wrapper {
+  display: flex;
+  justify-content: space-between;
+  padding: 300px 16px 55px;
+  background-repeat: no-repeat;
+}
+
+@media (min-width: 768px) {
+  .wrapper {
+    background-image: url("../../assets/images/hero/tablet/leaves.png");
+    background-position: bottom left;
+  }
+}
+
+@media (min-width: 1024px) {
+  .wrapper {
+    height: 100vh;
+    background-image: url("../../assets/images/diary-page/leaf-desk.png"),
+      url("../../assets/images/diary-page/sidebar-bg-desk.png");
+    background-position: top right, top right;
+    background-size: auto, 40% 100%;
+  }
+}
+
+@media (max-width: 1120px) {
+  .wrapper {
+    background-position: top right, top right -110px;
+    background-size: auto, 50% 100%;
+  }
+}
+
+@media (min-width: 1121px) {
+  .wrapper {
+    margin: 0 auto;
+  }
+}
+
+/* CalculatorWrapper styles */
+.calculatorWrapper {
+  padding: 32px 20px 100px;
+}
+
+@media (min-width: 426px) {
+  .calculatorWrapper {
+    padding: 100px 32px 48px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .calculatorWrapper {
+    padding: 0 16px 110px;
+  }
+}
+
+/* H2 styles */
+.h2 {
+  line-height: 1.4;
+  margin-bottom: 34px;
+  color: var(--color-black);
+  font-size: clamp(1.5rem, 4vw, var(--font-size-1));
+}
+
+@media (min-width: 426px) {
+  .h2 {
+    margin-bottom: 68px;
+    max-width: 635px;
+  }
+}
