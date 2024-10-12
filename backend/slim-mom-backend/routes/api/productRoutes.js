@@ -1,6 +1,10 @@
-import express from 'express';
-import {validateRegistration} from "../../middlewares/validation.js";
-import {listCategories, listProducts} from "../../controllers/productController.js";
+import express from "express";
+import { validateRegistration } from "../../middlewares/validation.js";
+import {
+  listCategories,
+  listProducts,
+  addConsumedProduct,
+} from "../../controllers/productController.js";
 
 const router = express.Router();
 
@@ -42,7 +46,7 @@ const router = express.Router();
  *       400:
  *         description: Invalid input
  */
-router.get('/', listProducts);
+router.get("/", listProducts);
 
 /**
  * @swagger
@@ -62,6 +66,36 @@ router.get('/', listProducts);
  *       400:
  *         description: Invalid input
  */
-router.get('/categories', listCategories);
+router.get("/categories", listCategories);
+
+/**
+ * @swagger
+ * /products/consume:
+ *   post:
+ *     summary: Add a consumed product to a specific day
+ *     tags: [Products]
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               name:
+ *                 type: string
+ *                 example: "Banana"
+ *               date:
+ *                 type: string
+ *                 format: date
+ *                 example: "2024-10-12"
+ *     responses:
+ *       201:
+ *         description: Product consumed successfully
+ *       400:
+ *         description: Request body required
+ *       500:
+ *         description: Error adding consumed product
+ */
+router.post("/consume", addConsumedProduct);
 
 export default router;
