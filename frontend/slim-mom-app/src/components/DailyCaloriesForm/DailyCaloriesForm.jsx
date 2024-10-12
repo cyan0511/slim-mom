@@ -1,92 +1,77 @@
-import React, { useState } from "react";
-import Modal from "../Modal/Modal";
+import css from './DailyCaloriesForm.module.css';
+import {TextField} from "../TextField/TextField";
 import RadioGroup from "../RadioGroup/RadioGroup";
-import { TextField } from "../TextField/TextField";
-import css from "./DailyCaloriesForm.module.css";
-import { Loader } from "../Loader/Loader";
+import React, {useState} from "react";
+import Modal from "../Modal/Modal";
 
 export const DailyCaloriesForm = () => {
-  const [selectedValue, setSelectedValue] = useState(null);
-  const [isOpen, setIsOpen] = useState(false);
-  const openModal = () => setIsOpen(true);
-  const closeModal = () => setIsOpen(false);
+    const [formData, setFormData] = useState({});
+    const [isOpen, setIsOpen] = useState(false);
+    const openModal = () => setIsOpen(true);
+    const closeModal = () => setIsOpen(false);
 
-  // ALFRED: TEST VARIABLE ONLY
-  const [testSpin, setTestSpin] = useState(false);
+    const handleSubmit = e => {
+        e.preventDefault();
+        openModal();
+    }
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    openModal();
-  };
+    const handleChange = (value, field) => {
+        // setSelectedValue(+event.target.value);
 
-  const handleTestSpinner = (event) => {
-    setTimeout(() => {
-      setTestSpin(false);
-    }, 3000);
+        setFormData({
+            ...formData,
+            [field]: value,
+        });
+    };
+    const options = [
+        {value: 1, label: '1'},
+        {value: 2, label: '2'},
+        {value: 3, label: '3'},
+        {value: 4, label: '4'},
+    ];
 
-    setTestSpin(true);
-  };
-  const options = [
-    { value: 1, label: "1" },
-    { value: 2, label: "2" },
-    { value: 3, label: "3" },
-    { value: 4, label: "4" },
-  ];
+    const calculateIntake = () => {
+        //
+        const {height, currentWeight: weight, age, desiredWeight} = formData;
+        return 10 * weight + 6.25 * height - 5 * age - 161 - 10 * (weight - desiredWeight);
+    }
 
-  const handleChange = (event) => {
-    setSelectedValue(+event.target.value);
-  };
-
-  return (
-    <>
-      <Modal children={<div>test</div>} isOpen={isOpen} onClose={closeModal} />
-      <div className={css.container}>
-        <h1>Calculate your daily calorie intake right now</h1>
-        <form className={css.form} onSubmit={handleSubmit}>
-          <div className={css.infoContainer}>
-            <div className={css.info}>
-              <TextField
-                className={css.textField}
-                label="Height *"
-                id="height"
-              />
-              <TextField className={css.textField} label="Age *" id="age" />
-              <TextField
-                className={css.textField}
-                label="Current weight *"
-                id="current-weight"
-              />
+    return (<>
+            <Modal children={<div>{calculateIntake()}</div>} isOpen={isOpen} onClose={closeModal}/>
+            <div className={css.container}>
+                <h1>Calculate your daily calorie
+                    intake right now</h1>
+                <form className={css.form} onSubmit={handleSubmit}>
+                    <div className={css.infoContainer}>
+                        <div className={css.info}>
+                            <TextField className={css.textField} onChange={e => handleChange(+e.target.value, 'height')}
+                                type="number" label="Height *" id="height"/>
+                            <TextField className={css.textField} onChange={e => handleChange(+e.target.value, 'age')}
+                                type="number" label="Age *" id="age"/>
+                            <TextField className={css.textField}
+                                onChange={e => handleChange(+e.target.value, 'currentWeight')} type="number"
+                                label="Current weight *" id="current-weight"/>
+                        </div>
+                        <div className={css.info}>
+                            <TextField className={css.textField}
+                                onChange={e => handleChange(+e.target.value, 'desiredWeight')} type="number"
+                                label="Desired weight *" id="desired-weight"/>
+                            <div className={css.bloodTypeContainer}>
+                                <span>Blood type*</span>
+                                <div>
+                                    <RadioGroup value={+formData['bloodType']}
+                                        onChange={e => handleChange(+e.target.value, 'bloodType')} name="blood-type"
+                                        options={options}/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div className={css.button}>
+                        <button type="submit">Start loosing weight</button>
+                    </div>
+                </form>
             </div>
-            <div className={css.info}>
-              <TextField
-                className={css.textField}
-                label="Desired weight *"
-                id="desired-weight"
-              />
-              <div className={css.bloodTypeContainer}>
-                <span>Blood type*</span>
-                <div>
-                  <RadioGroup
-                    value={selectedValue}
-                    onChange={handleChange}
-                    name="blood-type"
-                    options={options}
-                  />
-                </div>
-              </div>
-            </div>
-          </div>
-          <div className={css.button}>
-            <button type="submit">Start loosing weight</button>
-          </div>
-        </form>
-        <div className={css.button}>
-          <button type="button" onClick={handleTestSpinner}>
-            Test Spinner
-          </button>
-        </div>
-        {testSpin && <Loader />}
-      </div>
-    </>
-  );
-};
+        </>
+    );
+
+}
