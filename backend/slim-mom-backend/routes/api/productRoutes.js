@@ -1,5 +1,9 @@
-import express from 'express';
-import {listCategories, listProducts} from "../../controllers/productController.js";
+import express from "express";
+import { validateRegistration } from "../../middlewares/validation.js";
+import {
+  listCategories,
+  listProducts,
+} from "../../controllers/productController.js";
 
 const router = express.Router();
 
@@ -41,7 +45,7 @@ const router = express.Router();
  *       400:
  *         description: Invalid input
  */
-router.get('/', listProducts);
+router.get("/", listProducts);
 
 /**
  * @swagger
@@ -61,6 +65,6 @@ router.get('/', listProducts);
  *       400:
  *         description: Invalid input
  */
-router.get('/categories', listCategories);
+router.get("/categories", listCategories);
 
 export default router;
