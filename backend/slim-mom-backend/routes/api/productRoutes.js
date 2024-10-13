@@ -88,6 +88,10 @@ router.get("/categories", listCategories);
  *                 type: string
  *                 format: date
  *                 example: "2024-10-12"
+ *               grams:
+ *                 type: number
+ *                 example: 150
+ *                 description: The amount of the product consumed in grams
  *     responses:
  *       201:
  *         description: Product consumed successfully

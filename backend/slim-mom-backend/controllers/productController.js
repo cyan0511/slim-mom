@@ -71,11 +71,11 @@ export const getCategories = async (bloodType) => {
 };
 
 const addConsumedProduct = async (req, res, next) => {
-  const { name, date } = req.body;
+  const { name, date, grams } = req.body;
 
   // Validate the request body
-  if (!name || !date) {
-    return next(new HttpError(400, "Name and date are required"));
+  if (!name || !date || !grams) {
+    return next(new HttpError(400, "Name, date, and grams are required"));
   }
 
   try {
@@ -83,6 +83,7 @@ const addConsumedProduct = async (req, res, next) => {
     const newProduct = new Product({
       name,
       date: new Date(date), // Ensure the date is in the correct format
+      grams, // Add the grams field to the product
     });
 
     await newProduct.save();
