@@ -1,19 +1,22 @@
 // swagger.js
 import swaggerJsDoc from 'swagger-jsdoc';
+import dotenv from "dotenv";
 
-const PORT = process.env.PORT || 8080;
+dotenv.config();
+
+const { HOST, PORT = 8080 } = process.env;
 
 const swaggerOptions = {
     swaggerDefinition: {
         openapi: '3.0.0',
         info: {
-            title: 'My API',
+            title: 'Slim-Mom API',
             version: '1.0.0',
-            description: 'API documentation for my application',
+            description: 'API documentation for Slim-Mom application',
         },
         servers: [
             {
-                url: `http://localhost:${PORT}`, // Change this to your server URL
+                url: `${HOST}${PORT === 80 ? '' : `:${PORT}`}/api`, // Change this to your server URL
             },
         ],
     },
