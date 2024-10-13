@@ -83,9 +83,8 @@ export const refreshToken = createAsyncThunk(
     // Reading the token from the state via getState()
     const state = thunkAPI.getState();
     const persistedRefreshToken = state.auth.refreshToken;
-    const sid = state.auth.sid;
 
-    if (!persistedRefreshToken || !sid) {
+    if (!persistedRefreshToken) {
       return thunkAPI.rejectWithValue(
         'Unable to refresh token: Missing token or SID'
       );
@@ -94,18 +93,17 @@ export const refreshToken = createAsyncThunk(
     try {
       // If there is a token, add it to the HTTP header and perform the request
       setAuthHeader(persistedRefreshToken);
-      const res = await axios.post('/auth/refresh', { sid });
+      const res = await axios.post('/auth/refresh', { refreshToken: persistedRefreshToken });
 
       const {
         accessToken,
-        refreshToken: newRefreshToken,
-        sid: newSid,
+        refreshToken: newRefreshToken
       } = res.data;
 
       // Set the new access token in the Authorization header
       setAuthHeader(accessToken);
 
-      return { accessToken, refreshToken: newRefreshToken, sid: newSid };
+      return { accessToken, refreshToken: newRefreshToken };
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
     }

@@ -65,3 +65,37 @@ export const logInUser = async (req, res, next) => {
         next(new HttpError(500, "Unhandled exception."));
     }
 };
+
+export const refreshToken = async(req, res, next) => {
+    try {
+        const { refreshToken } = req.body;
+
+        // Ensure there is a refresh token
+        if (!refreshToken) {
+            return res.status(401).json({ message: "Missing refresh token" });
+        }
+
+        // Check if the refresh token exists
+        const user = await User.findOne({ refreshToken });
+        if (!user) {
+            return res.status(403).json({ message: "Invalid refresh token" });
+        }
+
+        const payload = {id: user._id};
+
+        jwt.verify(refreshToken, REFRESH_TOKEN_SECRET, async (err, user) => {
+            if (err) return res.sendStatus(403).json({ message: "Invalid or expired refresh token" });
+            const accessToken = jwt.sign(
+                payload,
+                SECRET_KEY,
+                { expiresIn: "1h" }
+            );
+            await User.findByIdAndUpdate(user._id, {accessToken});
+            res.status(200).json({ accessToken, refreshToken });
+        });
+
+    } catch (error) {
+        res.status(500).json({ message: "Failed to refresh token" });
+    }
+
+}

@@ -8,7 +8,7 @@ export const AuthNav = () => (
             Log In
         </NavLink>
         <NavLink
-            to="/signup"
+            to="/register"
             className={({ isActive }) => isActive ? css.active : ''}>
            Registration
         </NavLink>

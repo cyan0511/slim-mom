@@ -7,7 +7,7 @@ import {lazy, useEffect} from "react";
 import {PrivateRoute} from "./components/PrivateRoute/PrivateRoute";
 import {useDispatch} from "react-redux";
 import {useAuth} from "./hooks/useAuth";
-import auth from "./redux/auth/authSelectors";
+import * as auth from './redux/auth/authOperations';
 
 const MainPage = lazy(() => import('./pages/MainPage/MainPage'));
 const RegisterPage = lazy(() => import('./pages/RegisterPage/RegisterPage'));
@@ -24,12 +24,12 @@ function App() {
             }
 
             if (isLoggedIn) {
-                await dispatch(fetchCurrentUser());
+              //  await dispatch(fetchCurrentUser());
             }
         };
 
-        checkAuthStatus();
-    }, [dispatch, token, isLoggedIn, sid]);
+        void checkAuthStatus();
+    }, [dispatch, token, isLoggedIn, refreshToken]);
 
 
     return (
@@ -42,7 +42,7 @@ function App() {
                         redirectTo="/diary"
                     />}/>
                     <Route
-                        path="/signup"
+                        path="/register"
                         element={
                             <RestrictedRoute redirectTo="/" component={<RegisterPage/>}/>
                         }
