@@ -1,9 +1,8 @@
 import React, {useState} from "react";
-import Modal from "../Modal/Modal";
 import css from './ProductForm.module.css';
 import {TextField} from "../TextField/TextField";
 
-export const ProductForm = () => {
+export const DiaryAddProductForm = () => {
     const [formData, setFormData] = useState({productName: '', grams: ''});
     const handleChange = (e) => {
         const {name, value} = e.target;
