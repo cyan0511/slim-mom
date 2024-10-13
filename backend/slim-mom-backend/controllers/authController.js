@@ -84,7 +84,7 @@ export const refreshToken = async(req, res, next) => {
         const payload = {id: user._id};
 
         jwt.verify(refreshToken, REFRESH_TOKEN_SECRET, async (err, user) => {
-            if (err) return res.sendStatus(403).json({ message: "Invalid or expired refresh token" });
+            if (err) return res.status(401).json({ message: "Unauthorized (invalid refresh token)" });
             const accessToken = jwt.sign(
                 payload,
                 SECRET_KEY,
