@@ -77,10 +77,14 @@ router.get("/", verifyToken, listDiaries);
  *               date:
  *                 type: string
  *                 format: date
+ *                 example: "2024-10-12"
  *               title:
  *                 type: string
+ *                 example: "Banana"
  *               grams:
  *                 type: number
+ *                 example: 150
+ *                 description: The amount of the product consumed in grams
  *               calories:
  *                 type: number
  *               calorieIntake:

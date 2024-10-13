@@ -65,6 +65,6 @@ router.get("/", listProducts);
  *       400:
  *         description: Invalid input
  */
-router.get('/categories', listCategories);
+router.get("/categories", listCategories);
 
 export default router;

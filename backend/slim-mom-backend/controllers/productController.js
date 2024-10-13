@@ -70,30 +70,4 @@ export const getCategories = async (bloodType) => {
   return [...new Set(products.map((product) => product.categories))];
 };
 
-const addConsumedProduct = async (req, res, next) => {
-  const { name, date, grams } = req.body;
-
-  // Validate the request body
-  if (!name || !date || !grams) {
-    return next(new HttpError(400, "Name, date, and grams are required"));
-  }
-
-  try {
-    // Create a new product entry for the consumed product
-    const newProduct = new Product({
-      name,
-      date: new Date(date), // Ensure the date is in the correct format
-      grams, // Add the grams field to the product
-    });
-
-    await newProduct.save();
-    res
-      .status(201)
-      .json({ message: "Product consumed successfully", product: newProduct });
-  } catch (error) {
-    console.error(error);
-    next(new HttpError(500, "Server error while adding consumed product"));
-  }
-};
-
-export { listProducts, listCategories, addConsumedProduct };
+export { listProducts, listCategories };
