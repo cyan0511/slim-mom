@@ -1,7 +1,7 @@
 // Validation middleware
 import {
     dailyCaloriesValidation,
-    registerValidation
+    registerValidation, logInValidation
 } from "../validations/validation.js";
 
 const validate = joiSchema => (req, res, next) => {
@@ -19,4 +19,5 @@ const validate = joiSchema => (req, res, next) => {
 };
 
 export const validateRegistration = validate(registerValidation);
+export const validateLogIn = validate(logInValidation);
 export const validateDailyCaloriesIntake = validate(dailyCaloriesValidation);

@@ -1,7 +1,9 @@
 .container {
     display: flex;
-    gap: 16px;
+    gap: 14px;
+    align-items: center;
     padding-left: 20px;
+    text-overflow: fade;
 }
 
 .container a {
