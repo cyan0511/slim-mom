@@ -27,11 +27,11 @@
   align-items: center;
   background-color: white;
   border-radius: 8px;
-  width: 285px;
+  width: 100%;
   margin: 45px auto 0;
 }
 
-.inputContainer {
+.form > input {
   width: 100%;
   margin-bottom: 20px;
 }
@@ -81,12 +81,9 @@ input:focus {
   background-color: #ff9500;
 }
 
-
-
-
 @media (max-width: 377px) {
   .form {
-      width: 285px;
+      width: 95%;
       padding: 20px;
   }
 }
