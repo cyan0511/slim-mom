@@ -91,8 +91,7 @@ const deleteProducts = async (req, res, next) => {
     if (bloodType) {
         query[`groupBloodNotAllowed.${bloodType}`] = true;
     }
-
-    // Optional: delete products based on a specific consumed date
+    //Delete product on specific day
     if (consumedDate) {
         const date = new Date(consumedDate);
         date.setUTCHours(0, 0, 0, 0);  // Ensure date is at the start of the day
@@ -108,7 +107,7 @@ const deleteProducts = async (req, res, next) => {
 
         res.status(200).json({ message: `${result.deletedCount} products deleted` });
     } catch (error) {
-        next(new HttpError(500, 'Error deleting products'));
+        res.status(500).json({ message: error.message}) ;
     }
 };
 
