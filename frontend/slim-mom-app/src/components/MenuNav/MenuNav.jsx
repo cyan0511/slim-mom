@@ -11,7 +11,6 @@ export const MenuNav = ({onClick, className}) => {
                 Diary
             </NavLink>
             <NavLink onClick={onClick}
-                style={{textDecoration: 'none'}}
                 to="/calculator"
                 className={({isActive}) => isActive ? css.active : ''}
             >
