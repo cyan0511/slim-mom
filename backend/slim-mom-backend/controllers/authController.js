@@ -3,7 +3,7 @@ import {User} from "../models/userModel.js";
 import {HttpError} from "../errors/HttpError.js";
 import jwt from "jsonwebtoken";
 
-const { SECRET_KEY } = process.env;
+const { SECRET_KEY, REFRESH_TOKEN_SECRET } = process.env;
 
 export const registerUser = async (req, res, next) => {
     const {name, email, password} = req.body;
@@ -48,13 +48,15 @@ export const logInUser = async (req, res, next) => {
         }
 
         const payload = {id: user._id};
-        const accessToken = jwt.sign(payload, SECRET_KEY, {expiresIn: "23h"});
+        const accessToken = jwt.sign(payload, SECRET_KEY, {expiresIn: "1h"});
+        const refreshToken = jwt.sign(payload, REFRESH_TOKEN_SECRET, { expiresIn: "5d" });
 
-        await User.findByIdAndUpdate(user._id, { accessToken });
+        await User.findByIdAndUpdate(user._id, { accessToken, refreshToken });
 
         //   Login success response
         res.status(200).json({
             accessToken,
+            refreshToken,
             user: {
                 email: user.email,
             },
