@@ -70,3 +70,25 @@ export const dailyCaloriesValidation = Joi.object({
             'number.positive': 'Number must be positive',
         }),
 });
+
+export const diaryValidation = Joi.object({
+    date: Joi.date().required()
+        .messages({
+            "any.required": "Missing required date field"
+        }),
+    grams: Joi.number().required().messages({
+        "any.required": "Missing required grams field"
+    }),
+    calories: Joi.number().required().messages({
+        "any.required": "Missing required calories field"
+    }),
+    calorieIntake: Joi.number().required().messages({
+        "any.required": "Missing required calorieIntake field"
+    }),
+    title: Joi.string().required().messages({
+        "any.required": "Missing required title field"
+    }),
+    category: Joi.string().required().messages({
+        "any.required": "Missing required category field"
+    }),
+});
