@@ -1,5 +1,5 @@
 import express from 'express';
-import {registerUser, logInUser} from '../../controllers/authController.js';
+import {registerUser, logInUser, refreshToken} from '../../controllers/authController.js';
 import {validateRegistration, validateLogIn} from "../../middlewares/validation.js";
 
 const router = express.Router();
@@ -68,5 +68,30 @@ router.post('/register', validateRegistration, registerUser);
  */
 router.post("/login", validateLogIn, logInUser);
 
+/**
+ * @swagger
+ * /auth/refresh:
+ *   post:
+ *     summary: Refresh token
+ *     tags: [Auth]
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             required:
+ *               - refreshToken
+ *             properties:
+ *               refreshToken:
+ *                 type: string
+ *                 description: Refresh Token
+ *     responses:
+ *       200:
+ *         description: Generated refresh token successfully
+ *       400:
+ *         description: Invalid input
+ */
+router.post('/refresh', refreshToken);
 
 export default router;
