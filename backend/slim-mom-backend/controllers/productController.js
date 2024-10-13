@@ -64,6 +64,53 @@ export const getCategories = async bloodType => {
     const products = await Product.find(filter).select("categories -_id"); // Only select the 'categories'
     // Extract categories and filter out duplicates using Set
     return [...new Set(products.map(product => product.categories))];
-}
+};
 
-export { listProducts, listCategories };
+const deleteProducts = async (req, res, next) => {
+    const { categories, weight, title, calories, bloodType, consumedDate } = req.query;
+
+    // Build query for deletion similar to listProducts
+    const query = {};
+
+    if (categories) {
+        query.categories = categories;
+    }
+
+    if (weight) {
+        query.weight = weight;
+    }
+
+    if (title) {
+        query.title = { $regex: title, $options: 'i' }; // Case-insensitive search
+    }
+
+    if (calories) {
+        query.calories = calories;
+    }
+
+    if (bloodType) {
+        query[`groupBloodNotAllowed.${bloodType}`] = true;
+    }
+
+    // Optional: delete products based on a specific consumed date
+    if (consumedDate) {
+        const date = new Date(consumedDate);
+        date.setUTCHours(0, 0, 0, 0);  // Ensure date is at the start of the day
+        query.consumedDate = date;
+    }
+
+    try {
+        const result = await Product.deleteMany(query);
+
+        if (result.deletedCount === 0) {
+            return res.status(404).json({ message: 'No products found to delete' });
+        }
+
+        res.status(200).json({ message: `${result.deletedCount} products deleted` });
+    } catch (error) {
+        next(new HttpError(500, 'Error deleting products'));
+    }
+};
+
+
+export { listProducts, listCategories, deleteProducts };

@@ -19,6 +19,10 @@ const productSchema = new Schema(
             type: [
                 Boolean
             ]
+        },
+        consumedDate: {
+            type: Date,
+            required: true
         }
     },
     {versionKey: false}

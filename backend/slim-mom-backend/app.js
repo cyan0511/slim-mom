@@ -9,7 +9,7 @@ import productRoutes from "./routes/api/productRoutes.js";
 import {errorHandler} from "./middlewares/errorHandler.js";
 
 const app = express();
-const PORT = process.env.PORT || 8080;
+const PORT = process.env.PORT || 8081;
 
 const formatsLogger = app.get('env') === 'development' ? 'dev' : 'short'
 

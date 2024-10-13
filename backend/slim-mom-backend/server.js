@@ -18,3 +18,7 @@ mongoose
         console.error(`Server not running. Error message: ${err.message}`);
         process.exit(1); // Exit with a failure code
     });
+
+    console.log(process.env.DB_HOST);
+    console.log(process.env.PORT);
+    

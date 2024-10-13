@@ -1,6 +1,6 @@
 import express from 'express';
 import {validateRegistration} from "../../middlewares/validation.js";
-import {listCategories, listProducts} from "../../controllers/productController.js";
+import {listCategories, listProducts, deleteProducts} from "../../controllers/productController.js";
 
 const router = express.Router();
 
@@ -63,5 +63,35 @@ router.get('/', listProducts);
  *         description: Invalid input
  */
 router.get('/categories', listCategories);
+
+/**
+ * @swagger
+ * /products/{id}/{date}:
+ *   delete:
+ *     summary: Delete a consumed product from a specific day
+ *     tags: [Products]
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         schema:
+ *           type: integer
+ *         description: The product ID to delete
+ *       - in: path
+ *         name: date
+ *         required: true
+ *         schema:
+ *           type: string
+ *           format: date
+ *         description: The date of the consumed product (YYYY-MM-DD)
+ *     responses:
+ *       200:
+ *         description: Product deleted successfully
+ *       404:
+ *         description: Product not found
+ *       400:
+ *         description: Invalid input
+ */
+router.delete('/', deleteProducts);
 
 export default router;
