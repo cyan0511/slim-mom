@@ -15,21 +15,13 @@ const LoginPage = lazy(() => import('./pages/LoginPage/LoginPage'));
 
 function App() {
     const dispatch = useDispatch();
-    const {isLoggedIn, token, refreshToken, isRefreshing} = useAuth();
+    const {isLoggedIn, accessToken, refreshToken, isRefreshing} = useAuth();
 
     useEffect(() => {
-        const checkAuthStatus = async () => {
-            if (token && !isLoggedIn) {
-                await dispatch(auth.refreshToken({ refreshToken })).unwrap();
-            }
-
-            if (isLoggedIn) {
-              //  await dispatch(fetchCurrentUser());
-            }
-        };
-
-        void checkAuthStatus();
-    }, [dispatch, token, isLoggedIn, refreshToken]);
+        if (!isLoggedIn) {
+            dispatch(auth.refreshToken());
+        }
+    }, [dispatch, isLoggedIn]);
 
 
     return (
