@@ -6,6 +6,7 @@ import swaggerDocs from "./swagger.js";
 import authRoutes from "./routes/api/authRoutes.js";
 import userRoutes from "./routes/api/userRoutes.js";
 import productRoutes from "./routes/api/productRoutes.js";
+import diaryRoutes from "./routes/api/diaryRoutes.js";
 import { errorHandler } from "./middlewares/errorHandler.js";
 
 const app = express();
@@ -34,6 +35,7 @@ app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocs));
 app.use("/api/auth", authRoutes);
 app.use("/api/user", userRoutes);
 app.use("/api/products", productRoutes);
+app.use("/api/diaries", diaryRoutes);
 
 app.use((req, res) => {
   res.status(404).json({ message: "Not found" });
