@@ -9,6 +9,7 @@ import {PrivateRoute} from "./components/PrivateRoute/PrivateRoute";
 const MainPage = lazy(() => import('./pages/MainPage/MainPage'));
 const RegisterPage = lazy(() => import('./pages/RegisterPage/RegisterPage'));
 const LoginPage = lazy(() => import('./pages/LoginPage/LoginPage'));
+const DiaryPage = lazy(() => import('./pages/DiaryPage/DiaryPage'));
 
 function App() {
   return (
@@ -46,7 +47,7 @@ function App() {
                 path="/diary"
                 element={
                   <PrivateRoute
-                      component={<div>Diary</div>}
+                      component={<DiaryPage />}
                       redirectTo="/"
                   />
                 }
