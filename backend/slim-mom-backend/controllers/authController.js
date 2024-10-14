@@ -63,3 +63,16 @@ export const logInUser = async (req, res, next) => {
         next(new HttpError(500, "Unhandled exception."));
     }
 };
+
+export const getCurrentUser = async (req, res, next) => {
+    try {
+        const userId = req.userId; 
+        const user = await User.findById(userId).select('-password'); 
+        if (!user) {
+            return next(new HttpError(404, "User not found"));
+        }
+        res.json(user);
+    } catch (err) {
+        next(new HttpError(500, "Server error"));
+    }
+};

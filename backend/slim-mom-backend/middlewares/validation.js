@@ -21,3 +21,4 @@ const validate = joiSchema => (req, res, next) => {
 export const validateRegistration = validate(registerValidation);
 export const validateLogIn = validate(logInValidation);
 export const validateDailyCaloriesIntake = validate(dailyCaloriesValidation);
+export const validateCurrentUser = validate()

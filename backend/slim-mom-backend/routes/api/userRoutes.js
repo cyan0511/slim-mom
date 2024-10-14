@@ -1,6 +1,7 @@
 import express from 'express';
 import {validateDailyCaloriesIntake} from "../../middlewares/validation.js";
-import {calculateDailyIntake} from "../../controllers/userController.js";
+import {calculateDailyIntake  } from "../../controllers/userController.js";
+
 
 const router = express.Router();
 
@@ -45,4 +46,8 @@ const router = express.Router();
  *         description: Invalid input
  */
 router.post('/daily-calorie-intake', validateDailyCaloriesIntake, calculateDailyIntake);
+
+
+
 export default router;
+ 
