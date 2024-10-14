@@ -1,115 +1,93 @@
-@import-normalize; /* bring in normalize.css styles */
-
-:root {
-    --main-color: #9B9FAA;
-    --white: #FFF;
+@font-face {
+  font-family: 'GothamProBold';
+  src: local('GothamProBold'),
+    url('./fonts/GothamPro-Bold.ttf') format('truetype');
+  font-weight: bold;
 }
-
-* {
-    box-sizing: border-box;
+@font-face {
+  font-family: 'GothamProLight';
+  src: local('GothamProLight'),
+    url('./fonts/GothamPro-Light.ttf') format('truetype');
+  font-weight: 300;
+}
+@font-face {
+  font-family: 'VerdanaBold';
+  src: local('VerdanaBold'), url('./fonts/Verdana-Bold.ttf') format('truetype');
+  font-weight: bold;
+}
+@font-face {
+  font-family: 'VerdanaRegular';
+  src: local('VerdanaRegular'),
+    url('./fonts/Verdana-Regular.ttf') format('truetype');
+  font-weight: 400;
 }
 
 body {
-    margin: 0;
-    font-family: verdana, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    color: var(--main-color);
+  margin: 0;
+  font-family: VerdanaBold;
+  box-sizing: border-box;
+  background: #fff;
+  color: #000;
+}
+/* Night mode styles */
+body.nightmode {
+  background: radial-gradient(ellipse at bottom, #1b2735 0%, #090a0f 100%);
+  color: #c9bdbd;
 }
 
-code {
-    font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+/* Ensure all text elements are covered */
+body.nightmode h1,
+body.nightmode h2,
+body.nightmode h3,
+body.nightmode h4,
+body.nightmode h5,
+body.nightmode h6,
+body.nightmode p,
+body.nightmode span,
+body.nightmode a,
+body.nightmode div,
+body.nightmode section {
+  color: #c9bdbd;
 }
+
+/* Example of night mode for a specific component */
+.Section {
+  color: #000; /* Default color */
+}
+
+body.nightmode .Section {
+  color: #fff; /* Night mode color */
+}
+
 
 
 h1,
 h2,
 h3,
 h4,
-h5,
-h6,
 p {
-    margin: 0;
+  margin: 0;
+  padding: 0;
+}
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
 }
 
-ul,
-ol {
-    margin: 0;
-    padding: 0;
-    list-style: none;
+/* width */
+::-webkit-scrollbar {
+  width: 6px;
 }
 
-.input-container {
-    position: relative;
-    margin: 20px;
+/* Track */
+::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 5px grey;
+  border-radius: 10px;
 }
 
-.input-field {
-    padding-bottom: 5px;
-    border: none;
-    border-bottom: 2px solid #ccc;
-    outline: none;
-    transition: border-color 0.3s ease;
-
-    font-size: 14px;
-    font-style: normal;
-    font-weight: 700;
-    line-height: normal;
-    letter-spacing: 0.56px;
-}
-
-/*.input-field:focus {
-  border-bottom: 2px solid #007BFF; !* Change this color for focus state *!
-}*/
-
-.input-field::placeholder {
-    color: #9B9FAA;
-    font-size: 14px;
-    font-style: normal;
-    font-weight: 800;
-    line-height: normal;
-    letter-spacing: 0.56px;
-    opacity: 1;
-}
-
-button {
-    display: inline-flex;
-    padding: 13px 25px;
-    justify-content: center;
-    align-items: center;
-    border-radius: 30px;
-    background: #FC842D;
-    border: none;
-    box-shadow: 0px 4px 10px 0px rgba(252, 132, 45, 0.50);
-    cursor: pointer;
-
-    color: #FFF;
-    text-align: center;
-    font-size: 14px;
-    font-style: normal;
-    font-weight: 700;
-    line-height: normal;
-    letter-spacing: 0.56px;;
-}
-
-button:hover, button:focus {
-    background: #f77010;
-    transition: ease 0.5s ;
-}
-
-.secondary {
-    background: var(--white);
-    color: #FC842D;
-    text-align: center;
-    font-size: 14px;
-    font-style: normal;
-    font-weight: 700;
-    line-height: normal;
-    letter-spacing: 0.56px;
-    box-shadow: none;
-    border-radius: 30px;
-    border: 2px solid #FC842D;
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(0deg, rgb(212, 186, 171), rgb(70, 64, 50) 50%);
+  border-radius: 10px;
 }

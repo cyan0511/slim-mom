@@ -1,27 +1,25 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import {persistor, store} from './redux/store';
+import { App } from 'components/App';
+import './fonts/GothamPro-Bold.ttf';
+import './fonts/GothamPro-Light.ttf';
 import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
-import {BrowserRouter} from "react-router-dom";
-import {Provider} from "react-redux";
-import {PersistGate} from 'redux-persist/integration/react';
+import { BrowserRouter } from 'react-router-dom';
+import { Provider } from 'react-redux';
+import { store, persistor } from './redux/store';
+import { PersistGate } from 'redux-persist/integration/react';
+import { ThemeContextProvider } from 'components/Context/Context';
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(
-    <React.StrictMode>
-        <Provider store={store}>
-            <PersistGate loading={null} persistor={persistor}>
-                <BrowserRouter basename="/slim-mom">
-                    <App/>
-                </BrowserRouter>
-            </PersistGate>
-        </Provider>
-    </React.StrictMode>
+ReactDOM.createRoot(document.getElementById('root')).render(
+  <React.StrictMode>
+    <Provider store={store}>
+      <ThemeContextProvider>
+        <PersistGate loading={<div>Loading...</div>} persistor={persistor}>
+          <BrowserRouter basename="/slim-mom">
+            <App />
+          </BrowserRouter>
+        </PersistGate>
+      </ThemeContextProvider>
+    </Provider>
+  </React.StrictMode>
 );
-
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
