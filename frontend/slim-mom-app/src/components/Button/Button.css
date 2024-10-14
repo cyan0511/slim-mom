@@ -1,0 +1,40 @@
+.button-full {
+  padding: 13px 25px;
+  border-radius: 30px;
+  border: none; /* Replace with the equivalent from your theme */
+  font-family: 'YourFontFamily'; /* Replace with the equivalent from your theme */
+  line-height: 1.5; /* Replace with the equivalent from your theme */
+  font-size: 16px; /* Replace with the equivalent from your theme */
+  letter-spacing: 0.04em;
+  display: block;
+  color: white; /* Replace with the equivalent from your theme */
+  min-width: 182px;
+  transition: background 250ms cubic-bezier(0.42, 0, 1, 1);
+  background: orange; /* Replace with the equivalent from your theme */
+}
+
+.button-full:hover,
+.button-full:focus {
+  background: #ff7b00; /* Replace with hover color from your theme */
+}
+
+.button-empty {
+  padding: 13px 25px;
+  border-radius: 30px;
+  border: 2px solid orange; /* Replace with the equivalent from your theme */
+  font-family: 'YourFontFamily'; /* Replace with the equivalent from your theme */
+  line-height: 1.5; /* Replace with the equivalent from your theme */
+  font-size: 16px; /* Replace with the equivalent from your theme */
+  letter-spacing: 0.04em;
+  display: block;
+  background: transparent;
+  color: orange; /* Replace with the equivalent from your theme */
+  min-width: 182px;
+  transition: background 250ms cubic-bezier(0.42, 0, 1, 1);
+}
+
+.button-empty:hover,
+.button-empty:focus {
+  background: #ff7b00; /* Replace with hover color from your theme */
+  color: white; /* Replace with the equivalent from your theme */
+}

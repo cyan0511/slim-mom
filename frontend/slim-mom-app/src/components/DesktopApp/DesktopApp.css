@@ -1,0 +1,21 @@
+.desk-app {
+  padding: 0 20px;
+  padding-top: 50px;
+  text-align: center;
+  padding-bottom: 300px;
+  color: black; /* Replace with your theme's black color */
+}
+
+@media (min-width: 426px) and (max-width: 1023px) {
+  .desk-app {
+    padding-top: 70px;
+    padding-bottom: 450px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .desk-app {
+    padding-top: 280px;
+    padding-bottom: 20px;
+  }
+}

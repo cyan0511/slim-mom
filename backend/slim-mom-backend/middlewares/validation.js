@@ -1,24 +1,13 @@
-// Validation middleware
-import {
-    dailyCaloriesValidation,
-    registerValidation, logInValidation, diaryValidation
-} from "../validations/validation.js";
-
-const validate = joiSchema => (req, res, next) => {
-    const {error} = joiSchema.validate(req.body, {abortEarly: false});
-    if (error) {
-        return res.status(400).json({
-            status: 'error',
-            errors: error.details.map(detail => ({
-                field: detail.context?.key,
-                message: detail.message
-            }))
-        });
-    }
-    next();
+const validation = (schema) => {
+    return (req, res, next) => {
+        const { error } = schema.validate(req.body);
+        if (error) {
+            error.status = 400;
+            next(error);
+            return;
+        }
+        next();
+    };
 };
 
-export const validateRegistration = validate(registerValidation);
-export const validateLogIn = validate(logInValidation);
-export const validateDailyCaloriesIntake = validate(dailyCaloriesValidation);
-export const validateDiary = validate(diaryValidation);
+module.exports = validation;
