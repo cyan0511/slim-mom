@@ -51,6 +51,6 @@ router.post('/register', validateRegistration, registerUser);
  *       401:
  *         description: Unauthorized
  */
-router.get('/current-user', userController.getCurrentUser);
+router.get('/current-user', getCurrentUser);
 
 export default router;
