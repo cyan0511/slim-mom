@@ -1,4 +1,3 @@
-// import logo from './logo.svg';
 import "./App.css";
 import { Route, Routes } from "react-router-dom";
 import { SharedLayout } from "./components/SharedLayout/SharedLayout";
@@ -12,6 +11,9 @@ import * as auth from "./redux/auth/authOperations";
 const MainPage = lazy(() => import("./pages/MainPage/MainPage"));
 const RegisterPage = lazy(() => import("./pages/RegisterPage/RegisterPage"));
 const LoginPage = lazy(() => import("./pages/LoginPage/LoginPage"));
+const CalculatorPage = lazy(() =>
+  import("./pages/CalculatorPage/CalculatorPage")
+);
 
 function App() {
   const dispatch = useDispatch();
@@ -20,12 +22,15 @@ function App() {
   useEffect(() => {
     if (!isLoggedIn) {
       dispatch(auth.refreshToken());
+    } else {
+      console.log("Access Token:", accessToken);
+      console.log("Refresh Token:", refreshToken);
+      console.log("Is Refreshing:", isRefreshing);
     }
-  }, [dispatch, isLoggedIn]);
+  }, [dispatch, isLoggedIn, accessToken, refreshToken, isRefreshing]);
 
   return (
     <>
-      {/*{ isLoading && <Loader /> }*/}
       <Routes>
         <Route path="/" element={<SharedLayout />}>
           <Route
@@ -46,11 +51,10 @@ function App() {
               <RestrictedRoute redirectTo="/" component={<LoginPage />} />
             }
           />
-          {/* Protected routes (accessible only when logged in) */}
           <Route
             path="/calculator"
             element={
-              <PrivateRoute component={<div>Calculator</div>} redirectTo="/" />
+              <PrivateRoute component={<CalculatorPage />} redirectTo="/" />
             }
           />
           <Route
