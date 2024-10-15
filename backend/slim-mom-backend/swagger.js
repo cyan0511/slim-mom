@@ -16,8 +16,7 @@ const swaggerOptions = {
         },
         servers: [
             {
-                url: 'http://localhost:8080',
-                // url: `${HOST}${PORT === 80 ? '' : `:${PORT}`}/api`, // Change this to your server URL
+                url: `${HOST}${PORT === 80 ? '' : `:${PORT}`}/api`, // Change this to your server URL
             },
         ],
     },
