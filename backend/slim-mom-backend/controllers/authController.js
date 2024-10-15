@@ -31,6 +31,7 @@ export const registerUser = async (req, res, next) => {
     });
 };
 
+//login
 export const logInUser = async (req, res, next) => {
     try {
         const {email, password} = req.body;
@@ -99,3 +100,37 @@ export const refreshToken = async(req, res, next) => {
     }
 
 }
+
+//logout
+export const logOutUser = async (req, res, next) => {
+    try {
+        // Extract the token from the request headers
+        const token = req.headers.authorization?.split(" ")[1];
+
+        if (!token) {
+            return next(new HttpError(400, "No token provided"));
+        }
+
+        // Verify and decode the token
+        const decoded = jwt.verify(token, SECRET_KEY);
+
+        // Find the user based on the decoded token
+        const user = await User.findById(decoded.id);
+        if (!user) {
+            return next(new HttpError(404, "User not found"));
+        }
+
+        // Invalidate the token by setting the accessToken to null
+        user.accessToken = null;
+        await user.save();
+
+        // Send success response
+        res.status(200).json({ message: "Logout successful" });
+    } catch (error) {
+        // Handle invalid token error
+        if (error.name === "JsonWebTokenError") {
+            return next(new HttpError(401, "Invalid token"));
+        }
+        next(new HttpError(500, "Server error"));
+    }
+};

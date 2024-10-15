@@ -1,5 +1,5 @@
 import { Navigation } from '../Navigation/Navigation';
-import { useAuth } from '../../hooks/useAuth';
+// import { useAuth } from '../../hooks/useAuth';
 import css from './Header.module.css';
 import { NavLink } from 'react-router-dom';
 import { Logo } from '../Logo/Logo';
