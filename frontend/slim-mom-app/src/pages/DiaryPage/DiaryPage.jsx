@@ -3,38 +3,19 @@ import axios from 'axios';
 import { DiaryDateCalendar } from "../../components/DiaryDateCalendar/DiaryDateCalendar";
 import { DiaryProductList } from "../../components/DiaryProductList/DiaryProductList";
 import css from "./DiaryPage.module.css"
+import { DiaryAddProductForm } from "../../components/DiaryAddProductForm/DiaryAddProductForm";
+import { useDispatch } from "react-redux";
+import {listProducts} from "../../redux/products/operations";
+
 
 const DiaryPage = () => {
-    const [consumedProducts, setConsumedProducts] = useState([]);
+    const dispatch = useDispatch();
     const [selectedDate, setSelectedDate] = useState(new Date());
 
-    useEffect(()=> {
-        const fetchConsumedProducts = async () => {
-            try {
-                const response = await axios.get(
-                    'http://localhost:3000/api/products/day-info',
-                    {
-                        params: { date: selectedDate.toISOString() },
-                        // headers: {
-                        //     Authorization: `Bearer ${auth.token}`,
-                        // },
-                    }
-                );
-
-                const consumedProducts = response.data.consumedProducts.map(cp => ({
-                    ...cp.productId,
-                    grams: cp.quantity,
-                    consumedProductId: cp._id,
-                }));
-
-                setConsumedProducts(consumedProducts);
-            } catch (error) {
-                console.error('Error fetching consumed products:', error);
-            }
-        };
-
-        fetchConsumedProducts();
-    },[selectedDate, setConsumedProducts]);
+    useEffect(() => {
+        dispatch(listProducts());
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
 
     const handleDeleteProduct = async productId => {
         try {
@@ -46,13 +27,14 @@ const DiaryPage = () => {
                 //     },
                 // }
             );
-            setConsumedProducts(prevProducts =>
+            /*setConsumedProducts(prevProducts =>
                 prevProducts.filter(product => product.consumedProductId !== productId)
-            );
+            );*/
         } catch (error) {
             console.error('Erro deleting consumed product:', error);
         }
     };
+
     return (
         <div className={css.container}>
             <section className={css.diarySection}>
@@ -61,8 +43,10 @@ const DiaryPage = () => {
                     onDateChange={setSelectedDate}
                 />
 
+                <DiaryAddProductForm />
+
                 <DiaryProductList
-                    products={consumedProducts}
+                    products={[]}
                     onDelete={handleDeleteProduct}
                 />
             </section>

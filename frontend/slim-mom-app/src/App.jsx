@@ -5,9 +5,12 @@ import {SharedLayout} from "./components/SharedLayout/SharedLayout";
 import {RestrictedRoute} from "./components/RestrictedRoute/RestrictedRoute";
 import {lazy, useEffect} from "react";
 import {PrivateRoute} from "./components/PrivateRoute/PrivateRoute";
-import {useDispatch} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {useAuth} from "./hooks/useAuth";
 import * as auth from './redux/auth/authOperations';
+import * as products from './redux/products/selectors';
+import {Loader} from "./components/Loader/Loader";
+// import * as user from './redux/users/selectors';
 
 const MainPage = lazy(() => import('./pages/MainPage/MainPage'));
 const RegisterPage = lazy(() => import('./pages/RegisterPage/RegisterPage'));
@@ -16,7 +19,12 @@ const DiaryPage = lazy(() => import('./pages/DiaryPage/DiaryPage'));
 
 function App() {
     const dispatch = useDispatch();
-    const {isLoggedIn, accessToken, refreshToken, isRefreshing} = useAuth();
+    const {isLoggedIn, isRefreshing} = useAuth();
+
+    const isProductsLoading = useSelector(products.getIsLoading);
+
+    const isLoading = isProductsLoading ||
+        isRefreshing;
 
     useEffect(() => {
         if (!isLoggedIn) {
@@ -27,7 +35,7 @@ function App() {
 
     return (
         <>
-            {/*{ isLoading && <Loader /> }*/}
+            { isLoading && <Loader /> }
             <Routes>
                 <Route path="/" element={<SharedLayout/>}>
                     <Route index element={<RestrictedRoute
