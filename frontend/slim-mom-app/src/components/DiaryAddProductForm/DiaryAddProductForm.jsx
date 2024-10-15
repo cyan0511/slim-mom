@@ -2,43 +2,54 @@ import React, {useState} from "react";
 import Autocomplete from '@mui/material/Autocomplete';
 import css from './DiaryAddProductForm.module.css';
 import {TextField} from "@mui/material";
-import {useSelector} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {getProducts} from "../../redux/products/selectors";
+import {addDiary} from "../../redux/diaries/operations";
+import {format} from "date-fns";
+import {Notify} from "notiflix";
 
-export const DiaryAddProductForm = () => {
+export const DiaryAddProductForm = ({ date }) => {
+    const dispatch = useDispatch();
     const products = useSelector(getProducts);
 
-    const [formData, setFormData] = useState({productName: '', grams: ''});
-    const handleChange = (e) => {
-        const {name, value} = e.target;
+    const formattedDate = format(date, 'yyyy-MM-dd');
+
+    const [formData, setFormData] = useState({});
+    const handleChange = (field, value) => {
         setFormData({
             ...formData,
-            [name]: value,
+            [field]: value,
         });
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        console.log(formData);
+        try {
+            const data = {
+                productId: formData.product?._id,
+                date: formattedDate,
+                grams: formData.grams
+            }
+            await dispatch(addDiary(data)).unwrap();
+        } catch (ex) {
+            console.log(ex);
+            Notify.failure(ex.message);
+        }
+        setFormData({});
     };
 
     const defaultProps = {
         options: products,
-        getOptionLabel: (option) => `${option.title} (${option.calories}kcal)`,
+        getOptionLabel: (option) => `${option.title} (${option.calories}cal)`,
     };
+
+    console.log(formData);
 
     return (
         <form className={css.form} onSubmit={handleSubmit}>
-            {/*     <TextField
-                id="productName"
-                name="productName"
-                type="text"
-                label="Enter product name"
-                value={formData.productName}
-                onChange={handleChange}
-            />*/}
-
                 <Autocomplete
+                    value={formData.product}
+                    onChange={(e, product) => handleChange('product', product)}
                     fullWidth={false}
                     className={css.productName}
                     {...defaultProps}
@@ -46,21 +57,22 @@ export const DiaryAddProductForm = () => {
                     autoComplete
                     includeInputInList
                     renderInput={(params) => (
-                        <TextField {...params} label="Enter product name" variant="standard" />
+                        <TextField {...params} required label="Enter product name" variant="standard" />
                     )}
                 />
 
                 <TextField
+                    required
                     className={css.grams}
                     variant="standard"
                     id="grams"
                     name="grams"
                     type="number"
                     label="Grams"
-                    value={formData.grams}
-                    onChange={handleChange}
+                    value={formData.grams === 0 ? null : formData.grams || null}
+                    onChange={(e) => handleChange('grams', +e.target.value)}
                 />
                 <button type="submit" className={css.addButton}><span>Add</span></button>
-              </form>
+          </form>
     );
 };

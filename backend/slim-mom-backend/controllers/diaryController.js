@@ -1,26 +1,36 @@
 import { Diary } from "../models/diaryModel.js";
-import {HttpError} from "../errors/HttpError.js";
+import { HttpError } from "../errors/HttpError.js";
+import { Product } from "../models/productModel.js";
 
 const addDiary = async (req, res, next) => {
     try {
-        const { date, title, grams, calories, calorieIntake, category } = req.body;
+        const { productId, date, grams } = req.body;
         const userId = req.user._id;
 
+        const product = await Product.findById(productId);
+
+        if (!product) {
+           return next (new HttpError(404, 'Invalid product id'));
+        }
+
+        const { title, calories } = product;
+
+        const calorieIntake = (calories / 100) * grams;
         // Create a new diary record
-        const newRecord = await Diary.create({
+        const diary = await Diary.create({
             userId,
+            productId,
             date,
             title,
             grams,
-            calories,
-            calorieIntake,
-            category,
+            calories: calorieIntake,
         });
 
         // Return the created record
-        res.status(201).json(newRecord);
+        res.status(201).json(diary);
     } catch (err) {
-        next(err);
+        console.log(err);
+        next(new HttpError(500, "error adding diary"));
     }
 };
 
@@ -57,7 +67,7 @@ const deleteDiary = async (req, res, next) => {
             next(new HttpError(404, "Diary not found."));
         }
 
-        res.status(200).json({ message: "Diary deleted successfully" });
+        res.status(200).json({ message: "Diary deleted." });
     } catch (err) {
         next(err);
     }

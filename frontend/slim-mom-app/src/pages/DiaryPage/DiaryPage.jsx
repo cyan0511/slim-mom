@@ -1,39 +1,24 @@
 import React, { useEffect, useState } from 'react';
-import axios from 'axios';
 import { DiaryDateCalendar } from "../../components/DiaryDateCalendar/DiaryDateCalendar";
 import { DiaryProductList } from "../../components/DiaryProductList/DiaryProductList";
 import css from "./DiaryPage.module.css"
 import { DiaryAddProductForm } from "../../components/DiaryAddProductForm/DiaryAddProductForm";
-import { useDispatch } from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {listProducts} from "../../redux/products/operations";
+import {listDiaries} from "../../redux/diaries/operations";
+import {getDiaries} from "../../redux/diaries/selectors";
 
 
 const DiaryPage = () => {
     const dispatch = useDispatch();
+    const diaries = useSelector(getDiaries);
     const [selectedDate, setSelectedDate] = useState(new Date());
 
     useEffect(() => {
         dispatch(listProducts());
+        dispatch(listDiaries());
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
-
-    const handleDeleteProduct = async productId => {
-        try {
-            await axios.delete(
-                `http://localhost:3000/api/producst/consumed/${productId}`,
-                // {
-                //     headers: {
-                //         Authorization: `Bearer ${auth.token}`,
-                //     },
-                // }
-            );
-            /*setConsumedProducts(prevProducts =>
-                prevProducts.filter(product => product.consumedProductId !== productId)
-            );*/
-        } catch (error) {
-            console.error('Erro deleting consumed product:', error);
-        }
-    };
 
     return (
         <div className={css.container}>
@@ -43,11 +28,10 @@ const DiaryPage = () => {
                     onDateChange={setSelectedDate}
                 />
 
-                <DiaryAddProductForm />
+                <DiaryAddProductForm date={selectedDate} />
 
                 <DiaryProductList
-                    products={[]}
-                    onDelete={handleDeleteProduct}
+                    diaries={diaries || []}
                 />
             </section>
         </div>
