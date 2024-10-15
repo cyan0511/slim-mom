@@ -3,7 +3,7 @@ import {User} from "../models/userModel.js";
 import {HttpError} from "../errors/HttpError.js";
 import jwt from "jsonwebtoken";
 
-const { SECRET_KEY } = process.env;
+const { SECRET_KEY, REFRESH_TOKEN_SECRET } = process.env;
 
 export const registerUser = async (req, res, next) => {
     const {name, email, password} = req.body;
@@ -49,13 +49,15 @@ export const logInUser = async (req, res, next) => {
         }
 
         const payload = {id: user._id};
-        const accessToken = jwt.sign(payload, SECRET_KEY, {expiresIn: "23h"});
+        const accessToken = jwt.sign(payload, SECRET_KEY, {expiresIn: "1h"});
+        const refreshToken = jwt.sign(payload, REFRESH_TOKEN_SECRET, { expiresIn: "5d" });
 
-        await User.findByIdAndUpdate(user._id, { accessToken });
+        await User.findByIdAndUpdate(user._id, { accessToken, refreshToken });
 
         //   Login success response
         res.status(200).json({
             accessToken,
+            refreshToken,
             user: {
                 email: user.email,
             },
@@ -65,8 +67,41 @@ export const logInUser = async (req, res, next) => {
     }
 };
 
-//logout
+export const refreshToken = async(req, res, next) => {
+    try {
+        const { refreshToken } = req.body;
 
+        // Ensure there is a refresh token
+        if (!refreshToken) {
+            return res.status(401).json({ message: "Missing refresh token" });
+        }
+
+        // Check if the refresh token exists
+        const user = await User.findOne({ refreshToken });
+        if (!user) {
+            return res.status(403).json({ message: "Invalid refresh token" });
+        }
+
+        const payload = {id: user._id};
+
+        jwt.verify(refreshToken, REFRESH_TOKEN_SECRET, async (err, user) => {
+            if (err) return res.status(401).json({ message: "Unauthorized (invalid refresh token)" });
+            const accessToken = jwt.sign(
+                payload,
+                SECRET_KEY,
+                { expiresIn: "1h" }
+            );
+            await User.findByIdAndUpdate(user._id, {accessToken});
+            res.status(200).json({ accessToken, refreshToken });
+        });
+
+    } catch (error) {
+        res.status(500).json({ message: "Failed to refresh token" });
+    }
+
+}
+
+//logout
 export const logOutUser = async (req, res, next) => {
     try {
         // Extract the token from the request headers
