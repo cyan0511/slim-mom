@@ -2,6 +2,7 @@ import { configureStore } from '@reduxjs/toolkit';
 import { persistStore, persistReducer, FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 import { authReducer } from './auth/authSlice';
+import {productsReducer} from "./products/productsSlice";
 /*import { categoriesReducer } from './categories/categoriesSlice';
 import { transactionsReducer } from './transactions/transactionsSlice';
 import { filterReducer } from './filterSlice';
@@ -17,8 +18,9 @@ const authPersistConfig = {
 export const store = configureStore({
   reducer: {
     auth: persistReducer(authPersistConfig, authReducer),
+    products: productsReducer,
     /*user: userReducer,
-    categories: categoriesReducer,
+
     transactions: transactionsReducer,
     filter: filterReducer,*/
   },

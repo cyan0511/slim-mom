@@ -60,31 +60,64 @@ input {
   transition: border-color 0.3s ease;
 }
 
-
-input:focus {
-  border-bottom: 1px solid #ff7f00; 
-}
-
 .addButton {
-  background-color: #ff7f00;
-  color: white;
-  padding: 13px 46px;
-  border: none;
-  border-radius: 30px;
   cursor: pointer;
   width: 176px;
-  font-size: 18px;
+  font-size: 24px;
   margin-top: 80px;
 }
 
-.addButton:hover {
-  background-color: #ff9500;
+.addButton span {
+  visibility: visible;
 }
 
+.addButton::before {
+  content: "";
+}
+
+.productName, .grams {
+  width: 100%;
+}
+
+@media screen and (min-width: 377px) {
+  .addButton::before {
+    content: "+"; /* Replace button text with "+" */
+    position: absolute;
+  }
+  .form {
+    flex-direction: row;
+    gap: 48px;
+    align-content: center;
+    justify-items: center;
+    justify-content: center;
+    margin-top: unset;
+  }
+
+  .productName {
+    max-width: 240px;
+    width: 100%;
+  }
+
+  .addButton {
+    cursor: pointer;
+    width: 48px;
+    font-size: 18px;
+    margin-top: unset;
+    border-radius: 50%;
+  }
+
+  .addButton span {
+    visibility: hidden;
+  }
+
+}
+
+/*
 @media (max-width: 377px) {
   .form {
       width: 95%;
       padding: 20px;
   }
 }
+*/
 
