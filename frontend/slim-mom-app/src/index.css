@@ -83,7 +83,7 @@ button {
     border-radius: 30px;
     background: #FC842D;
     border: none;
-    box-shadow: 0px 4px 10px 0px rgba(252, 132, 45, 0.50);
+    /*box-shadow: 0px 4px 10px 0px rgba(252, 132, 45, 0.50);*/
     cursor: pointer;
 
     color: #FFF;
@@ -95,10 +95,10 @@ button {
     letter-spacing: 0.56px;;
 }
 
-button:hover, button:focus {
+/*button:hover, button:focus {
     background: #f77010;
     transition: ease 0.5s ;
-}
+}*/
 
 .secondary {
     background: var(--white);
