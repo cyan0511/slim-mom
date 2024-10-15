@@ -3,27 +3,27 @@
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    align-items: center;
     gap: 8px;
     padding-bottom: 20px;
     align-items: end;
 }
 
 .product {
-    width: 40%;
+    width: 60%;
+    min-width: 50px;
     border-bottom: 1px solid lightgray;
     padding-bottom: 8px;
 }
 
 .grams {
-    width: 49px;
+    width: 15%;
     border-bottom: 1px solid lightgray;
     padding-bottom: 8px;
     text-align: right;
 }
 
-.calorie {
-    width: 60px;
+.calories {
+    width: 25%;
     border-bottom: 1px solid lightgray;
     padding-bottom: 8px;
     text-align: right;
@@ -33,9 +33,9 @@
     background: none;
     border: none;
     color: #9b9faa;
-    font-size: 20px;
+    font-size: 24px;
     cursor: pointer;
-    padding: 0;
+    padding: 0 10px 0 10px;
 }
 
 .deleteButton:hover {

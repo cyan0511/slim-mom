@@ -67,7 +67,7 @@ export const DailyCaloriesForm = () => {
                         </div>
                     </div>
                     <div className={css.button}>
-                        <button type="submit">Start losing weight</button>
+                        <button className="button" type="submit">Start losing weight</button>
                     </div>
                 </form>
             </div>
