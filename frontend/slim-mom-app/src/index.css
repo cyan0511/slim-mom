@@ -5,6 +5,29 @@
     --white: #FFF;
 }
 
+::-webkit-scrollbar-thumb:hover {
+    background-color: #264061;; /* Darker thumb on hover */
+}
+
+/* Webkit-based browsers (Chrome, Safari, etc.) */
+::-webkit-scrollbar {
+    width: 10px;
+    flex-shrink: 0;
+    border-radius: 5px;
+    background: #264061;
+}
+
+::-webkit-scrollbar-track {
+    background: #F0F1F3; /* Background of the scrollbar track */
+    border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: #264061;; /* Scrollbar thumb color */
+    border-radius: 5px; /* Rounded scrollbar */
+    border: 1px solid #264061; /* Space between scrollbar and edge */
+}
+
 * {
     box-sizing: border-box;
 }
@@ -75,7 +98,7 @@ ol {
     opacity: 1;
 }
 
-button {
+.button {
     display: inline-flex;
     padding: 13px 25px;
     justify-content: center;
@@ -83,7 +106,7 @@ button {
     border-radius: 30px;
     background: #FC842D;
     border: none;
-    /*box-shadow: 0px 4px 10px 0px rgba(252, 132, 45, 0.50);*/
+    box-shadow: 0px 4px 10px 0px rgba(252, 132, 45, 0.50);
     cursor: pointer;
 
     color: #FFF;
@@ -92,13 +115,13 @@ button {
     font-style: normal;
     font-weight: 700;
     line-height: normal;
-    letter-spacing: 0.56px;;
+    letter-spacing: 0.56px;
 }
 
-/*button:hover, button:focus {
+.button:hover, .button:focus {
     background: #f77010;
     transition: ease 0.5s ;
-}*/
+}
 
 .secondary {
     background: var(--white);

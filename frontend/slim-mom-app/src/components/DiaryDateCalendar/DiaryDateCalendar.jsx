@@ -7,7 +7,7 @@ import { format } from 'date-fns';
 
 
 export const DiaryDateCalendar = ({ selectedDate, onDateChange }) => {
-    const formattedDate = format(selectedDate, 'EEEE dd MMM yyyy');
+    const formattedDate = format(selectedDate, 'dd.MM.yyyy');
     return (
         <div className={css.datePickerContainer}>
             <span className={css.dateLabel}>{formattedDate}</span>

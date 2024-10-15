@@ -5,7 +5,7 @@ import { NavLink } from 'react-router-dom';
 import { Logo } from '../Logo/Logo';
 
 export const Header = () => {
-    const { isLoggedIn } = useAuth();
+    // const { isLoggedIn } = useAuth();
     return (
         <header className={ css.header}>
             <NavLink

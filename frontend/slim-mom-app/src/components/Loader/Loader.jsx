@@ -4,7 +4,7 @@ import css from "./Loader.module.css";
 export const Loader = () => {
   return (
     <div className={css.loaderContainer}>
-      <TailSpin color="#FC842D" height={100} width={100} />
+      <TailSpin color="#FC842D" height={150} width={150} />
     </div>
   );
 };

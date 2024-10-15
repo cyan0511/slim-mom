@@ -1,9 +1,10 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { addDiary, deleteDiary, listDiaries } from './operations';
+import { addDiary, deleteDiary, listDiaries, setDate } from './operations';
 import { Notify } from 'notiflix';
 
 const initialState = {
     diaries: [],
+    date: new Date(),
     isLoading: false,
     error: null,
 };
@@ -49,7 +50,11 @@ const diariesSlice = createSlice({
                 state.isLoading = false;
                 state.error = action.error.message;
                 Notify.failure('Failed to delete diary!');
+            })
+            .addCase(setDate.fulfilled, (state, action) => {
+                state.date = action.payload;
             });
+
     },
 });
 

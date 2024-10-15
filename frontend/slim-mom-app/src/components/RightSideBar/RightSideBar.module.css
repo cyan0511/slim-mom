@@ -1,84 +1,18 @@
 .wrapper {
-  background-color: #f0f1f3;
-  padding: 40px 20px 84px 20px;
-}
-
-@media (min-width: 768px) and (max-width: 1023px) {
-  .wrapper {
-    padding: 80px 0px 80px 32px;
-    display: flex;
-    background-image: url("../../images/diary-page/leaf-tablet.png");
-    background-repeat: no-repeat;
-    background-position: bottom 0px left 385px;
-    background-size: auto;
-  }
-}
-
-@media (min-width: 1024px) and (max-width: 1120px) {
-  .wrapper {
-    background-color: transparent;
-    padding: 0px;
-    margin-right: 55px;
-  }
-}
-
-@media (min-width: 1121px) and (max-width: 1280px) {
-  .wrapper {
-    margin-right: 105px;
-    padding: 0px;
-  }
-}
-
-@media (min-width: 1280px) {
-  .wrapper {
-    margin-right: 105px;
-    padding: 0px;
-  }
+  background-color: #F0F1F3;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
 }
 
 .summaryWrap {
-  width: 280px;
-  margin: 0 auto;
-  margin-bottom: 40px;
+  width: 100%;
+  padding: 40px 20px 40px 20px;
 }
 
-@media (min-width: 768px) and (max-width: 1023px) {
-  .summaryWrap {
-    width: 288px;
-    margin: 0;
-    margin-right: 80px;
-  }
-}
-
-@media (min-width: 1024px) {
-  .summaryWrap {
-    margin-bottom: 60px;
-  }
-}
 
 .foodWrap {
-  width: 280px;
-  margin: 0 auto;
-}
-
-@media (min-width: 768px) and (max-width: 1023px) {
-  .foodWrap {
-    margin: 0;
-  }
-}
-
-.title {
-  font-size: 14px;
-  font-weight: 700;
-  line-height: 17px;
-  letter-spacing: 0.04em;
-  margin-bottom: 20px;
-}
-
-.item {
-  display: flex;
-  justify-content: space-between;
-  margin-bottom: 20px;
+  margin: 0 0 52px 20px;
 }
 
 .text {
@@ -89,10 +23,113 @@
   color: #9b9faa;
 }
 
+.title {
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 17px;
+  letter-spacing: 0.04em;
+  margin-bottom: 20px;
+
+}
+
+.item {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
 .redText {
   font-weight: 400;
   font-size: 14px;
   line-height: 17px;
   letter-spacing: 0.04em;
   color: #fd0000;
+}
+
+.images, .leaves {
+  display: none;
+}
+
+@media screen and (min-width: 369px) {
+  .wrapper {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    background-color: #F0F1F3;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    padding: 80px 32px 0 32px;
+    gap: 40px;
+  }
+
+  .summaryWrap {
+    width: 100%;
+    padding: unset;
+    flex: 1;
+  }
+
+  .foodWrap {
+    flex: 1;
+  }
+
+  .images {
+    position: relative;
+    width: 100vw;
+    overflow: hidden;
+  }
+
+  .leaves {
+    display: block;
+    width: 428px;
+    height: 602px;
+    transform: rotate(90deg);
+    flex-shrink: 0;
+    position: fixed;
+    right: -150px;
+    bottom: -200px;
+    overflow: hidden;
+  }
+
+
+}
+
+
+@media screen and (min-width: 769px) {
+  .wrapper {
+    background-color: #f0f1f3;
+    position: absolute;
+    right: 0;
+    top: 0;
+    max-width: 517px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .summaryWrap {
+    width: 100%;
+    padding: 0 94px 0 94px;
+    flex: unset;
+  }
+
+  .foodWrap {
+    padding: 0 94px 0 94px;
+    flex: unset;
+    margin: unset;
+  }
+
+  .leaves {
+    display: block;
+    width: 740px;
+    height: 842px;
+    transform: rotate(365deg);
+    flex-shrink: 0;
+    position: fixed;
+    right: -190px;
+    bottom: 120px;
+    overflow: hidden;
+    clip-path: inset(0 0 100px 100px);
+  }
+
 }

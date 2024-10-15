@@ -10,32 +10,42 @@ import {useAuth} from "./hooks/useAuth";
 import * as auth from './redux/auth/authOperations';
 import * as products from './redux/products/selectors';
 import {Loader} from "./components/Loader/Loader";
+import {listDiaries} from "./redux/diaries/operations";
+import {listProducts} from "./redux/products/operations";
+import * as diaries from "./redux/diaries/selectors";
 // import * as user from './redux/users/selectors';
 
-const MainPage = lazy(() => import('./pages/MainPage/MainPage'));
-const RegisterPage = lazy(() => import('./pages/RegisterPage/RegisterPage'));
-const LoginPage = lazy(() => import('./pages/LoginPage/LoginPage'));
+const MainPage = lazy(() => import("./pages/MainPage/MainPage"));
+const RegisterPage = lazy(() => import("./pages/RegisterPage/RegisterPage"));
+const LoginPage = lazy(() => import("./pages/LoginPage/LoginPage"));
 const DiaryPage = lazy(() => import('./pages/DiaryPage/DiaryPage'));
+const CalculatorPage = lazy(() => import("./pages/CalculatorPage/CalculatorPage"));
 
 function App() {
     const dispatch = useDispatch();
     const {isLoggedIn, isRefreshing} = useAuth();
+    const diaryDate = useSelector(diaries.getDate);
 
     const isProductsLoading = useSelector(products.getIsLoading);
+    const isDiariesLoading = useSelector(diaries.getIsLoading);
 
     const isLoading = isProductsLoading ||
+        isDiariesLoading ||
         isRefreshing;
 
     useEffect(() => {
         if (!isLoggedIn) {
             dispatch(auth.refreshToken());
+        } else {
+            dispatch(listProducts());
+            dispatch(listDiaries(diaryDate));
         }
-    }, [dispatch, isLoggedIn]);
+    }, [dispatch, isLoggedIn, diaryDate]);
 
 
     return (
         <>
-            { isLoading && <Loader /> }
+            {isLoading && <Loader/>}
             <Routes>
                 <Route path="/" element={<SharedLayout/>}>
                     <Route index element={<RestrictedRoute
@@ -59,7 +69,7 @@ function App() {
                         path="/calculator"
                         element={
                             <PrivateRoute
-                                component={<div>Calculator</div>}
+                                component={<CalculatorPage/>}
                                 redirectTo="/"
                             />
                         }
@@ -68,7 +78,7 @@ function App() {
                         path="/diary"
                         element={
                             <PrivateRoute
-                                component={<DiaryPage />}
+                                component={<DiaryPage/>}
                                 redirectTo="/"
                             />
                         }

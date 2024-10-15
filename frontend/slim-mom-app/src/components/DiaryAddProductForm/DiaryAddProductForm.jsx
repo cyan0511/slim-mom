@@ -7,8 +7,9 @@ import {getProducts} from "../../redux/products/selectors";
 import {addDiary} from "../../redux/diaries/operations";
 import {format} from "date-fns";
 import {Notify} from "notiflix";
+import clsx from "clsx";
 
-export const DiaryAddProductForm = ({ date }) => {
+export const DiaryAddProductForm = ({ date, onAdd }) => {
     const dispatch = useDispatch();
     const products = useSelector(getProducts);
 
@@ -31,6 +32,7 @@ export const DiaryAddProductForm = ({ date }) => {
                 grams: formData.grams
             }
             await dispatch(addDiary(data)).unwrap();
+            onAdd && onAdd();
         } catch (ex) {
             console.log(ex);
             Notify.failure(ex.message);
@@ -42,8 +44,6 @@ export const DiaryAddProductForm = ({ date }) => {
         options: products,
         getOptionLabel: (option) => `${option.title} (${option.calories}cal)`,
     };
-
-    console.log(formData);
 
     return (
         <form className={css.form} onSubmit={handleSubmit}>
@@ -72,7 +72,7 @@ export const DiaryAddProductForm = ({ date }) => {
                     value={formData.grams === 0 ? null : formData.grams || null}
                     onChange={(e) => handleChange('grams', +e.target.value)}
                 />
-                <button type="submit" className={css.addButton}><span>Add</span></button>
+                <button type="submit" className={clsx('button', css.addButton)}><span>Add</span></button>
           </form>
     );
 };
