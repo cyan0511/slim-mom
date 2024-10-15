@@ -4,7 +4,7 @@ import {
     deleteDiary,
     listDiaries
 } from "../../controllers/diaryController.js";
-import {verifyToken} from "../../middlewares/authenticateToken.js";
+import { authenticateToken } from "../../middlewares/authenticateToken.js";
 
 const router = express.Router();
 
@@ -57,11 +57,11 @@ const router = express.Router();
  *         description: Unauthorized
  */
 
-router.get("/", verifyToken, listDiaries);
+router.get("/", authenticateToken, listDiaries);
 
 /**
  * @swagger
- * /api/diaries/add:
+ * /api/diaries:
  *   post:
  *     summary: Add a new diary.
  *     tags: [Diary]
@@ -89,8 +89,6 @@ router.get("/", verifyToken, listDiaries);
  *                 type: number
  *               calorieIntake:
  *                 type: number
- *               category:
- *                 type: string
  *             required:
  *               - date
  *               - title
@@ -105,11 +103,11 @@ router.get("/", verifyToken, listDiaries);
  *         description: Invalid parameters
  */
 
-router.post("/add", verifyToken, addDiary);
+router.post("/", authenticateToken, addDiary);
 
 /**
  * @swagger
- * /api/diaries/delete/{id}:
+ * /api/diaries/{id}:
  *   delete:
  *     summary: Delete a diary by id.
  *     tags: [Diary]
@@ -129,6 +127,6 @@ router.post("/add", verifyToken, addDiary);
  *         description: Diary not found
  */
 
-router.delete("/delete/:id", verifyToken, deleteDiary);
+router.delete("/:id", authenticateToken, deleteDiary);
 
 export default router;

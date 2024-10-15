@@ -4,10 +4,8 @@ import css from './Header.module.css';
 import { NavLink } from 'react-router-dom';
 import { Logo } from '../Logo/Logo';
 
-
 export const Header = () => {
     const { isLoggedIn } = useAuth();
-    console.log(isLoggedIn);
     return (
         <header className={ css.header}>
             <NavLink
