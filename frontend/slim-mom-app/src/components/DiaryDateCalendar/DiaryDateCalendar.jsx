@@ -6,13 +6,14 @@ import { FaCalendarAlt } from 'react-icons/fa';
 import { format } from 'date-fns';
 
 
-export const DiaryDateCalendar = ({ selectedDate, onDateChange }) => {
-    const formattedDate = format(selectedDate, 'dd.MM.yyyy');
+export const DiaryDateCalendar = ({ date, onDateChange }) => {
+    const formattedDate = format(date, 'dd.MM.yyyy');
+    // const selectedDate = parse(date, 'dd.MM.yyyy', new Date());
     return (
         <div className={css.datePickerContainer}>
             <span className={css.dateLabel}>{formattedDate}</span>
             <DatePicker
-                selected={selectedDate}
+                selected={date}
                 onChange={onDateChange}
                 customInput={<CustomInput />}
                 popperContainer={({ children }) => (

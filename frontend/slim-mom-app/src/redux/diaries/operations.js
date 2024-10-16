@@ -28,7 +28,7 @@ export const addDiary = createAsyncThunk(
             const response = await axios.post('/diaries', data);
             return response.data;
         } catch (error) {
-            return thunkAPI.rejectWithValue( { message: error?.response?.data?.message }); // Reject the promise with the error message
+            return thunkAPI.rejectWithValue( { message: error?.response?.data?.errors[0]?.message }); // Reject the promise with the error message
         }
     }
 );
