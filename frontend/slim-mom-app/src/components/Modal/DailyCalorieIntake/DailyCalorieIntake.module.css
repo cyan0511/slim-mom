@@ -1,12 +1,11 @@
 .dailyCaloriesContent {
-  /* text-align: left; */
+  /* align-items: center; */
   /* font-family: Verdana; */
   font-size: 1.125rem;
   font-style: normal;
   font-weight: 700;
   line-height: 140%; /* 36.4px */
   text-transform: none;
-  /* text-align: center; */
 
   color: #212121;
   /* width: 508px; */
@@ -26,7 +25,7 @@
     font-weight: 700;
     line-height: normal;
     letter-spacing: 0.56px;
-    /* margin: 20px 20px; */
+    margin: 20px 20px;
   }
   & ol {
     list-style: decimal;
@@ -45,7 +44,7 @@
     font-weight: 400;
     line-height: normal;
     letter-spacing: 0.56px;
-    /* margin-left: 20px; */
+    /* margin-left: 0px; */
   }
   & h1 {
     font-size: 1.125rem;
@@ -66,20 +65,21 @@
     font-weight: 700;
     line-height: normal;
     letter-spacing: 0.56px;
-    margin: 20px 0;
+    margin: 20px 0px;
   }
   button {
     margin-bottom: 119px;
   }
 }
 
-.vector svg {
+.vector {
   /* width: 280px; */
-  flex-shrink: 0;
-  margin-right: 20px;
+  /* flex-shrink: 0; */
+  /* margin-right: 20px; */
   stroke-width: 1px;
   stroke: var(--Gray-5, #e0e0e0);
-  text-align: center;
+  /* text-align: center; */
+  align-items: center;
 }
 
 .caloriesIntake {
@@ -103,11 +103,12 @@ button {
 }
 @media screen and (min-width: 377px) {
   .dailyCaloriesContent {
-    /* display: inline; */
+    flex-direction: column;
+    display: flex;
     max-width: 672px;
     height: 572px;
     flex-shrink: 0;
-    align-self: center;
+    align-items: center;
 
     & h1 {
       color: #212121;
@@ -121,15 +122,19 @@ button {
       /* margin: 64px 82px 20px; */
     }
     & h2 {
-      /* margin: 20px 0; */
+      margin-bottom: 12px;
+      max-width: 222px;
     }
-  }
-  .vector svg {
-    flex-shrink: 0;
-    margin-right: 20px;
-    stroke-width: 1px;
-    stroke: var(--Gray-5, #e0e0e0);
-    max-width: 330px;
+    & ol {
+      margin-left: -90px;
+    }
+    .vector svg {
+      flex-shrink: 0;
+      margin-right: 20px;
+      stroke-width: 1px;
+      stroke: var(--Gray-5, #e0e0e0);
+      max-width: 330px;
+    }
   }
 }
 

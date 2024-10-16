@@ -41,7 +41,8 @@ export const DailyCaloriesForm = () => {
       161 -
       10 * (weight - desiredWeight)
     );
-    const calculateIntake = () => {
+  };
+  /*     const calculateIntake = () => {
       //
       const { height, currentWeight: weight, age, desiredWeight } = formData;
       return (
@@ -52,11 +53,15 @@ export const DailyCaloriesForm = () => {
         10 * (weight - desiredWeight)
       );
     };
-  };
+  }; */
   return (
     <>
       <Modal
-        children={<div>{calculateIntake()}</div>}
+        children={
+          <div>
+            <DailyCalorieIntake intake={calculateIntake()} />
+          </div>
+        }
         isOpen={isOpen}
         onClose={closeModal}
       />
@@ -119,7 +124,7 @@ export const DailyCaloriesForm = () => {
   );
 };
 
-/* return (
+/* `return (`
   <>
     <Modal
       children={<DailyCalorieIntake intake={calculateIntake()} />}

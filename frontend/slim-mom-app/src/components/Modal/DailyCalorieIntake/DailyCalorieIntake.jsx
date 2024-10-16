@@ -32,13 +32,12 @@ const DailyCalorieIntake = ({ intake }) => {
         </svg>
         <h2>Foods you should not eat</h2>
       </div>
-      <div>
-        <ol>
-          {foods.map((food, index) => (
-            <li key={index}>{food.name}</li>
-          ))}
-        </ol>
-      </div>
+
+      <ol>
+        {foods.map((food, index) => (
+          <li key={index}>{food.name}</li>
+        ))}
+      </ol>
 
       <div>
         <button type="submit">Start losing weight</button>
