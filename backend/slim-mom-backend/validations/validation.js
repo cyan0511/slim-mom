@@ -79,7 +79,7 @@ export const diaryValidation = Joi.object({
     grams: Joi.number().required().messages({
         "any.required": "Missing required grams field"
     }),
-    projectId: Joi.number().required().messages({
-        "any.required": "Missing required projectId field"
+    productId: Joi.string().required().messages({
+        "any.required": "Missing required productId field"
     })
 });

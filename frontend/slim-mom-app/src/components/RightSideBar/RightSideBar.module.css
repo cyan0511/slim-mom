@@ -21,6 +21,7 @@
   line-height: 17px;
   letter-spacing: 0.04em;
   color: #9b9faa;
+  text-transform: capitalize;
 }
 
 .title {

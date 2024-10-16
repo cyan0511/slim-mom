@@ -1,9 +1,8 @@
-import express from 'express';
-import {registerUser, logInUser, refreshToken, logOutUser, getCurrentUser } from '../../controllers/authController.js';
-import {validateRegistration, validateLogIn} from "../../middlewares/validation.js";
-import {authenticateToken} from "../../middlewares/authenticateToken.js";
+import express from 'express'
+import { registerUser, logInUser, refreshToken, logOutUser } from '../../controllers/authController.js'
+import { validateRegistration, validateLogIn } from '../../middlewares/validation.js'
 
-const router = express.Router();
+const router = express.Router()
 
 /**
  * @swagger
@@ -35,7 +34,7 @@ const router = express.Router();
  *       400:
  *         description: Invalid input
  */
-router.post('/register', validateRegistration, registerUser);
+router.post('/register', validateRegistration, registerUser)
 
 /**
  * @swagger
@@ -67,26 +66,7 @@ router.post('/register', validateRegistration, registerUser);
  *       400:
  *         description: Invalid input
  */
-router.post("/login", validateLogIn, logInUser);
-
-/**
- * @swagger
- * /auth/current:
- *   get:
- *     summary: Get current user
- *     tags: [Auth]
- *     security:
- *       - bearerAuth: []
- *     responses:
- *       200:
- *         description: Current user retrieved successfully
- *       401:
- *         description: Unauthorized
- */
-
-router.get("/current", authenticateToken, getCurrentUser);
-
-
+router.post('/login', validateLogIn, logInUser)
 
 /**
  * @swagger
@@ -112,7 +92,7 @@ router.get("/current", authenticateToken, getCurrentUser);
  *       400:
  *         description: Invalid input
  */
-router.post('/refresh', refreshToken);
+router.post('/refresh', refreshToken)
 /**
  * @swagger
  * /auth/logout:
@@ -134,7 +114,6 @@ router.post('/refresh', refreshToken);
  *       500:
  *         description: Server error
  */
-router.post('/logout', logOutUser);
+router.post('/logout', logOutUser)
 
-
-export default router;
+export default router

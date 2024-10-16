@@ -134,19 +134,3 @@ export const logOutUser = async (req, res, next) => {
         next(new HttpError(500, "Server error"));
     }
 };
-export const getCurrentUser = (req, res, next) => {
-    // Assuming req.user is set by verifyToken middleware
-    const user = req.user;
-
-    if (!user) {
-        return res.status(404).json({ message: "User not found" });
-    }
-
-    // Send user info as a response
-    res.status(200).json({
-        user: {
-            name: user.name,
-            email: user.email,
-        },
-    });
-};

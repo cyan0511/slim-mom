@@ -1,12 +1,15 @@
-import React from "react";
-// import { getUserInfo } from "../../redux/auth/authSelectors";
-import { DailyCaloriesForm } from "../../components/DailyCaloriesForm/DailyCaloriesForm";
-import {RightSideBar} from "../../components/RightSideBar/RightSideBar";
-import {useSelector} from "react-redux";
-import {getDate} from "../../redux/diaries/selectors";
+import React from 'react';
+import {
+  DailyCaloriesForm,
+} from '../../components/DailyCaloriesForm/DailyCaloriesForm';
+import { RightSideBar } from '../../components/RightSideBar/RightSideBar';
+import { useSelector } from 'react-redux';
+import { getDate } from '../../redux/diaries/selectors';
+import { parse } from 'date-fns';
 
 const CalculatorPage = () => {
   const diaryDate = useSelector(getDate);
+  const date = parse(diaryDate, 'dd.MM.yyyy', new Date());
   const info = {}; // useSelector(getUserInfo);
   const userInfo = { ...info };
 
@@ -16,10 +19,10 @@ const CalculatorPage = () => {
   delete userInfo.notAllowedProductsAll;
 
   return (
-    <div>
-      <DailyCaloriesForm/>
-      <RightSideBar date={diaryDate} />
-    </div>
+      <div>
+        <DailyCaloriesForm/>
+        <RightSideBar date={date}/>
+      </div>
   );
 };
 

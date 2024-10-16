@@ -1,25 +1,21 @@
-import css from './DailyCalorieIntake.module.css';
-import iconSvg from './../../assets/images/icons.svg';
+import css from './DailyCalorieIntake.module.css'
+import iconSvg from './../../assets/images/icons.svg'
+import { useSelector } from 'react-redux'
+import { getUser } from '../../redux/user/selector'
 
-const foods = [
-  { name: 'Apple', calories: 95 },
-  { name: 'Banana', calories: 105 },
-  { name: 'Carrot', calories: 45 },
-  { name: 'Donut', calories: 240 },
-  { name: 'Egg', calories: 70 },
-];
-
-const DailyCalorieIntake = ({ height, currentWeight, age, desiredWeight, bloodType }) => {
-    const calculateIntake = () => {
-        //
-        return 10 * currentWeight + 6.25 * height - 5 * age - 161 - 10 * (currentWeight - desiredWeight);
-    }
-    return (
+const DailyCalorieIntake = ({ calorieIntake, onClose }) => {
+  const user = useSelector(getUser);
+  const foods = user.foodNotRecommended; // useSelector(getFoodNotRecommended)
+  /* const calculateIntake = () => {
+     //
+     return 10 * currentWeight + 6.25 * height - 5 * age - 161 - 10 * (currentWeight - desiredWeight)
+   }*/
+  return (
     <div className={css.dailyCaloriesContent}>
       <h1>Your recommended daily calorie intake is</h1>
       <div>
         <span className={css.caloriesIntake}>
-          {calculateIntake()}
+          {user.dailyCalorieIntake}
           <p className={css.intake}>CALORIES</p>
         </span>
       </div>
@@ -31,22 +27,21 @@ const DailyCalorieIntake = ({ height, currentWeight, age, desiredWeight, bloodTy
           viewBox="0 0 330 2"
           fill="none"
         >
-          <use href={`${iconSvg}#vector4`} />
+          <use href={`${iconSvg}#vector4`}/>
         </svg>
         <h2>Foods you should not eat</h2>
       </div>
-
-      <ol>
-        {foods.map((food, index) => (
-          <li key={index}>{food.name}</li>
-        ))}
-      </ol>
-
       <div>
-        <button className="button" type="submit">Start losing weight</button>
+        <ol>
+          {foods.map((food, index) => (
+            <li key={index}>{food}</li>
+          ))}
+        </ol>
       </div>
-    </div>
-  );
-};
+      <button className="button" onClick={onClose} >Start losing weight</button>
 
-export default DailyCalorieIntake;
+    </div>
+  )
+}
+
+export default DailyCalorieIntake

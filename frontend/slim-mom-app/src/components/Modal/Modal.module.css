@@ -59,8 +59,8 @@
 /* Close button at the top-right corner */
 .modalCloseButton {
   position: absolute;
-  top: -30px;
-  right: -50px;
+  top: 20px;
+  right: 20px;
   background: none;
   border: none;
   font-size: 24px;
