@@ -1,6 +1,7 @@
 import express from 'express';
-import {registerUser, logInUser, refreshToken, logOutUser} from '../../controllers/authController.js';
+import {registerUser, logInUser, refreshToken, logOutUser, getCurrentUser } from '../../controllers/authController.js';
 import {validateRegistration, validateLogIn} from "../../middlewares/validation.js";
+import {authenticateToken} from "../../middlewares/authenticateToken.js";
 
 const router = express.Router();
 
@@ -67,6 +68,25 @@ router.post('/register', validateRegistration, registerUser);
  *         description: Invalid input
  */
 router.post("/login", validateLogIn, logInUser);
+
+/**
+ * @swagger
+ * /auth/current:
+ *   get:
+ *     summary: Get current user
+ *     tags: [Auth]
+ *     security:
+ *       - bearerAuth: []
+ *     responses:
+ *       200:
+ *         description: Current user retrieved successfully
+ *       401:
+ *         description: Unauthorized
+ */
+
+router.get("/current", authenticateToken, getCurrentUser);
+
+
 
 /**
  * @swagger
