@@ -39,40 +39,40 @@
 }
 
 .actionContainer {
-    background: #EFF1F3;
-    height: 40px;
-    flex-shrink: 0;
-    width: 100%;
-    display: flex;
-    align-items: center;
+  background: #eff1f3;
+  height: 40px;
+  flex-shrink: 0;
+  width: 100%;
+  display: flex;
+  align-items: center;
 }
 
 .actionContainer > svg {
-    margin-left: 20px;
-    cursor: pointer;
+  margin-left: 20px;
+  cursor: pointer;
 }
 
 .actionContainer > button {
-    display: none;
+  display: none;
 }
 
 /* Close button at the top-right corner */
 .modalCloseButton {
-    position: absolute;
-    top: 20px;
-    right: 20px;
-    background: none;
-    border: none;
-    font-size: 24px;
-    cursor: pointer;
-    color: #000000;
-    box-shadow: none;
+  position: absolute;
+  top: -30px;
+  right: -50px;
+  background: none;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+  color: #000000;
+  box-shadow: none;
 }
 
-.modalCloseButton:hover, .modalCloseButton:focus {
-    background: none;
+.modalCloseButton:hover,
+.modalCloseButton:focus {
+  background: none;
 }
-
 
 /* Content inside the modal */
 .modalContent {

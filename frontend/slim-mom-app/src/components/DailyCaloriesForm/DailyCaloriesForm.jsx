@@ -3,6 +3,7 @@ import {TextField} from "../TextField/TextField";
 import RadioGroup from "../RadioGroup/RadioGroup";
 import React, {useState} from "react";
 import Modal from "../Modal/Modal";
+import DailyCalorieIntake from "../DailyCalorieIntake/DailyCalorieIntake";
 
 export const DailyCaloriesForm = () => {
     const [formData, setFormData] = useState({});
@@ -30,14 +31,8 @@ export const DailyCaloriesForm = () => {
         {value: 4, label: '4'},
     ];
 
-    const calculateIntake = () => {
-        //
-        const {height, currentWeight: weight, age, desiredWeight} = formData;
-        return 10 * weight + 6.25 * height - 5 * age - 161 - 10 * (weight - desiredWeight);
-    }
-
     return (<>
-            <Modal children={<div>{calculateIntake()}</div>} isOpen={isOpen} onClose={closeModal}/>
+            <Modal children={<DailyCalorieIntake {...formData }/>} isOpen={isOpen} onClose={closeModal}/>
             <div className={css.container}>
                 <h1>Calculate your daily calorie
                     intake right now</h1>
