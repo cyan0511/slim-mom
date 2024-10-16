@@ -1,0 +1,21 @@
+.container {
+    position: absolute;
+    display: flex;
+    right: 100px;
+    z-index: 200;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+}
+
+.exit {
+    border: none;
+    cursor: pointer;
+    color: #9B9FAA;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    letter-spacing: 0.56px;
+}

@@ -103,22 +103,11 @@
     <path d="M2.5 8.33337H17.5" stroke="#FAFAFA" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
   </symbol>
 
-  <!-- Clock Icon -->
-  <symbol id="clock-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
-    <g clip-path="url(#clip0_29_43)">
-      <path d="M10 18.3333C14.6024 18.3333 18.3333 14.6023 18.3333 9.99996C18.3333 5.39759 14.6024 1.66663 10 1.66663C5.39762 1.66663 1.66666 5.39759 1.66666 9.99996C1.66666 14.6023 5.39762 18.3333 10 18.3333Z" stroke="#FAFAFA" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-      <path d="M10 5V10L13.3333 11.6667" stroke="#FAFAFA" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-    </g>
-    <defs>
-      <clipPath id="clip0_29_43">
-        <rect width="20" height="20" fill="white"/>
-      </clipPath>
-    </defs>
+  <!-- Short Line -->
+  <symbol id="short-line" xmlns="http://www.w3.org/2000/svg" width="2" height="32" viewBox="0 0 2 32" fill="none">
+    <path d="M1 0L0.999999 32" stroke="#E0E0E0" stroke-width="2"/>
   </symbol>
 
-  <symbol fill="none" viewBox="0 0 38 38" id="user-bold" xmlns="http://www.w3.org/2000/svg">
-    <path d="M34.79 31.172a18.312 18.312 0 0 0-9.021-7.901 11.281 11.281 0 1 0-13.538 0 18.312 18.312 0 0 0-9.022 7.9 1.782 1.782 0 1 0 3.083 1.782c2.69-4.649 7.44-7.422 12.708-7.422s10.018 2.775 12.708 7.422a1.781 1.781 0 0 0 3.083-1.781ZM11.282 14.25A7.718 7.718 0 1 1 19 21.97a7.727 7.727 0 0 1-7.719-7.719Z" fill="#0EF387"/>
-  </symbol>
 
   <symbol fill="none" viewBox="0 0 44 44" id="menu" xmlns="http://www.w3.org/2000/svg">
     <path d="M5.5 15.583h33m-33 12.834h33" stroke="#FAFAFA" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>

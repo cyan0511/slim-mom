@@ -114,6 +114,7 @@ export const logOutUser = async (req, res, next) => {
         // Verify and decode the token
         const decoded = jwt.verify(token, SECRET_KEY);
 
+
         // Find the user based on the decoded token
         const user = await User.findById(decoded.id);
         if (!user) {
