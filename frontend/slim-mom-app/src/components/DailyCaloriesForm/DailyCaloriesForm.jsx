@@ -46,11 +46,7 @@ export const DailyCaloriesForm = () => {
   return (
     <>
       <Modal
-        children={
-         
-            <DailyCalorieIntake  intake={calculateIntake()} />
-       
-        }
+        children={<DailyCalorieIntake intake={calculateIntake()} />}
         isOpen={isOpen}
         onClose={closeModal}
       />
