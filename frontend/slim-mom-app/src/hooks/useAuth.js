@@ -7,14 +7,12 @@ export const useAuth = () => {
   const user = useSelector(auth.user);
   const token = useSelector(auth.token);
   const refreshToken = useSelector(auth.refreshToken);
-  const sid = useSelector(auth.sid);
 
   return {
     isLoggedIn,
     isRefreshing,
     user,
     token,
-    refreshToken,
-    sid,
+    refreshToken
   };
 };
