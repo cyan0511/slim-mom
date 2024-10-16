@@ -5,9 +5,8 @@ const authSlice = createSlice({
   name: 'auth',
   initialState: {
     user: { name: null, email: null },
-    token: null,
+    accessToken: null,
     refreshToken: null,
-    sid: null,
     isLoggedIn: false,
     isRefreshing: false,
     error: null,
@@ -18,9 +17,8 @@ const authSlice = createSlice({
         state.user = action.payload.user;
         state.isLoggedIn = true;
 
-        state.token = action.payload.accessToken;
+        state.accessToken = action.payload.accessToken;
         state.refreshToken = action.payload.refreshToken;
-        state.sid = action.payload.sid;
         state.isRefreshing = false;
       })
       .addCase(register.pending, state => {
@@ -37,9 +35,8 @@ const authSlice = createSlice({
         state.isLoggedIn = true;
         state.isRefreshing = false;
 
-        state.token = action.payload.accessToken;
+        state.accessToken = action.payload.accessToken;
         state.refreshToken = action.payload.refreshToken;
-        state.sid = action.payload.sid;
       })
       .addCase(logIn.rejected, (state, action) => {
         state.isLoggedIn = false;
@@ -48,11 +45,10 @@ const authSlice = createSlice({
       })
       .addCase(logOut.fulfilled, state => {
         state.user = { name: null, email: null };
-        state.token = null;
+        state.accessToken = null;
         state.isLoggedIn = false;
         state.error = "";
         state.refreshToken = null;
-        state.sid = null;
         state.isRefreshing = false;
       })
       .addCase(logOut.pending, state => {
@@ -68,10 +64,8 @@ const authSlice = createSlice({
         state.user = action.payload;
         state.isLoggedIn = true;
         state.isRefreshing = false;
-
-        state.token = action.payload.accessToken;
+        state.accessToken = action.payload.accessToken;
         state.refreshToken = action.payload.refreshToken;
-        state.sid = action.payload.sid;
       })
       .addCase(refreshToken.rejected, state => {
         state.isRefreshing = false;

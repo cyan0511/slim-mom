@@ -3,9 +3,11 @@ import { Navigation } from '../Navigation/Navigation';
 import css from './Header.module.css';
 import { NavLink } from 'react-router-dom';
 import { Logo } from '../Logo/Logo';
+import { useAuth } from '../../hooks/useAuth';
+import { UserInfo } from '../UserInfo/UserInfo';
 
 export const Header = () => {
-    // const { isLoggedIn } = useAuth();
+    const { isLoggedIn } = useAuth();
     return (
         <header className={ css.header}>
             <NavLink
@@ -16,6 +18,7 @@ export const Header = () => {
 
             </NavLink>
             <Navigation />
+          {isLoggedIn && <UserInfo className={css.userInfo} />}
         </header>
     );
 };

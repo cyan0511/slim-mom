@@ -5,14 +5,14 @@ export const useAuth = () => {
   const isLoggedIn = useSelector(auth.isLoggedIn);
   const isRefreshing = useSelector(auth.isRefreshing);
   const user = useSelector(auth.user);
-  const token = useSelector(auth.token);
+  const accessToken = useSelector(auth.accessToken);
   const refreshToken = useSelector(auth.refreshToken);
 
   return {
     isLoggedIn,
     isRefreshing,
     user,
-    token,
+    accessToken,
     refreshToken
   };
 };

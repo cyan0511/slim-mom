@@ -43,9 +43,9 @@ function App() {
     } else {
       dispatch(getCurrentUser());
       dispatch(listProducts());
-      dispatch(listDiaries(date));
+      dispatch(listDiaries(new Date()));
     }
-  }, [dispatch, isLoggedIn, date]);
+  }, [dispatch, isLoggedIn]);
 
   return (
       <>
