@@ -11,7 +11,7 @@ export const DailyCaloriesForm = () => {
   const openModal = () => setIsOpen(true);
   const closeModal = () => setIsOpen(false);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = e => {
     e.preventDefault();
     openModal();
   };
@@ -31,7 +31,6 @@ export const DailyCaloriesForm = () => {
     { value: 4, label: '4' },
   ];
 
-
   const calculateIntake = () => {
     //
     const { height, currentWeight: weight, age, desiredWeight } = formData;
@@ -41,57 +40,23 @@ export const DailyCaloriesForm = () => {
       5 * age -
       161 -
       10 * (weight - desiredWeight)
-
-    const calculateIntake = () => {
-        //
-        const {height, currentWeight: weight, age, desiredWeight} = formData;
-        return 10 * weight + 6.25 * height - 5 * age - 161 - 10 * (weight - desiredWeight);
-    }
-
-    return (<>
-            <Modal children={<div>{calculateIntake()}</div>} isOpen={isOpen} onClose={closeModal}/>
-            <div className={css.container}>
-                <h1>Calculate your daily calorie
-                    intake right now</h1>
-                <form className={css.form} onSubmit={handleSubmit}>
-                    <div className={css.infoContainer}>
-                        <div className={css.info}>
-                            <TextField className={css.textField} onChange={e => handleChange(+e.target.value, 'height')}
-                                type="number" label="Height *" id="height"/>
-                            <TextField className={css.textField} onChange={e => handleChange(+e.target.value, 'age')}
-                                type="number" label="Age *" id="age"/>
-                            <TextField className={css.textField}
-                                onChange={e => handleChange(+e.target.value, 'currentWeight')} type="number"
-                                label="Current weight *" id="current-weight"/>
-                        </div>
-                        <div className={css.info}>
-                            <TextField className={css.textField}
-                                onChange={e => handleChange(+e.target.value, 'desiredWeight')} type="number"
-                                label="Desired weight *" id="desired-weight"/>
-                            <div className={css.bloodTypeContainer}>
-                                <span>Blood type*</span>
-                                <div>
-                                    <RadioGroup value={+formData['bloodType']}
-                                        onChange={e => handleChange(+e.target.value, 'bloodType')} name="blood-type"
-                                        options={options}/>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div className={css.button}>
-                        <button className="button" type="submit">Start losing weight</button>
-                    </div>
-                </form>
-            </div>
-        </>
-
     );
+    const calculateIntake = () => {
+      //
+      const { height, currentWeight: weight, age, desiredWeight } = formData;
+      return (
+        10 * weight +
+        6.25 * height -
+        5 * age -
+        161 -
+        10 * (weight - desiredWeight)
+      );
+    };
   };
-
   return (
     <>
       <Modal
-        children={<DailyCalorieIntake intake={calculateIntake()} />}
+        children={<div>{calculateIntake()}</div>}
         isOpen={isOpen}
         onClose={closeModal}
       />
@@ -102,21 +67,21 @@ export const DailyCaloriesForm = () => {
             <div className={css.info}>
               <TextField
                 className={css.textField}
-                onChange={(e) => handleChange(+e.target.value, 'height')}
+                onChange={e => handleChange(+e.target.value, 'height')}
                 type="number"
                 label="Height *"
                 id="height"
               />
               <TextField
                 className={css.textField}
-                onChange={(e) => handleChange(+e.target.value, 'age')}
+                onChange={e => handleChange(+e.target.value, 'age')}
                 type="number"
                 label="Age *"
                 id="age"
               />
               <TextField
                 className={css.textField}
-                onChange={(e) => handleChange(+e.target.value, 'currentWeight')}
+                onChange={e => handleChange(+e.target.value, 'currentWeight')}
                 type="number"
                 label="Current weight *"
                 id="current-weight"
@@ -125,7 +90,7 @@ export const DailyCaloriesForm = () => {
             <div className={css.info}>
               <TextField
                 className={css.textField}
-                onChange={(e) => handleChange(+e.target.value, 'desiredWeight')}
+                onChange={e => handleChange(+e.target.value, 'desiredWeight')}
                 type="number"
                 label="Desired weight *"
                 id="desired-weight"
@@ -135,7 +100,7 @@ export const DailyCaloriesForm = () => {
                 <div>
                   <RadioGroup
                     value={+formData['bloodType']}
-                    onChange={(e) => handleChange(+e.target.value, 'bloodType')}
+                    onChange={e => handleChange(+e.target.value, 'bloodType')}
                     name="blood-type"
                     options={options}
                   />
@@ -144,10 +109,75 @@ export const DailyCaloriesForm = () => {
             </div>
           </div>
           <div className={css.button}>
-            <button type="submit">Start losing weight</button>
+            <button className="button" type="submit">
+              Start losing weight
+            </button>
           </div>
         </form>
       </div>
     </>
   );
 };
+
+/* return (
+  <>
+    <Modal
+      children={<DailyCalorieIntake intake={calculateIntake()} />}
+      isOpen={isOpen}
+      onClose={closeModal}
+    />
+    <div className={css.container}>
+      <h1>Calculate your daily calorie intake right now</h1>
+      <form className={css.form} onSubmit={handleSubmit}>
+        <div className={css.infoContainer}>
+          <div className={css.info}>
+            <TextField
+              className={css.textField}
+              onChange={e => handleChange(+e.target.value, 'height')}
+              type="number"
+              label="Height *"
+              id="height"
+            />
+            <TextField
+              className={css.textField}
+              onChange={e => handleChange(+e.target.value, 'age')}
+              type="number"
+              label="Age *"
+              id="age"
+            />
+            <TextField
+              className={css.textField}
+              onChange={e => handleChange(+e.target.value, 'currentWeight')}
+              type="number"
+              label="Current weight *"
+              id="current-weight"
+            />
+          </div>
+          <div className={css.info}>
+            <TextField
+              className={css.textField}
+              onChange={e => handleChange(+e.target.value, 'desiredWeight')}
+              type="number"
+              label="Desired weight *"
+              id="desired-weight"
+            />
+            <div className={css.bloodTypeContainer}>
+              <span>Blood type*</span>
+              <div>
+                <RadioGroup
+                  value={+formData['bloodType']}
+                  onChange={e => handleChange(+e.target.value, 'bloodType')}
+                  name="blood-type"
+                  options={options}
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+        <div className={css.button}>
+          <button type="submit">Start losing weight</button>
+        </div>
+      </form>
+    </div>
+  </>
+); */
