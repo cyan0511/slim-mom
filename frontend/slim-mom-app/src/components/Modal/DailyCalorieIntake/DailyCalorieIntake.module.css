@@ -1,127 +1,141 @@
-.dailyCaloriesContent h2 {
-  text-align: left;
-  font-family: Verdana;
+.dailyCaloriesContent {
+  /* text-align: left; */
+  /* font-family: Verdana; */
   font-size: 1.125rem;
   font-style: normal;
   font-weight: 700;
   line-height: 140%; /* 36.4px */
   text-transform: none;
+  /* text-align: center; */
 
   color: #212121;
-  width: 508px;
+  /* width: 508px; */
+  border: 5px;
   height: 70px;
-  flex-shrink: 2;
-  margin: 64px 82px 20px;
-}
-.container > h2 {
-  color: #212121;
-  font-size: 18px;
-  font-style: normal;
-  font-weight: 700;
-  line-height: 140%; /* 25.2px */
-  /* max-width: 320px; */
-  text-transform: none;
-}
-.modalList {
-  /* width: 222px; */
-  height: 112px;
-  flex-shrink: 0;
-
-  color: #9b9faa;
-  font-family: Verdana;
-  font-size: 0.875rem;
-  font-style: normal;
-  font-weight: 400;
-  line-height: normal;
-  letter-spacing: 0.56px;
-  margin: 20px 82px 40px;
-}
-.dailyCaloriesContent {
-  & p {
-    width: 330px;
-    color: #212121;
+  justify-content: flex-start;
+  margin: 40px 20px 0px;
+  align-items: flex-start;
+  /*   display: flex;
+  flex-direction: column; */
+  & .intake {
+    /* width: 330px; */
+    /* color: #212121; */
     font-family: Verdana;
     font-size: 14px;
     font-style: normal;
     font-weight: 700;
     line-height: normal;
     letter-spacing: 0.56px;
+    /* margin: 20px 20px; */
+  }
+  & ol {
+    list-style: decimal;
+    width: 222px;
+    height: 112px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-left: 20px;
+  }
+  & li {
+    color: #9b9faa;
+    font-family: Verdana;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    letter-spacing: 0.56px;
+    /* margin-left: 20px; */
+  }
+  & h1 {
+    font-size: 1.125rem;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 140%; /* 25.2px */
+    max-width: 280px;
+    text-transform: none;
+    /* display: flex; */
+    /* flex-direction: column; */
+    /* align-content: flex-start; */
+  }
+  & h2 {
+    color: #212121;
+    font-family: Verdana;
+    font-size: 0.875rem;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    letter-spacing: 0.56px;
+    margin: 20px 0;
+  }
+  button {
+    margin-bottom: 119px;
   }
 }
-.modalContent {
-  margin-top: 20px;
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-  min-width: 376px;
-  width: 100%;
+
+.vector svg {
+  /* width: 280px; */
+  flex-shrink: 0;
+  margin-right: 20px;
+  stroke-width: 1px;
+  stroke: var(--Gray-5, #e0e0e0);
+  text-align: center;
 }
-.orderList {
-  list-style: decimal;
-  margin-left: 20px;
-  gap: 40px;
+
+.caloriesIntake {
+  color: #264061;
+  font-size: 48px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  letter-spacing: 1.92px;
+  display: flex;
+  justify-content: center;
+  align-items: baseline;
+  margin: 42px 20px 32px;
 }
 button {
   display: inline-flex;
   padding: 13px 25px;
   justify-content: center;
   align-items: center;
-  margin: 40px 0 80px;
-}
-
-.caloriesVal p {
-  color: #264061;
-  text-align: center;
-  font-family: Verdana;
-  font-size: 48px;
-  font-style: normal;
-  font-weight: 700;
-  line-height: normal;
-  letter-spacing: 1.92px;
-}
-span {
-  /*  width: 508px;
-  height: 70px;
-  flex-shrink: 0; */
-
-  color: #212121;
-  text-align: center;
-  font-family: Verdana;
-  font-size: 26px;
-  font-style: normal;
-  font-weight: 700;
-  line-height: 140%; /* 36.4px */
+  margin: 40px 55px 119px;
 }
 @media screen and (min-width: 377px) {
   .dailyCaloriesContent {
-  }
+    /* display: inline; */
+    max-width: 672px;
+    height: 572px;
+    flex-shrink: 0;
+    align-self: center;
 
-  .dailyCaloriesContent > h2 {
-    font-size: 1.625rem;
-    font-style: normal;
-    font-weight: 700;
-    line-height: 140%; /* 47.6px */
-    max-width: 704px;
-    margin-top: 40px;
-    margin-bottom: 30px;
-    text-align: center;
+    & h1 {
+      color: #212121;
+      text-align: center;
+      font-family: Verdana;
+      font-size: 1.625rem; /* 26px */
+      font-style: normal;
+      font-weight: 700;
+      line-height: 140%; /* 36.4px */
+      max-width: 508px;
+      /* margin: 64px 82px 20px; */
+    }
+    & h2 {
+      /* margin: 20px 0; */
+    }
   }
-
-  .infoContainer {
-    flex-direction: row;
-  }
-
-  .form {
-    max-width: 100%;
-  }
-  .button {
-    margin-left: 231px;
+  .vector svg {
+    flex-shrink: 0;
+    margin-right: 20px;
+    stroke-width: 1px;
+    stroke: var(--Gray-5, #e0e0e0);
+    max-width: 330px;
   }
 }
 
 @media screen and (min-width: 769px) {
   .container {
-    /* margin-top: 147px; */
+    margin-top: 147px;
   }
 
   .container > h1 {
@@ -139,6 +153,9 @@ span {
   .info {
     width: 100%;
     max-width: 240px;
+  }
+  h2 {
+    font-size: 1.125rem; /* 18px */
   }
 }
 
