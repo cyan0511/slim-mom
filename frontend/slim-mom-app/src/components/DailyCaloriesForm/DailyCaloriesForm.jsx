@@ -31,12 +31,6 @@ export const DailyCaloriesForm = () => {
         {value: 4, label: '4'},
     ];
 
-    const calculateIntake = () => {
-        //
-        const { height, currentWeight: weight, age, desiredWeight} = formData;
-        return 10 * weight + 6.25 * height - 5 * age - 161 - 10 * (weight - desiredWeight);
-    }
-
     return (<>
             <Modal children={<DailyCalorieIntake {...formData }/>} isOpen={isOpen} onClose={closeModal}/>
             <div className={css.container}>
