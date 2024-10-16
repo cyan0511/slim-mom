@@ -1,16 +1,13 @@
 import { Navigation } from '../Navigation/Navigation';
-import { useAuth } from '../../hooks/useAuth';
+// import { useAuth } from '../../hooks/useAuth';
 import css from './Header.module.css';
 import { NavLink } from 'react-router-dom';
 import { Logo } from '../Logo/Logo';
-import {AuthNav} from "../AuthNav/AuthNav";
-
 
 export const Header = () => {
-    const { isLoggedIn } = useAuth();
-
+    // const { isLoggedIn } = useAuth();
     return (
-        <header className={ isLoggedIn ? css.authHeader : css.header}>
+        <header className={ css.header}>
             <NavLink
                 to="/"
                 className={({ isActive }) => (isActive ? css.linkActive : css.link)}
@@ -18,8 +15,7 @@ export const Header = () => {
                 <Logo />
 
             </NavLink>
-            {isLoggedIn && <Navigation className={css.navigation} />}
-            {isLoggedIn ? (<><div>logged in</div></>): <AuthNav /> }
+            <Navigation />
         </header>
     );
 };

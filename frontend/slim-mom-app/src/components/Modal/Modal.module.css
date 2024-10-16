@@ -16,6 +16,7 @@
 
 /* Container for the modal content */
 .modalContainer {
+
   top: 80px;
   /* height: fit-content; */
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
@@ -25,6 +26,18 @@
   background: var(--white);
   max-width: 100%;
   height: 100%;
+=======
+    top: 80px;
+    /*height: fit-content;*/
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    position: relative;
+
+    border: 1px solid rgba(250, 250, 250, 0.10);
+    background: var(--white);
+    max-width: 100%;
+    height: 100%;
+    width: 100%;
+
 }
 
 .modalContainer h2 {
@@ -75,12 +88,21 @@
 
 /* Content inside the modal */
 .modalContent {
+
   margin-top: 20px;
   display: flex;
   flex-direction: column;
   gap: 20px;
   min-width: 376px;
   width: 100%;
+=======
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    /*min-width: 376px;*/
+    width: 100%;
+
 }
 
 @media screen and (min-width: 377px) {
