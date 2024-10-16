@@ -6,6 +6,10 @@ const diarySchema = new Schema(
             type: Schema.Types.ObjectId,
             ref: "user",
         },
+        productId: {
+            type: Schema.Types.ObjectId,
+            ref: "product",
+        },
         date: {
             type: Date,
             required: [true],
@@ -21,15 +25,7 @@ const diarySchema = new Schema(
         calories: {
             type: Number,
             required: [true],
-        },
-        calorieIntake: {
-            type: Number,
-            required: [true],
-        },
-        category: {
-            type: String,
-            required: [true],
-        },
+        }
     },
     { versionKey: false }
 );

@@ -36,9 +36,10 @@ const listProducts = async (req, res) => {
   }
 
   // Query the database
-  const products = await Product.find(query);
+  const products = await Product.find(query)
+      .select('_id title calories');
 
-  res.json(products);
+  res.json(products.sort((a, b) => a.title.localeCompare(b.title)));
 };
 
 const listCategories = async (req, res, next) => {

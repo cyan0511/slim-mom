@@ -1,5 +1,5 @@
 import express from 'express';
-import {registerUser, logInUser, refreshToken , getCurrentUser} from '../../controllers/authController.js';
+import {registerUser, logInUser, refreshToken, logOutUser, getCurrentUser } from '../../controllers/authController.js';
 import {validateRegistration, validateLogIn} from "../../middlewares/validation.js";
 import { verifyToken } from '../../middlewares/verifyTokens.js';
 
@@ -76,7 +76,7 @@ router.post("/login", validateLogIn, logInUser);
  *     summary: Get current user
  *     tags: [Auth]
  *     security:
- *       - bearerAuth: [] 
+ *       - bearerAuth: []
  *     responses:
  *       200:
  *         description: Current user retrieved successfully
@@ -113,5 +113,28 @@ router.get("/current", verifyToken, getCurrentUser);
  *         description: Invalid input
  */
 router.post('/refresh', refreshToken);
+/**
+ * @swagger
+ * /auth/logout:
+ *   post:
+ *     summary: Logout user
+ *     description: Invalidate the user's access token.
+ *     tags: [Auth]
+ *     security:
+ *       - bearerAuth: []
+ *     responses:
+ *       200:
+ *         description: Logout successful
+ *       400:
+ *         description: No token provided
+ *       401:
+ *         description: Invalid token
+ *       404:
+ *         description: User not found
+ *       500:
+ *         description: Server error
+ */
+router.post('/logout', logOutUser);
+
 
 export default router;
