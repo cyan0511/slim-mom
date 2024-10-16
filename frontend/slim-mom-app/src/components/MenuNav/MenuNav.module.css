@@ -1,0 +1,38 @@
+.container {
+  display: flex;
+  gap: 14px;
+  align-items: center;
+  padding-left: 20px;
+  text-overflow: fade;
+}
+
+.styledLink {
+  color: #9b9faa;
+  text-align: center;
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0.56px;
+  text-transform: uppercase;
+  white-space: nowrap;
+  text-decoration: none;
+}
+
+.styledLink.active {
+  color: #212121;
+}
+
+@media screen and (min-width: 769px) {
+  .container::before {
+    content: '|';
+    color: #e0e0e0;
+    font-size: 32px;
+    margin-right: 5px;
+  }
+
+  .container {
+    top: 22px;
+    left: 170px;
+    position: absolute;
+    gap: 14px;
+  }
+}

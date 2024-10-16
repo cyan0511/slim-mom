@@ -1,7 +1,7 @@
 import React, { useCallback } from 'react';
 import { createPortal } from 'react-dom';
 import { useMediaQuery } from 'react-responsive';
-import { Button } from 'components/Button/Button';
+import { Button } from '../Button/Button';
 import './ExitModal.css';
 const modalRoot = document.getElementById('modal-root');
 

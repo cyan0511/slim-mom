@@ -1,0 +1,99 @@
+.nav {
+  position: absolute;
+  top: 80px;
+  z-index: 33;
+  width: 100%;
+  background: #264061;
+  margin-left: -22px;
+  padding-top: 60px;
+  padding-right: 4px;
+  padding-left: 4px;
+  padding-bottom: 356px;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 40px;
+}
+.nav.open {
+  transform: translateX(0);
+}
+
+
+@media (min-width: 426px) and (max-width: 1023px) {
+  .nav {
+    padding-top: 100px;
+    margin-left: -35px;
+    padding-bottom: 752px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .nav {
+    top: 0;
+    z-index: 0;
+    width: 50%;
+    background: transparent;
+    margin-left: 0;
+    padding: 0;
+    display: flex;
+    gap: 18px;
+    position: relative;
+  }
+
+  .nav::before {
+    content: '';
+    position: absolute;
+    top: -10px;
+    left: -20px;
+    height: 32px;
+    width: 2px;
+    background-color: #e0e0e0;
+  }
+}
+
+/* Link Styles */
+.styled-link {
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 22px;
+  text-align: center;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: #9b9faa;
+  height: 100%;
+}
+
+.styled-link.active {
+  color: #ffffff;
+}
+
+@media (min-width: 426px) and (max-width: 1023px) {
+  .styled-link {
+    font-size: 24px;
+    line-height: 29px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .styled-link {
+    padding: 0;
+    border: none;
+    font-family: 'Your Tertiary Font', sans-serif;
+    line-height: 1.5;
+    font-size: 16px;
+    text-align: center;
+    letter-spacing: 0.04em;
+    background: transparent;
+    color: #000000;
+    text-decoration: none;
+  }
+
+  .styled-link.active {
+    color: orange;
+  }
+
+  .styled-link:hover,
+  .styled-link:focus {
+    color: orange;
+  }
+}

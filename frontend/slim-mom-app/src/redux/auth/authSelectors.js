@@ -1,0 +1,14 @@
+
+export const isLoggedIn = state => state.auth.isLoggedIn;
+
+export const user = state => state.auth.user;
+
+export const getUserName = state => state.auth.user?.username; 
+
+
+export const isRefreshing = state => state.auth.isRefreshing;
+
+export const getAuthError = state => state.auth.error;
+
+export const token = state => state.auth.token;
+export const refreshToken = state => state.auth.refreshToken;

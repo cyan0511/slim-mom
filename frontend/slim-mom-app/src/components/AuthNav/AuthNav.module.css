@@ -1,0 +1,61 @@
+.link {
+    display: inline-block;
+    text-decoration: none;
+    padding: 12px;
+    font-weight: 700;
+    color: #5d7d93;
+}
+
+.actionButtons {
+    display: flex;
+    gap: 14px;
+    align-items: center;
+    padding-left: 20px;
+    text-overflow: fade;
+}
+
+
+
+.actionButtons > a {
+    color: #9B9FAA;
+    text-align: right;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    letter-spacing: 0.56px;
+    text-transform: uppercase;
+    white-space: nowrap;
+    text-decoration: none;
+}
+
+
+a.active {
+    color: #212121;
+    text-align: right;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    letter-spacing: 0.56px;
+    text-transform: uppercase;
+}
+
+@media screen and (min-width: 769px) {
+
+    .actionButtons::before {
+        content: '|';
+        color: #E0E0E0;
+        font-size: 32px;
+        margin-right: 5px;
+    }
+
+    .actionButtons {
+        top: 22px;
+        left: 170px;
+        position: absolute;
+        gap: 14px;
+    }
+
+    
+}

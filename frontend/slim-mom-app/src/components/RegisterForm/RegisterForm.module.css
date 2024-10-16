@@ -1,0 +1,29 @@
+.container {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 20px;
+  max-width: 533px;
+  width: 100%;
+}
+
+.container > h1 {
+  color: #FAFAFA;
+  font-size: 56px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  letter-spacing: -1.12px;
+}
+
+.container > p {
+  max-width: 500px;
+  color: rgba(250, 250, 250, 0.40);
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  letter-spacing: -0.32px;
+  margin-top: 20px;
+}
+

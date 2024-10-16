@@ -1,25 +1,35 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import { App } from 'components/App';
-import './fonts/GothamPro-Bold.ttf';
-import './fonts/GothamPro-Light.ttf';
+import {persistor, store} from './redux/store';
 import './index.css';
-import { BrowserRouter } from 'react-router-dom';
-import { Provider } from 'react-redux';
-import { store, persistor } from './redux/store';
-import { PersistGate } from 'redux-persist/integration/react';
-import { ThemeContextProvider } from 'components/Context/Context';
+import App from './App';
+import reportWebVitals from './reportWebVitals';
+import {BrowserRouter} from "react-router-dom";
+import {Provider} from "react-redux";
+import {PersistGate} from 'redux-persist/integration/react';
+import {CssBaseline, StyledEngineProvider, ThemeProvider} from "@mui/material";
+import theme from './theme';
 
-ReactDOM.createRoot(document.getElementById('root')).render(
-  <React.StrictMode>
-    <Provider store={store}>
-      <ThemeContextProvider>
-        <PersistGate loading={<div>Loading...</div>} persistor={persistor}>
-          <BrowserRouter basename="/slim-mom">
-            <App />
-          </BrowserRouter>
-        </PersistGate>
-      </ThemeContextProvider>
-    </Provider>
-  </React.StrictMode>
+const root = ReactDOM.createRoot(document.getElementById('root'));
+root.render(
+    <React.StrictMode>
+        <Provider store={store}>
+            <PersistGate loading={null} persistor={persistor}>
+                <BrowserRouter basename="/slim-mom">
+                    <ThemeProvider theme={theme}>
+                        {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
+                        <CssBaseline />
+                        <StyledEngineProvider injectFirst>
+                            <App />
+                        </StyledEngineProvider>
+                    </ThemeProvider>
+                </BrowserRouter>
+            </PersistGate>
+        </Provider>
+    </React.StrictMode>
 );
+
+// If you want to start measuring performance in your app, pass a function
+// to log results (for example: reportWebVitals(console.log))
+// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
+reportWebVitals();

@@ -1,0 +1,72 @@
+
+.inputContainer {
+    position: relative;
+    max-height: 40px;
+    width: 100%;
+}
+
+.highlight {
+    position: absolute;
+    height: 2px;
+    background: #FC842D;
+    left: 0;
+    bottom: 10px;
+    width: 100%;
+    transform: scaleX(0);
+    transition: transform 0.4s ease;
+}
+
+input.textField:focus ~ .highlight {
+    transform: scaleX(1);
+}
+
+
+/* Basic reset for input */
+input.textField {
+    border: none;
+    outline: none;
+    padding: 5px 5px;
+    font-size: 16px;
+    color: #333;
+    background-color: #fff;
+    border-bottom: 1px solid grey;
+    transition: all 0.3s ease;
+    width: 100%;
+}
+
+/* Label styling */
+.label {
+    display: block;
+    transition: all 0.3s ease;
+    transform: translateY(-35px);
+    color: #9B9FAA;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    letter-spacing: 0.56px;
+
+}
+
+/* Focus state */
+input.textField:focus {
+    border-bottom: 1px solid #808081;
+}
+
+/* Placeholder styling */
+input.textField::placeholder {
+    color: #bbb;
+    opacity: 1; /* Firefox */
+}
+
+/* Placeholder transition when input is focused */
+input.textField:focus::placeholder {
+    color: transparent;
+}
+
+/* Input with value */
+input.textField:not(:placeholder-shown) + .label,
+input.textField:focus + .label {
+    transform: translateY(-40px);
+    font-size: 10px;
+}

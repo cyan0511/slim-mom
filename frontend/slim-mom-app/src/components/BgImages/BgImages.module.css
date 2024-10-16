@@ -1,0 +1,121 @@
+
+.images {
+    position: relative;
+    width: 100vw;
+    overflow: hidden;
+}
+
+.strawberry, .banana, .leaves, .shadow, .leavesVertical {
+    display: none;
+}
+
+@media screen and (min-width: 377px) {
+    .images {
+        z-index: -1;
+    }
+
+    .strawberry {
+        display: block;
+        position: fixed;
+        width: 208px;
+        height: 203px;
+        flex-shrink: 0;
+        /*top: 583px;*/
+        bottom: 238px;
+        right: 40px;
+        transform: scaleX(-1);
+        overflow: hidden;
+    }
+
+    .banana {
+        display: block;
+        width: 740px;
+        height: 527px;
+        flex-shrink: 0;
+        position: fixed;
+        bottom: -96px;
+        right: -249px;
+        overflow: hidden;
+    }
+
+    .leaves {
+        display: block;
+        width: 531px;
+        height: 602px;
+        transform: rotate(90deg);
+        flex-shrink: 0;
+        position: fixed;
+        right: 166px;
+        bottom: 0;
+        overflow: hidden;
+    }
+
+    .leavesVertical {
+        width: 740px;
+        height: 842px;
+        transform: rotate(0deg);
+        bottom: 280px;
+        display: block;
+        flex-shrink: 0;
+        position: fixed;
+        right: 30px;
+        overflow: hidden;
+    }
+
+
+    .shadow {
+        display: block;
+        flex-shrink: 0;
+        position: fixed;
+        bottom: -187px;
+        right: -40px;
+        overflow: hidden;
+    }
+}
+
+@media screen and (min-width: 769px) {
+    .banana {
+        display: block;
+        width: 773px;
+        height: 552px;
+        flex-shrink: 0;
+        position: fixed;
+        top: -80px;
+        right: -249px;
+        overflow: hidden;
+    }
+
+    .strawberry {
+        display: block;
+        position: fixed;
+        width: 286px;
+        height: 279px;
+        flex-shrink: 0;
+        /*top: 583px;*/
+        bottom: 65px;
+        right: 36px;
+        transform: scaleX(-1);
+    }
+
+
+    .leaves {
+        display: block;
+        width: 746px;
+        height: 846px;
+        transform: rotate(0deg);
+        flex-shrink: 0;
+        position: fixed;
+        right: 166px;
+        top: -25px;
+        overflow: hidden;
+    }
+
+    .shadow {
+        width: 602.014px;
+        height: 956px;
+        right: 0px;
+        flex-shrink: 0;
+        bottom: -70px;
+    }
+
+}
