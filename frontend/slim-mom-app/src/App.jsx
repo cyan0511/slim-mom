@@ -14,7 +14,7 @@ import { listDiaries } from './redux/diaries/operations';
 import { listProducts } from './redux/products/operations';
 import * as diaries from './redux/diaries/selectors';
 import { getCurrentUser } from './redux/user/operations';
-import { parse } from 'date-fns';
+
 // import * as user from './redux/users/selectors';
 
 const MainPage = lazy(() => import('./pages/MainPage/MainPage'));
@@ -27,8 +27,8 @@ const CalculatorPage = lazy(
 function App() {
   const dispatch = useDispatch();
   const { isLoggedIn, isRefreshing } = useAuth();
-  const diaryDate = useSelector(diaries.getDate);
-  const date = parse(diaryDate, 'dd.MM.yyyy', new Date());
+  // const diaryDate = useSelector(diaries.getDate);
+  // const date = parse(diaryDate, 'dd.MM.yyyy', new Date());
 
   const isProductsLoading = useSelector(products.getIsLoading);
   const isDiariesLoading = useSelector(diaries.getIsLoading);
