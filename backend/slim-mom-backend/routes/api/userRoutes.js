@@ -2,7 +2,6 @@ import express from 'express';
 import {validateDailyCaloriesIntake} from "../../middlewares/validation.js";
 import {calculateDailyIntake  } from "../../controllers/userController.js";
 
-
 const router = express.Router();
 
 /**
@@ -47,7 +46,4 @@ const router = express.Router();
  */
 router.post('/daily-calorie-intake', validateDailyCaloriesIntake, calculateDailyIntake);
 
-
-
 export default router;
- 

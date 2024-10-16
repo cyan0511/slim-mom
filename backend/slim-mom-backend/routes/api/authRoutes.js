@@ -1,7 +1,7 @@
 import express from 'express';
 import {registerUser, logInUser, refreshToken, logOutUser, getCurrentUser } from '../../controllers/authController.js';
 import {validateRegistration, validateLogIn} from "../../middlewares/validation.js";
-import { verifyToken } from '../../middlewares/verifyTokens.js';
+import {authenticateToken} from "../../middlewares/authenticateToken.js";
 
 const router = express.Router();
 
@@ -84,7 +84,7 @@ router.post("/login", validateLogIn, logInUser);
  *         description: Unauthorized
  */
 
-router.get("/current", verifyToken, getCurrentUser);
+router.get("/current", authenticateToken, getCurrentUser);
 
 
 
