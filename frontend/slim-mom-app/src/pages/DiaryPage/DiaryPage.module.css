@@ -4,7 +4,7 @@
     /*align-items: center;*/
     font-size: 14px;
     /*margin: 0 50px;*/
-    padding: 40px 20px 40px 20px;
+    padding: 0 20px 40px 20px;
     width: 100%;
 }
 
@@ -15,12 +15,9 @@
     font-size: 23px;
     border-radius: 50%;
     display: block;
-    margin: auto;
     padding: unset;
-    margin-top: 60px;
+    margin: 40px auto auto;
 }
-
-
 
 @media screen and (min-width: 377px) {
     .diarySection {

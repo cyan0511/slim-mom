@@ -33,7 +33,9 @@
 }
 
 .authMenu {
-    visibility: hidden;
+    /*visibility: hidden;*/
+    display: flex;
+    gap: 20px;
 }
 
 @media screen and (min-width: 769px) {

@@ -4,7 +4,7 @@ import icons from '../../assets/images/icons.svg';
 import { logOut } from '../../redux/auth/authOperations';
 import Notiflix from 'notiflix';
 import css from './UserInfo.module.css';
-import { getUser } from '../../redux/user/selector';
+import { getUser } from '../../redux/user/selectors';
 // import Modal from '../Modal/Modal';
 import clsx from 'clsx';
 
@@ -33,7 +33,7 @@ export const UserInfo = ({className}) => {
   return (
       <div className={clsx(css.container, className)}>
         {/*<Modal isOpen children={<div>Logout</div>} />*/}
-        <p className="text-nowrap">{user?.name || 'User'}</p>
+        <p className="text-nowrap">{user?.name || 'Cyan'}</p>
         <svg height={32} width={2}>
           <use href={`${icons}#short-line`}></use>
         </svg>

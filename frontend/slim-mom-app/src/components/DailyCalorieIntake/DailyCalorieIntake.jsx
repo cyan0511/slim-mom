@@ -1,7 +1,7 @@
 import css from './DailyCalorieIntake.module.css';
 import iconSvg from './../../assets/images/icons.svg';
 import { useSelector } from 'react-redux';
-import { getUser } from '../../redux/user/selector';
+import { getUser } from '../../redux/user/selectors';
 
 const DailyCalorieIntake = ({ calorieIntake, onClose }) => {
   const user = useSelector(getUser);
