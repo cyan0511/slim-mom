@@ -2,7 +2,7 @@ import { useSelector } from 'react-redux';
 import styles from '../RightSideBar/RightSideBar.module.css';
 import leaves from '../../assets/images/leaves.webp';
 import React from 'react';
-import { getUser } from '../../redux/user/selector';
+import { getUser } from '../../redux/user/selectors';
 import { getDiaries } from '../../redux/diaries/selectors';
 import { format } from 'date-fns';
 
@@ -67,7 +67,7 @@ export const RightSideBar = ({ date }) => {
               <ul>
                 {notAllowedFoods.map((prod, index) => (
                     <p className={styles.text} key={index}>
-                      {index + 1}. {prod}
+                      {prod}
                     </p>
                 ))}
               </ul>

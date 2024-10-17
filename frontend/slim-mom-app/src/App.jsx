@@ -13,6 +13,7 @@ import { Loader } from './components/Loader/Loader';
 import { listDiaries } from './redux/diaries/operations';
 import { listProducts } from './redux/products/operations';
 import * as diaries from './redux/diaries/selectors';
+import * as users from './redux/user/selectors';
 import { getCurrentUser } from './redux/user/operations';
 
 // import * as user from './redux/users/selectors';
@@ -32,9 +33,11 @@ function App() {
 
   const isProductsLoading = useSelector(products.getIsLoading);
   const isDiariesLoading = useSelector(diaries.getIsLoading);
+  const isUserLoading = useSelector(users.getIsLoading);
 
   const isLoading = isProductsLoading ||
       isDiariesLoading ||
+      isUserLoading ||
       isRefreshing;
 
   useEffect(() => {

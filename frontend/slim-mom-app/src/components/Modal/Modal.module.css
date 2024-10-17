@@ -90,7 +90,7 @@
     }
 
     .modalContainer {
-        top: 226px;
+        /*top: 226px;*/
         max-width: 672px;
         width: 100%;
         height: fit-content;

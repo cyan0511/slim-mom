@@ -1,0 +1,26 @@
+.menu {
+    visibility: visible;
+    cursor: pointer;
+}
+
+/* Close button at the top-right corner */
+.modalCloseButton {
+    background: none;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+    color: #000000;
+    box-shadow: none;
+}
+
+@media screen and (min-width: 377px) {
+    .menu {
+        display: unset;
+        cursor: pointer;
+    }
+}
+@media screen and (min-width: 769px) {
+    .menu {
+        visibility: hidden;
+    }
+}

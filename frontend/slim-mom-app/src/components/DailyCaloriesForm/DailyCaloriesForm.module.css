@@ -3,6 +3,11 @@
     flex-direction: column;
     gap: 34px;
     margin: 32px 20px 20px 20px;
+    & button {
+        margin-left: auto;
+        margin-right: auto;
+        display: flex;
+    }
 }
 
 .container > h1 {

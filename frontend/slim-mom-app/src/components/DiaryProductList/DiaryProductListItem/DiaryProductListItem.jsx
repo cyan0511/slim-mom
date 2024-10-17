@@ -13,7 +13,7 @@ export const DiaryProductListItem = ({ diary, onDelete }) => {
     return (
         <li className={css.item}>
             <span className={css.product}>{diary.title}</span>
-            <span className={css.grams}>{diary.grams}</span>
+            <span className={css.grams}>{diary.grams} g</span>
             <span className={css.calories}>{Math.round(diary.calories)} kcal</span>
 
             <button type="button" className={css.deleteButton} onClick={handleDelete}>

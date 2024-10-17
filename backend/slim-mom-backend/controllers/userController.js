@@ -30,7 +30,7 @@ export const calculateDailyIntake = async (req, res, next) => {
         })
       }
     } catch (ex) {
-      console.log(ex);
+      // ignore if anonymous
     }
 
     res.status(200).json({
@@ -60,8 +60,6 @@ export const getCurrentUser = async (req, res, next) => {
     ...user,
     foodNotRecommended
   }
-
-  console.log(obj);
   // Send user info as a response
   res.status(200).json(obj)
 }

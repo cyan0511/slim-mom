@@ -108,8 +108,14 @@
     <path d="M1 0L0.999999 32" stroke="#E0E0E0" stroke-width="2"/>
   </symbol>
 
-
-  <symbol fill="none" viewBox="0 0 44 44" id="menu" xmlns="http://www.w3.org/2000/svg">
-    <path d="M5.5 15.583h33m-33 12.834h33" stroke="#FAFAFA" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+  <symbol fill="none" viewBox="0 0 24 24" id="menu" xmlns="http://www.w3.org/2000/svg">
+    <g clip-path="url(#aa)">
+      <path d="M3 18h18v-2H3v2Zm0-5h18v-2H3v2Zm0-7v2h18V6H3Z" fill="#212121"/>
+    </g>
+    <defs>
+      <clipPath id="aa">
+        <path fill="#fff" d="M0 0h24v24H0z"/>
+      </clipPath>
+    </defs>
   </symbol>
 </svg>
