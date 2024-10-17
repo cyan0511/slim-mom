@@ -17,7 +17,7 @@ export const RightSideBar = ({ date }) => {
   const totalCalories = diaries.reduce((prev, diary) => {
     return Number.parseInt(prev) + diary.calories;
   }, 0);
-  const leftCalories = (dailyRate - totalCalories).toFixed(2);
+  const leftCalories = (dailyRate || 0 - totalCalories).toFixed(2);
   const nOfNorm = (totalCalories / dailyRate) * 100;
 
   return (
