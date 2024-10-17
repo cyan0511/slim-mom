@@ -29,6 +29,10 @@
 }
 
 .userInfo {
+
+}
+
+.authMenu {
     visibility: hidden;
 }
 
@@ -39,8 +43,19 @@
         margin-top: 60px;
     }
 
-    .userInfo {
+    .authMenu {
+        position: absolute;
         visibility: visible;
+        display: flex;
+
+        gap: 20px;
+        right: 30px;
+        bottom: 5px;
+        z-index: 200;
+    }
+
+    .userInfo {
+
     }
 
 /*    .authHeader {

@@ -1,0 +1,16 @@
+.menu {
+    visibility: visible;
+    cursor: pointer;
+}
+
+@media screen and (min-width: 377px) {
+    .menu {
+        display: unset;
+        cursor: pointer;
+    }
+}
+@media screen and (min-width: 769px) {
+    .menu {
+        visibility: hidden;
+    }
+}

@@ -67,7 +67,7 @@ export const RightSideBar = ({ date }) => {
               <ul>
                 {notAllowedFoods.map((prod, index) => (
                     <p className={styles.text} key={index}>
-                      {index + 1}. {prod}
+                      {prod}
                     </p>
                 ))}
               </ul>

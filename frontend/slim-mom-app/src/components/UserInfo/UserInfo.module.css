@@ -1,12 +1,9 @@
 .container {
-    position: absolute;
     display: flex;
-    right: 100px;
-    z-index: 200;
     align-content: center;
     justify-content: center;
     align-items: center;
-    gap: 5px;
+    gap: 10px;
 }
 
 .exit {

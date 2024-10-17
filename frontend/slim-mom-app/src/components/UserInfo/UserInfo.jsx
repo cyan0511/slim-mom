@@ -18,10 +18,6 @@ export const UserInfo = ({className}) => {
     borderRadius: '15px',
   });
 
-  Notiflix.Loading.init({
-    svgColor: '#FC842D',
-  });
-
   const handleLogout = () => {
     Notiflix.Confirm.show(
         'Confirm Logout',

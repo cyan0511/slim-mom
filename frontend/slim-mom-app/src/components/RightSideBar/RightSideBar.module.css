@@ -10,9 +10,21 @@
   padding: 40px 20px 40px 20px;
 }
 
+.summaryWrap ul {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
 
 .foodWrap {
   margin: 0 0 52px 20px;
+}
+
+.foodWrap ul {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }
 
 .text {
@@ -36,7 +48,6 @@
 .item {
   display: flex;
   justify-content: space-between;
-  margin-bottom: 20px;
 }
 
 .redText {
@@ -70,9 +81,22 @@
     flex: 1;
   }
 
+  .summaryWrap ul {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  }
+
   .foodWrap {
     flex: 1;
   }
+
+  .foodWrap ul {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  }
+
 
   .images {
     position: relative;
