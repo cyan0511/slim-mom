@@ -2,7 +2,7 @@ import React from 'react';
 import css from './DiaryDateCalendar.module.css';
 import 'react-datepicker/dist/react-datepicker.css';
 import DatePicker from 'react-datepicker';
-import { FaCalendarAlt } from 'react-icons/fa';
+import iconsvg from "../../assets/images/icons.svg";
 import { format } from 'date-fns';
 
 
@@ -27,6 +27,8 @@ export const DiaryDateCalendar = ({ date, onDateChange }) => {
 
 const CustomInput = React.forwardRef(({ value, onClick }, ref) => (
     <button className={css.iconButton} onClick={onClick} ref={ref}>
-        <FaCalendarAlt />
+        <svg  width="20" height="20">
+            <use href={`${iconsvg}#calendar`}/>
+        </svg>
     </button>
 ));
