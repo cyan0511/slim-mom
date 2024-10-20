@@ -7,6 +7,7 @@
 
 .logoContainer svg {
   /*display: none;*/
+  visibility: hidden;
 }
 
 .icon {
@@ -32,14 +33,14 @@
 
 @media screen and (min-width: 377px) {
   .logoContainer svg {
-    display: block ;
+    visibility: visible;
     position: initial;
   }
 }
 
 @media screen and (min-width: 769px) {
   .logoContainer svg {
-    display: block;
+    visibility: visible;
     top: 50px;
     left: 60px;
     position: absolute;
