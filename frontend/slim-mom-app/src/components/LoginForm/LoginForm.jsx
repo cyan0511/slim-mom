@@ -14,7 +14,7 @@ export const LoginForm = () => {
             fields={fields}
             buttonText="Log in"
             footerText="Register"
-            footerLink="/signup"
+            footerLink="/register"
             footerLinkText="Sign Up"
             isLogin={true}
         />

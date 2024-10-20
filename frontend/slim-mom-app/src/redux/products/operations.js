@@ -8,9 +8,10 @@ axios.defaults.baseURL = REACT_APP_BACKEND_URL;
 
 export const listCategories = createAsyncThunk(
     'products/categories',
-    async (_, thunkAPI) => {
+    async (bloodType, thunkAPI) => {
         try {
-            const response = await axios.get('/categories');
+            const query = bloodType ? `?bloodType=${bloodType}` : '';
+            const response = await axios.get(`/categories${query}`);
             return response.data;
         } catch (error) {
             return thunkAPI.rejectWithValue(error.message); // Reject the promise with the error message

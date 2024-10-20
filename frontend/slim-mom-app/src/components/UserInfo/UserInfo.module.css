@@ -1,0 +1,31 @@
+.container {
+    display: flex;
+    align-content: center;
+    justify-content: end;
+    align-items: center;
+    gap: 10px;
+    background: #EFF1F3;
+}
+
+.exit {
+    border: none;
+    cursor: pointer;
+    color: #9B9FAA;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    letter-spacing: 0.56px;
+    background-color: transparent;
+}
+
+@media screen and (min-width: 377px) {
+    .container {
+        display: flex;
+        align-content: center;
+        justify-content: end;
+        align-items: center;
+        gap: 10px;
+        background: transparent;
+    }
+}

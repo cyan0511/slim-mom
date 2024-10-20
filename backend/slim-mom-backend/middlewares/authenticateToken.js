@@ -1,18 +1,34 @@
-import jwt from 'jsonwebtoken'; // Import jwt to verify the token
+import jwt from 'jsonwebtoken'
+import { User } from '../models/userModel.js'
+import 'dotenv/config'
+import { HttpError } from '../errors/HttpError.js'
 
-export function verifyToken(req, res, next) {
-  const authHeader = req.headers['authorization'];
-  const token = authHeader && authHeader.split(' ')[1]; // Extract token from 'Bearer <token>'
+const { SECRET_KEY } = process.env
 
-  if (!token) {
-    return res.status(401).json({ message: 'Access token is missing' });
+const authenticateToken = async (req, _res, next) => {
+  const { authorization = '' } = req.headers
+  const [bearer, token] = authorization.split(' ')
+
+  if (bearer !== 'Bearer') {
+    return next(new HttpError(401, 'Not authorized'))
   }
 
   try {
-    const verifiedUser = jwt.verify(token, 'your_secret_key'); // Use your JWT secret key
-    req.user = verifiedUser; // Attach the user data to the request
-    next();
-  } catch (err) {
-    return res.status(403).json({ message: 'Invalid or expired token' });
+    const { id } = jwt.verify(token, SECRET_KEY)
+
+    const user = await User.findById(id).select(
+      '_id name email age bloodType currentWeight dailyCalorieIntake desiredWeight height accessToken');
+
+
+    if (!user || !user.accessToken) {
+      return next(new HttpError(401, 'Not authorized'))
+    }
+
+    req.user = user.toObject();
+    next()
+  } catch {
+    next(new HttpError(401, 'Not authorized'))
   }
 }
+
+export { authenticateToken }

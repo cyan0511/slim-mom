@@ -1,4 +1,4 @@
-import {model, Schema} from "mongoose";
+import {model, Schema} from 'mongoose'
 
 const userSchema = new Schema(
     {
@@ -14,6 +14,30 @@ const userSchema = new Schema(
             type: String,
             required: [true, 'Email is required'],
             unique: true,
+        },
+        height: {
+            type: Number,
+            required: false,
+        },
+        age: {
+            type: Number,
+            required: false,
+        },
+        currentWeight: {
+            type: Number,
+            required: false
+        },
+        desiredWeight: {
+            type: Number,
+            required: false,
+        },
+        bloodType: {
+            type: Number,
+            required: false,
+        },
+        dailyCalorieIntake: {
+            type: Number,
+            required: false,
         },
         accessToken: {
             type: String,
@@ -37,7 +61,7 @@ const userSchema = new Schema(
         }
     },
     {versionKey: false}
-);
+)
 
 //MongoDB collection name = "users"
-export const User = model("users", userSchema);
+export const User = model('users', userSchema)

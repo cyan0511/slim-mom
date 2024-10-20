@@ -1,15 +1,16 @@
-import express from 'express';
-import {validateDailyCaloriesIntake} from "../../middlewares/validation.js";
-import {calculateDailyIntake} from "../../controllers/userController.js";
+import express from 'express'
+import { validateDailyCaloriesIntake } from '../../middlewares/validation.js'
+import { calculateDailyIntake, getCurrentUser } from '../../controllers/userController.js'
+import { authenticateToken } from '../../middlewares/authenticateToken.js'
 
-const router = express.Router();
+const router = express.Router()
 
 /**
  * @swagger
- * /user/daily-calorie-intake:
+ * /users/daily-calorie-intake:
  *   post:
  *     summary: Calculate Daily Calorie Intake
- *     tags: [User]
+ *     tags: [users]
  *     requestBody:
  *       required: true
  *       content:
@@ -44,5 +45,24 @@ const router = express.Router();
  *       400:
  *         description: Invalid input
  */
-router.post('/daily-calorie-intake', validateDailyCaloriesIntake, calculateDailyIntake);
-export default router;
+router.post('/daily-calorie-intake', validateDailyCaloriesIntake, calculateDailyIntake)
+
+
+/**
+ * @swagger
+ * /users/current:
+ *   get:
+ *     summary: Get current user
+ *     tags: [users]
+ *     security:
+ *       - bearerAuth: []
+ *     responses:
+ *       200:
+ *         description: Current user retrieved successfully
+ *       401:
+ *         description: Unauthorized
+ */
+
+router.get('/current', authenticateToken, getCurrentUser)
+
+export default router

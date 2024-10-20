@@ -1,0 +1,145 @@
+.dailyCaloriesContent {
+    /* align-items: center; */
+    /* font-family: Verdana; */
+    font-size: 1.125rem;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 140%; /* 36.4px */
+    text-transform: none;
+    padding: 10px;
+    color: #212121;
+    margin: 0;
+    /* width: 508px; */
+    border: 5px;
+    justify-content: flex-start;
+    align-items: flex-start;
+
+    & .intake {
+        font-size: 14px;
+        font-style: normal;
+        font-weight: 700;
+        line-height: normal;
+        letter-spacing: 0.56px;
+        margin-left: 20px;
+    }
+
+    & ol {
+        list-style: decimal;
+        width: 222px;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        margin-left: 20px;
+    }
+
+    & li {
+        color: #9b9faa;
+        font-size: 14px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+        letter-spacing: 0.56px;
+        text-transform: capitalize;
+        /* margin-left: 0px; */
+    }
+
+    & h1 {
+        font-size: 1.125rem;
+        font-style: normal;
+        font-weight: 700;
+        line-height: 140%; /* 25.2px */
+        max-width: 280px;
+        text-transform: none;
+        /* display: flex; */
+        /* flex-direction: column; */
+        /* align-content: flex-start; */
+    }
+
+    & h2 {
+        color: #212121;
+        font-family: Verdana;
+        font-size: 0.875rem;
+        font-style: normal;
+        font-weight: 700;
+        line-height: normal;
+        letter-spacing: 0.56px;
+        margin: 20px 0px;
+    }
+}
+
+.vector {
+    /* width: 280px; */
+    /* flex-shrink: 0; */
+    /* margin-right: 20px; */
+    stroke-width: 1px;
+    stroke: var(--Gray-5, #e0e0e0);
+    /* text-align: center; */
+    align-items: center;
+}
+
+.caloriesIntake {
+    color: #264061;
+    font-size: 48px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    letter-spacing: 1.92px;
+    display: flex;
+    justify-content: center;
+    align-items: baseline;
+    margin-top: 20px;
+}
+
+.dailyCaloriesContent button {
+    margin-top: 20px;
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+}
+
+@media screen and (min-width: 377px) {
+    .dailyCaloriesContent {
+        flex-direction: column;
+        display: flex;
+        max-width: 672px;
+        flex-shrink: 0;
+        align-items: center;
+        margin: 0 82px 82px 82px;
+
+        & h1 {
+            color: #212121;
+            text-align: center;
+            font-size: 1.625rem; /* 26px */
+            font-style: normal;
+            font-weight: 700;
+            line-height: 140%; /* 36.4px */
+            max-width: 508px;
+            /* margin: 64px 82px 20px; */
+        }
+
+        & h2 {
+            margin-bottom: 12px;
+            max-width: 222px;
+        }
+
+        & ol {
+            margin-left: -90px;
+        }
+
+        .vector svg {
+            flex-shrink: 0;
+            margin-right: 20px;
+            stroke-width: 1px;
+            stroke: var(--Gray-5, #e0e0e0);
+            max-width: 330px;
+        }
+    }
+}
+
+/* Adjust specifically for very small screens like 275px */
+/* @media (max-width: 320px) {
+  .modalButton {
+    padding: 12px;
+    font-size: 1rem;
+  }
+} */

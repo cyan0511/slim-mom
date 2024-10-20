@@ -28,6 +28,16 @@
     display: none;
 }
 
+.userInfo {
+
+}
+
+.authMenu {
+    /*visibility: hidden;*/
+    display: flex;
+    gap: 20px;
+}
+
 @media screen and (min-width: 769px) {
     .header {
         justify-content: flex-start;
@@ -35,6 +45,20 @@
         margin-top: 60px;
     }
 
+    .authMenu {
+        position: absolute;
+        visibility: visible;
+        display: flex;
+
+        gap: 20px;
+        right: 30px;
+        bottom: 5px;
+        z-index: 200;
+    }
+
+    .userInfo {
+
+    }
 
 /*    .authHeader {
         max-width: 768px;

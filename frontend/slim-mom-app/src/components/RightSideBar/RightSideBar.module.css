@@ -1,0 +1,160 @@
+.wrapper {
+  background-color: #F0F1F3;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+}
+
+.summaryWrap {
+  width: 100%;
+  padding: 40px 20px 40px 20px;
+}
+
+.summaryWrap ul {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+
+.foodWrap {
+  margin: 0 0 52px 20px;
+}
+
+.foodWrap ul {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.text {
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 17px;
+  letter-spacing: 0.04em;
+  color: #9b9faa;
+  text-transform: capitalize;
+}
+
+.title {
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 17px;
+  letter-spacing: 0.04em;
+  margin-bottom: 20px;
+
+}
+
+.item {
+  display: flex;
+  justify-content: space-between;
+}
+
+.redText {
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 17px;
+  letter-spacing: 0.04em;
+  color: #fd0000;
+}
+
+.images, .leaves {
+  display: none;
+}
+
+@media screen and (min-width: 369px) {
+  .wrapper {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    background-color: #F0F1F3;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    padding: 80px 32px 0 32px;
+    gap: 40px;
+  }
+
+  .summaryWrap {
+    width: 100%;
+    padding: unset;
+    flex: 1;
+  }
+
+  .summaryWrap ul {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  .foodWrap {
+    flex: 1;
+  }
+
+  .foodWrap ul {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  }
+
+
+  .images {
+    position: relative;
+    width: 100vw;
+    overflow: hidden;
+  }
+
+  .leaves {
+    display: block;
+    width: 428px;
+    height: 602px;
+    transform: rotate(90deg);
+    flex-shrink: 0;
+    position: fixed;
+    right: -150px;
+    bottom: -200px;
+    overflow: hidden;
+  }
+
+
+}
+
+
+@media screen and (min-width: 769px) {
+  .wrapper {
+    background-color: #f0f1f3;
+    position: absolute;
+    right: 0;
+    top: 0;
+    max-width: 517px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .summaryWrap {
+    width: 100%;
+    padding: 0 94px 0 94px;
+    flex: unset;
+  }
+
+  .foodWrap {
+    padding: 0 94px 0 94px;
+    flex: unset;
+    margin: unset;
+  }
+
+  .leaves {
+    display: block;
+    width: 740px;
+    height: 842px;
+    transform: rotate(365deg);
+    flex-shrink: 0;
+    position: fixed;
+    right: -190px;
+    bottom: 120px;
+    overflow: hidden;
+    clip-path: inset(0 0 100px 100px);
+  }
+
+}

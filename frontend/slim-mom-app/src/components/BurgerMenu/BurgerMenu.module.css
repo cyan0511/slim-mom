@@ -1,0 +1,100 @@
+/* RightSideModal.css */
+.modal-overlay {
+    position: fixed;
+    top: 80px;
+    right: 0;
+    height: 100%;
+    width: 100%; /* Adjust width as needed */
+    background-color: #0C0D0D99;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    z-index: 1000; /* Ensure it's on top of other content */
+}
+
+.modal-content {
+    background: #264061;
+    width: 100%;
+    flex-shrink: 0;
+    height: 100%;
+    padding: 18px 32px 32px 32px;
+    box-shadow: -2px 0 5px rgba(0, 0, 0, 0.3);
+    position: relative;
+    display: flex;
+    justify-content: center;
+}
+
+.close-btn {
+    position: absolute;
+    top: 48px;
+    right: 38px;
+    background: none;
+    border: none;
+    font-size: 24px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.menu {
+    margin-top: 100px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+
+
+.nav {
+    display: flex;
+    flex-direction: column;
+
+    padding: 12px 23px;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    margin-top: 380px;
+}
+
+
+.modal-content a {
+    color: #9B9FAA;
+    text-align: center;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    letter-spacing: 0.72px;
+    text-transform: uppercase;
+    text-decoration: none;
+}
+
+.modal-content a:hover, .modal-content .active {
+    color: #FFF;
+    text-align: center;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    letter-spacing: 0.72px;
+    text-transform: uppercase;
+}
+
+@media screen and (min-width: 768px) {
+    .modal-overlay {
+        /* display: none;*/
+    }
+
+    .modal-content {
+        /* display: none;*/
+    }
+}
+
+@media screen and (max-width: 368px) {
+    .modal-content {
+        width: 375px;
+    }
+
+    .nav {
+        margin-top: 330px;
+    }
+}

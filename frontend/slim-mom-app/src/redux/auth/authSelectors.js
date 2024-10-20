@@ -7,5 +7,5 @@ export const isRefreshing = state => state.auth.isRefreshing;
 
 export const getAuthError = state => state.auth.error;
 
-export const token = state => state.auth.token;
+export const accessToken = state => state.auth.accessToken;
 export const refreshToken = state => state.auth.refreshToken;

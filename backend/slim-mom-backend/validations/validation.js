@@ -79,16 +79,7 @@ export const diaryValidation = Joi.object({
     grams: Joi.number().required().messages({
         "any.required": "Missing required grams field"
     }),
-    calories: Joi.number().required().messages({
-        "any.required": "Missing required calories field"
-    }),
-    calorieIntake: Joi.number().required().messages({
-        "any.required": "Missing required calorieIntake field"
-    }),
-    title: Joi.string().required().messages({
-        "any.required": "Missing required title field"
-    }),
-    category: Joi.string().required().messages({
-        "any.required": "Missing required category field"
-    }),
+    productId: Joi.string().required().messages({
+        "any.required": "Missing required productId field"
+    })
 });

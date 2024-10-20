@@ -3,11 +3,21 @@
     flex-direction: column;
     /*align-items: center;*/
     font-size: 14px;
-    margin: 0 50px;
-    padding-top: 40px;
+    /*margin: 0 50px;*/
+    padding: 0 20px 40px 20px;
     width: 100%;
 }
 
+.addButton {
+    cursor: pointer;
+    width: 48px;
+    height: 48px;
+    font-size: 23px;
+    border-radius: 50%;
+    display: block;
+    padding: unset;
+    margin: 40px auto auto;
+}
 
 @media screen and (min-width: 377px) {
     .diarySection {
