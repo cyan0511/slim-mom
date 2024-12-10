@@ -22,3 +22,4 @@ export const validateRegistration = validate(registerValidation);
 export const validateLogIn = validate(logInValidation);
 export const validateDailyCaloriesIntake = validate(dailyCaloriesValidation);
 export const validateDiary = validate(diaryValidation);
+// export const validateCurrentUser = validate()

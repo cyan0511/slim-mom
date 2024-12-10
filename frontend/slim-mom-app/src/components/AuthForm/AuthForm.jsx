@@ -105,14 +105,14 @@ export const AuthForm = ({
                 <div className={css.actionButtons}>
                     <button
                         type="submit"
-                        className="primary-button"
+                        className="button"
                         style={{width: isRefreshing ? '170px' : null}}
                     >
                         {isRefreshing ?
                             (isLogin ? 'Signing in...' : 'Signing up...') : buttonText}
                     </button>
 
-                    <button className="secondary">
+                    <button className="button">
                         <NavLink to={footerLink} style={{textDecoration: "none", color: "inherit"}}>
                             {footerText}
                         </NavLink>

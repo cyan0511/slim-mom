@@ -1,6 +1,5 @@
 import css from './DailyCalorieIntake.module.css';
-import PropTypes from 'prop-types';
-import iconSvg from '../../../assets/images/icons.svg';
+import iconSvg from './../../assets/images/icons.svg';
 
 const foods = [
   { name: 'Apple', calories: 95 },
@@ -10,13 +9,17 @@ const foods = [
   { name: 'Egg', calories: 70 },
 ];
 
-const DailyCalorieIntake = ({ intake }) => {
-  return (
+const DailyCalorieIntake = ({ height, currentWeight, age, desiredWeight, bloodType }) => {
+    const calculateIntake = () => {
+        //
+        return 10 * currentWeight + 6.25 * height - 5 * age - 161 - 10 * (currentWeight - desiredWeight);
+    }
+    return (
     <div className={css.dailyCaloriesContent}>
       <h1>Your recommended daily calorie intake is</h1>
       <div>
         <span className={css.caloriesIntake}>
-          {intake}
+          {calculateIntake()}
           <p className={css.intake}>CALORIES</p>
         </span>
       </div>
@@ -40,12 +43,10 @@ const DailyCalorieIntake = ({ intake }) => {
       </ol>
 
       <div>
-        <button type="submit">Start losing weight</button>
+        <button className="button" type="submit">Start losing weight</button>
       </div>
     </div>
   );
 };
-DailyCalorieIntake.propTypes = {
-  intake: PropTypes.number.isRequired,
-};
+
 export default DailyCalorieIntake;

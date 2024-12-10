@@ -5,6 +5,7 @@ import {
     listDiaries
 } from "../../controllers/diaryController.js";
 import { authenticateToken } from "../../middlewares/authenticateToken.js";
+import {validateDiary} from "../../middlewares/validation.js";
 
 const router = express.Router();
 
@@ -103,7 +104,7 @@ router.get("/", authenticateToken, listDiaries);
  *         description: Invalid parameters
  */
 
-router.post("/", authenticateToken, addDiary);
+router.post("/", authenticateToken, validateDiary, addDiary);
 
 /**
  * @swagger
